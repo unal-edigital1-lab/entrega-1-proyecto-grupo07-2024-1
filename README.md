@@ -15,64 +15,55 @@ Desarrollar un sistema de Tamagotchi en FPGA (Field-Programmable Gate Array) que
 
 Planteamos el uso de los siguientes botones para interactuar con el sistema:
 
-- **Reset:** Configura los valores de la mascota en un estado inicial establecido y que refleja condiciones optimas, esto se establece luego de pulsar el boton por 5 segundos.
+- **Reset:** Configura los valores de la mascota en un estado inicial "Feliz" que refleja condiciones optimas y define las variables de diversión, hambre y energia en un valor de 4. Esto se establece luego de pulsar el respectivo boton por 5 segundos.
 - **Test:** Activa el modo de prueba al mantener pulsado por al menos 5 segundos, permitiendo al usuario navegar entre los diferentes estados del Tamagotchi con cada pulsación.
-- **Jugar:** Simula jugar con la mascota virtual, por lo tanto con una pulsacion aumenta el valor de "Diversion" y disminuye el valor correspondiente a "Energia".
-- **Alimentar:** Simula suministrar alimento a la mascota, por lo que al pulsar el boton disminuye el valor correspondiente a "Hambre".
-- **Curar:** Para simular esta accion en la mascota, proponemos pulsar los botones de "Jugar" y "Alimentar" de manera simultanea.
+- **Jugar:** Simula jugar con la mascota virtual, por lo tanto con una pulsacion aumenta el valor de "Diversion" y disminuye el valor correspondiente a "Energia", simulando cansancio en la mascota.
+- **Alimentar:** Simula suministrar alimento a la mascota, por lo que al pulsar el boton aumenta el valor correspondiente a "Hambre", lo que se explica más adelante. 
+- **Curar:** Para simular esta acción en la mascota, proponemos pulsar los botones de "Jugar" y "Alimentar" de manera simultanea. La acción de curar solo debe ser posible en el estado "enfermo" y se asemeja al reset en que define las variables de "diversión", "hambre" y "energia" en un valor de 4.
 
 ## 1.2 Sistema de Sensado
 
-Para la interaccion de Tamagutchi con su entorno, se propone incorporar 3 sensores como lo son:
+Para la interacción de Tamagutchi con su entorno, se propone incorporar 3 sensores como lo son:
 
-- **Sensor de Luz o Fotoresistencia(GL5516):** Este sensor nos permite determinar los tiempos en que la mascota estara descansando, si es sometido a luz el Tamagutchi estara despierto, en caso contrario, si esta oscuro o bajo sombra estara dormido. 
+- **Sensor de Luz o Fotoresistencia(GL5516):** Este sensor nos permite determinar los tiempos en que la mascota estara descansando, si es sometido a luz el Tamagutchi estara despierto, en caso contrario, si esta oscuro o bajo sombra estará dormido. 
 
-- **Sensor Ultrasonido(HC-SR04):** Con este sensor queremos interactuar con el Tamagutchi para cambiar su nivel de "Diversion", si nos ubicamos cerca a la mascota el valor de este item debe aumentar, de lo contrario disminuira progresivamente.
+- **Sensor Ultrasonido(HC-SR04):** Con este sensor queremos interactuar con el Tamagutchi para cambiar su nivel de "Diversión", si nos ubicamos cerca a la mascota el valor de este item debe conservarse, de lo contrario disminuirá progresivamente.
 
-- **Sensor de Temperatura(DS18B20)** Usando este sensor se pueden modificar los niveles de "Hambre" y de "Energia", si la temperatura es muy baja el Tamagutchi sufrira aumento en su nivel de "Hambre", mientras que si se encuentra a altas temperaturas, la mascota tendra disminucion en su valor de "Energia" reflejando cansancio.
+- **Sensor de Temperatura(DS18B20)** Usando este sensor se pueden modificar los niveles de "Hambre" y de "Energia", si la temperatura es muy baja el Tamagutchi sufrirá disminución en su nivel de "Hambre", mientras que si se encuentra a altas temperaturas, la mascota tendra disminución en su valor de "Energia" reflejando cansancio.
 
 ## 1.3 Sistema de Visualizacion
 
-Para la visualizacion del Tamagutchi y la representacion de sus emociones se empleara el display "Nokia 5110", mientras para la visualizacion de los valores numericos representativos de los estados y estadisticas generales, se utilizaran los display 7 segmentos incorporados en la FPGA, esto permite al usuario entender las necesidades de la mascota virtual y actuar para su bienestar.
+Para la visualización del Tamagutchi, la representacion de sus emociones y los valores numéricos representativos de los estados se empleará el display "Nokia 5110", esto permite al usuario entender las necesidades de la mascota virtual y actuar para su bienestar.
 
-# 2. Arquitectura del sistema
+# 2. Especificaciones de Diseño
 
-## 2.1 Diagrama maquina de estados
+## 2.1 Estados
 
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/maqestados.jpeg" alt="imagen" width="500px">
-</p>
-</div>
-
-## 2.2 Diagrama de Bloques
-
-# 3. Especificaciones de Diseño
-
-## 3.1 Estados
-
-El Tamagutchi posee la siguiente logica de estados que representan sus condiciones y necesidades. Los estados son los siguientes:
+El Tamagutchi posee la siguiente lógica de estados que representan sus condiciones y necesidades. Los estados son los siguientes:
 
 | **Estado** | **Binario** | **Decimal** |  
 |:----------:|:-----------:|:-----------:|
-|    Feliz   |     000     |      1      |
-|  Aburrido  |     001     |      2      |
-|   Cansado  |     010     |      3      |
-| Descansando |     011     |      4      |
-| Hambriento |     100     |      5      |
-|   Enfermo  |     101     |      6      |
-|   Muerto   |     110     |      7      |
+|    Feliz   |     000     |      0      |
+|  Aburrido  |     001     |      1      |
+|   Cansado  |     010     |      2      |
+| Descansando |     011     |      3      |
+| Hambriento |     100     |      4      |
+|   Enfermo  |     101     |      5      |
+|   Muerto   |     110     |      6      |
 
-## 3.2 Variables de transicion de estados
+## 2.2 Variables de transición de estados
 
-Definimos las siguientes variables:
+Para controlar los cambios de estado definimos las siguientes variables:
 
-- **Diversion(d):** De 0 a 5
-- **Hambre(h):** De 0 a 5
-- **Energia(e):** De 0 a 5
-- **Oscuridad(o):** 0/1
+- **Diversion(d):** Representa el nivel de diversión de la mascota en una escala de 0 a 5 donde 5 es entretenida y 1 es aburrida. Esta variable aumenta jugando con el tamagutchi; disminuye tras pasar el tiempo sin interactuar con la mascota y se conserva si el usuario le da compañia a la mascota.
+- **Hambre(h):** Representa el nivel de hambre de la mascota en una escala de 0 a 5 donde 5 es llena y 1 es hambrienta. Esta variable aumenta alimentando al tamagutchi y disminuye con el tiempo, aumentando la velocidad de disminución en un ambiente frio.
+- **Energia(e):** Representa el nivel de energia de la mascota en una escala de 0 a 5 donde 5 es activa y 1 es cansada. Esta variable aumenta con el tiempo mientras el tamagutchi esta en estado "descansando" y disminuye con el tiempo. La velocidad de disminución de esta variable aumenta al jugar con el tamagutchi, en un ambiente caluroso o en un ambiente oscuro.
+  
+Para las 3 variables ya mencionadas, un nivel de 5, 4 o 3 se consideran optimos y mantienen a la mascota en estado "feliz"; un nivel de 2 o 1 implican una necesidad y fuerzan un cambio de estado según el caso; 0 representa un estado crítico y fuerza a la mascota a pasar a estado "enfermo".
 
-## 3.3 Acciones/Interacciones:
+- **Oscuridad(o):** Solo pudiendo tomar valores entre 0 y 1 según el nivel de luz del ambiente. En un estado de "cansado", la oscuridad permite al tamagotchi pasar a estado "descansar". Si la mascota aun tiene energia, aumenta la velocidad de disminución de "energía" para permitirle al tamagotchi descansar.
+
+## 2.3 Acciones/Interacciones:
 
 - **Jugar:** Permite aumentar Diversion pero disminuye Energia.
 - **Alimentar:** Disminuye Hambre.
@@ -81,12 +72,34 @@ Definimos las siguientes variables:
 - **Proximidad:** Evita la disminucion de Diversion.
 - **Temperatura:** Disminuye la Energia o Hambre segun sea el caso.
 
-## 3.4 Descripcion de estados
+## 2.4 Descripcion de estados
 
-- **Feliz:** Diversion, Hambre y Energia = [3,5]. Ignora la accion de Curar.
-- **Aburrido:** Hambre y Energia = [3,5], Diversion = [1,2]. Ignora la accion de Curar.
-- **Cansado:** Hambre = [3,5], Energia = [1,2]. Ignora las acciones de Curar y Jugar
-- **Descansando:** Energia = [1,2], Oscuridad = 1. Ignora las acciones de Jugar, Alimentar, Proximidad y Temperatura.
-- **Hambriento:** Hambre = [1,2]. Ignora las acciones de Curar, Jugar, Oscuridad.
-- **Enfermo:** Diversion, Hambre y Energia = 0. Ignora acciones de Jugar y Alimentar.
-- **Muerto:** Luego de cierto tiempo enfermo. Ignora todas las acciones.
+A continuación se presentan todos los estados del tamagutchi, con sus respectivas descripciones, condiciones y limitaciones de interacción, es decir, que acciones no se pueden realizar/no se tienen en cuenta en cada estado.
+
+- **Feliz:** Representa el bienestar de la mascota. Implica que las variables diversion, hambre y energia esten todas en un nivel de 3 o superior. En este estado se ignora la accion de Curar.
+- **Aburrido:** Representa falta de diversion en la mascota. Implica que el hambre y la energia tengan un nivel de 3 o superior, pero que la diversión este en 2 o en 1. En este estado se ignora la accion de Curar.
+- **Cansado:** Representa falta de descanso en la mascota. Implica hambre en un nivel igual o superior a 3, pero de energía en 2 o 1. En este estado se ignoran las acciones de Curar y Jugar.
+- **Descansando:** Representa a la mascota dormida. Implica energia en un nivel de 2 o 1 y que el ambiente este oscuro. En este estado se ignoran las acciones de Jugar, Alimentar, Curar ,Proximidad y Temperatura.
+- **Hambriento:** Representa falta de alimentación en la mascota. Implica un nivel de hambre de 1 o 2. Ignora las acciones de Curar, Jugar, Oscuridad.
+- **Enfermo:** Representa carencia en cualquiera de las necesitades de la mascota. Implica Diversion, Hambre o Energia en un nivel de 0 0.En este estado se ignoran las acciones de Jugar y Alimentar.
+- **Muerto:** Luego de cierto tiempo enfermo sin curar a la mascota, esta morirá. En este estado se ignoran todas las acciones, solo siendo posible resetear el tamagutchi.
+
+Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambriento" sin importar el nivel de energia y diversión, permitiendo simplificar la máquina de estados. Esto se ve con mayor claridad en el diagrama de la máquina de estados.
+
+# 3. Arquitectura del sistema
+
+## 3.1 Diagrama maquina de estados
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/maqestados.jpeg" alt="imagen" width="500px">
+</p>
+</div>
+
+Recordando que:
+- Diversión(d)
+- Hambre(h)
+- Energia(e)
+- Oscuridad(o)
+
+## 3.2 Diagrama de Bloques
