@@ -160,6 +160,22 @@ Recordando que:
 </p>
 </div>
 
+## 3.2.1 Diagrama caja negra
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/Diagrama_cajanegra.png" alt="imagen" width="600px">
+</p>
+</div>
+
+## 3.2.1 Diagrama caja negra 2
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/Diagrama_cajanegra2.png" alt="imagen" width="600px">
+</p>
+</div>
+
 ## 3.3 Diagrama de Bloques
 
 <div>
