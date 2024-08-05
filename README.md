@@ -86,35 +86,168 @@ A continuación se presentan todos los estados del tamagutchi, con sus respectiv
 
 Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambriento" sin importar el nivel de energia y diversión, permitiendo simplificar la máquina de estados. Esto se ve con mayor claridad en el diagrama de la máquina de estados.
 
-## 2.4 Temperatura
+# 3. Arquitectura del sistema
 
-## 2.2.1 Funcionamiento del sensor:
+## 3.1 Descripcion de componentes
 
-inout: data
-rango: 0°-50°
+## Subsistemas
 
-trabajo:
+### Contador
 
-1. inicializacion
+- **Input:** Clk, enable.
+- **Output:** Done, ciclo.
+
+**Especificaciones:**
+
+- Cuenta los ciclos de reloj durante los cuales enable = 1.
+- Conserva el dato durante enable = 0.
+- Parametro con n cantidad de bits para la salida.
+
+**Maquina de estados:**
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/contador.jpeg" alt="imagen" width="200px">
+</p>
+</div>
+
+### Temporizador
+
+- **Input:** Clk, Init.
+- **Output:** Out, Done.
+- **Param:** Ciclos.
+
+**Especificaciones:**
+
+- Out es 1 por la cantidad de ciclos especificados al instanciar cada vez que Init = 1.
+
+**Maquina de estados:**
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/temporizador.jpeg" alt="imagen" width="200px">
+</p>
+</div>
+
+## Ultrasonido(HC-SR04)
+
+- **Input:** Trigger.
+- **Output:** Echo.
+- **Rango:** 20mm
+
+**Trabajo:**
+
+1. Recibe una senal de trigger en alto por 10us.
+2. Realiza la medicion.
+3. Envia una senal en alto por echo cuya duracion es proporcional a la distancia medida.
+
+**Especificaciones del driver:**
+
+- Debe tener senales de init y done para facilitar la implementacion.
+- Cuando init = 1, realiza una medicion.
+- Done = 1 cuando haya terminado de enviar la distancia.
+- Como salida entrega el valor de distancia medido en mm y lo guarda hasta que init vuelva a ser 1.
+
+**Maquina de estados:**
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/maqestadoultrason.jpeg" alt="imagen" width="350px">
+</p>
+</div>
+
+**Diagrama de flujo:**
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/Diagrama_bloques.png" alt="imagen" width="600px">
+</p>
+</div>
+
+**Diagrama de caja negra:**
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/Diagrama_cajanegra2.png" alt="imagen" width="600px">
+</p>
+</div>
+
+## Temperatura(HDT11)
+
+- **Inout:** Data
+- **Rango:** 0°-50°C
+
+**Trabajo:**
+
+1. Inicializacion
 
 * Master manda un bajo por 18us
 * Pull up por 20-40uS
 * Slave manda un bajo por 80us 
 * Pull up por 80uS
 
-2. medición
+2. Medición
 
-3. transmisión de datos.
+3. Transmisión de datos
 
-* antes de cada bit, slave manda un bajo por 5Ous 
+* Antes de cada bit, slave manda un bajo por 5Ous 
 * 0: un pull up por 26-28us
 * 1: un pull up pur 70us
 
-4. slave manda un bajo por 50us al acabar la transmisión de datos
+4. Slave manda un bajo por 50us al acabar la transmisión de datos
 
-# 3. Arquitectura del sistema
+**Especificaciones del driver:**
 
-## 3.1 Diagrama maquina de estados
+* Debe tener init y done para facilitar la implementacion.
+* Temperatura como salida con el valor de la temperatura en °C y lo guarda hasta init = 1.
+
+**Maquina de estados:**
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/maqestadostemp.jpeg" alt="imagen" width="350px">
+</p>
+</div>
+
+**Diagrama de caja negra:**
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/Diagrama_cajanegra2.png" alt="imagen" width="600px">
+</p>
+</div>
+
+## Pantalla(NOKIA 5110)
+
+- **Input:** SDIN = Data, SCLK, D/C = Data/Command, SCE = Chip Enable, RST = Reset, OSC = Oscillator, VLCD = 5Vdc.
+
+**Especificaciones del driver:**
+
+* La pantalla debe mostrar el nivel de energia, hambre y diversion del tamagotchi con el formato: Letra que represente la variable, dos puntos, nivel de la variable, dos puntos, nivel de la variable en forma de numero. Por ejemplo: E: 3, correspondiente al nivel de energia igual a 3.
+
+* Debe mostrar explicitamente el estado del tamagotchi en la zona superior.
+
+* La mascota debe tener caracteristicas visuales unicas para reflejar el estado en el que este.
+
+## 3.2 Diagramas de bloques
+
+### 3.2.1 Diagrama general de caja negra
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/cajanegra1.png" alt="imagen" width="600px">
+</p>
+</div>
+
+### 3.2.2 Datapath
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/DiagramaFinal.png" alt="imagen" width="700px">
+</p>
+</div>
+
+### 3.2.3 FSM1
 
 <div>
 <p style = 'text-align:center;'>
@@ -128,67 +261,10 @@ Recordando que:
 - Energia(e)
 - Oscuridad(o)
 
-### 3.1.1 Maquina de estados para Reset y Test
+### 3.2.4 FSM2
 
 <div>
 <p style = 'text-align:center;'>
 <img src="./media/maqestados3.png" alt="imagen" width="450px">
 </p>
 </div>
-
-### 3.1.2 Maquina de estados para sensor ultrasonido(HC-SR04)
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/maqestadoultrason.jpeg" alt="imagen" width="350px">
-</p>
-</div>
-
-### 3.1.3 Maquina de estados para sensor de temperatura(DHT11)
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/maqestadostemp.jpeg" alt="imagen" width="350px">
-</p>
-</div>
-
-## 3.2 Diagrama general de caja negra
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/cajanegra.png" alt="imagen" width="600px">
-</p>
-</div>
-
-## 3.2.1 Diagrama caja negra
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/Diagrama_cajanegra.png" alt="imagen" width="600px">
-</p>
-</div>
-
-## 3.2.1 Diagrama caja negra 2
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/Diagrama_cajanegra2.png" alt="imagen" width="600px">
-</p>
-</div>
-
-## 3.3 Diagrama de Bloques
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/Diagrama_bloques.png" alt="imagen" width="600px">
-</p>
-</div>
-
-## 3.4 Diagrama Final
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/DiagramaFinal.png" alt="imagen" width="600px">
-</p>
-</div>
-
