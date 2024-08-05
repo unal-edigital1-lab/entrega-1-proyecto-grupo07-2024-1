@@ -29,7 +29,7 @@ Para la interacción de Tamagutchi con su entorno, se propone incorporar 3 senso
 
 - **Sensor Ultrasonido(HC-SR04):** Con este sensor queremos interactuar con el Tamagutchi para cambiar su nivel de "Diversión", si nos ubicamos cerca a la mascota el valor de este item debe conservarse, de lo contrario disminuirá progresivamente.
 
-- **Sensor de Temperatura(DS18B20)** Usando este sensor se pueden modificar los niveles de "Hambre" y de "Energia", si la temperatura es muy baja el Tamagutchi sufrirá disminución en su nivel de "Hambre", mientras que si se encuentra a altas temperaturas, la mascota tendra disminución en su valor de "Energia" reflejando cansancio.
+- **Sensor de Temperatura(DHT11)** Usando este sensor se pueden modificar los niveles de "Hambre" y de "Energia", si la temperatura es muy baja el Tamagutchi sufrirá disminución en su nivel de "Hambre", mientras que si se encuentra a altas temperaturas, la mascota tendra disminución en su valor de "Energia" reflejando cansancio.
 
 ## 1.3 Sistema de Visualizacion
 
@@ -92,7 +92,7 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/maqestados.jpeg" alt="imagen" width="500px">
+<img src="./media/maqestados2.jpeg" alt="imagen" width="500px">
 </p>
 </div>
 
@@ -102,4 +102,36 @@ Recordando que:
 - Energia(e)
 - Oscuridad(o)
 
-## 3.2 Diagrama de Bloques
+### 3.1.1 Maquina de estados para Reset y Test
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/maqestados3.png" alt="imagen" width="450px">
+</p>
+</div>
+
+### 3.1.2 Maquina de estados para sensor ultrasonido(HC-SR04)
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/maqestadoultrason.jpeg" alt="imagen" width="350px">
+</p>
+</div>
+
+### 3.1.3 Maquina de estados para sensor de temperatura(DHT11)
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/maqestadostemp.jpeg" alt="imagen" width="350px">
+</p>
+</div>
+
+## 3.2 Diagrama general de caja negra
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/cajanegra.png" alt="imagen" width="600px">
+</p>
+</div>
+
+## 3.3 Diagrama de Bloques
