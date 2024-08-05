@@ -135,3 +135,18 @@ Recordando que:
 </div>
 
 ## 3.3 Diagrama de Bloques
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/Diagrama_bloques.png" alt="imagen" width="600px">
+</p>
+</div>
+
+## 3.4 Diagrama Final
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/DiagramaFinal.png" alt="imagen" width="600px">
+</p>
+</div>
+
