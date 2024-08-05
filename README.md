@@ -86,6 +86,38 @@ A continuación se presentan todos los estados del tamagutchi, con sus respectiv
 
 Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambriento" sin importar el nivel de energia y diversión, permitiendo simplificar la máquina de estados. Esto se ve con mayor claridad en el diagrama de la máquina de estados.
 
+## 2.4 Temperatura
+
+## 2.2.1 Funcionamiento del sensor:
+
+inout: data
+rango: 0°-50°
+
+trabajo:
+
+1. inicializacion
+
+* Master manda un bajo por 18us
+* Pull up por 20-40uS
+* Slave manda un bajo por 80us 
+* Pull up por 80uS
+
+2. medición
+
+3. transmisión de datos.
+
+* antes de cada bit, slave manda un bajo por 5Ous 
+0: un pull up por 26-28us
+1: un pull up pur 70us
+
+4. slave manda un bajo por 50us al acabar la transmisión de datos
+
+2. Espekificaciones del driver a diseñar:
+
+* debe tener inet y done para facilitar la implementation temperatura como sulida con el valor de la tempercituste po "C
+
+* lo guarda hasta initel
+
 # 3. Arquitectura del sistema
 
 ## 3.1 Diagrama maquina de estados
