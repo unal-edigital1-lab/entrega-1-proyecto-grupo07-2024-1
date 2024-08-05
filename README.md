@@ -160,7 +160,7 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/Diagrama_bloques.png" alt="imagen" width="600px">
+<img src="./media/Diagrama_bloques.png" alt="imagen" width="400px">
 </p>
 </div>
 
@@ -168,11 +168,20 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/Diagrama_cajanegra2.png" alt="imagen" width="600px">
+<img src="./media/Diagrama_cajanegra.png" alt="imagen" width="600px">
 </p>
 </div>
 
-## Temperatura(HDT11)
+**Bloque de implementacion:**
+
+1. Distancia critica
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/SensorDistancia.png" alt="imagen" width="350px">
+</p>
+</div>
+
+## Temperatura(DHT11)
 
 - **Inout:** Data
 - **Rango:** 0°-50°C
@@ -214,6 +223,16 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 <div>
 <p style = 'text-align:center;'>
 <img src="./media/Diagrama_cajanegra2.png" alt="imagen" width="600px">
+</p>
+</div>
+
+**Bloque de implementacion:**
+
+1.Temperatura critica superior \
+2.Temperatura critica inferior
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/SensorTemperatura.png" alt="imagen" width="350px">
 </p>
 </div>
 
@@ -268,79 +287,3 @@ Recordando que:
 <img src="./media/maqestados3.png" alt="imagen" width="450px">
 </p>
 </div>
-<<<<<<< HEAD
-
-### 3.1.2 Maquina de estados para sensor ultrasonido(HC-SR04)
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/maqestadoultrason.jpeg" alt="imagen" width="350px">
-</p>
-</div>
-
-### 3.1.2 Implementacion sensor Distancia
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/SensorDistancia.png" alt="imagen" width="350px">
-</p>
-</div>
-
-### 3.1.3 Maquina de estados para sensor de temperatura(DHT11)
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/maqestadostemp.jpeg" alt="imagen" width="350px">
-</p>
-</div>
-
-### 3.1.3 Implementacion sensor temperatura
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/SensorTemperatura.png" alt="imagen" width="350px">
-</p>
-</div>
-
-## 3.2 Diagrama general de caja negra
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/cajanegra.png" alt="imagen" width="600px">
-</p>
-</div>
-
-## 3.2.1 Diagrama caja negra
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/Diagrama_cajanegra.png" alt="imagen" width="600px">
-</p>
-</div>
-
-## 3.2.1 Diagrama caja negra 2
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/Diagrama_cajanegra2.png" alt="imagen" width="600px">
-</p>
-</div>
-
-## 3.3 Diagrama de Bloques
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/Diagrama_bloques.png" alt="imagen" width="600px">
-</p>
-</div>
-
-## 3.4 Diagrama Final
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/DiagramaFinal.png" alt="imagen" width="600px">
-</p>
-</div>
-
-=======
->>>>>>> a7ea6c853cf35fce59e837cd8aa7ad09dc4a5935
