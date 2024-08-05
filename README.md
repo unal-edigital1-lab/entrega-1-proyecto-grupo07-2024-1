@@ -144,11 +144,27 @@ Recordando que:
 </p>
 </div>
 
+### 3.1.2 Implementacion sensor Distancia
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/SensorDistancia.png" alt="imagen" width="350px">
+</p>
+</div>
+
 ### 3.1.3 Maquina de estados para sensor de temperatura(DHT11)
 
 <div>
 <p style = 'text-align:center;'>
 <img src="./media/maqestadostemp.jpeg" alt="imagen" width="350px">
+</p>
+</div>
+
+### 3.1.3 Implementacion sensor temperatura
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/SensorTemperatura.png" alt="imagen" width="350px">
 </p>
 </div>
 
