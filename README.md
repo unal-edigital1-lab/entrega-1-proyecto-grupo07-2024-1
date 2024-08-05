@@ -107,16 +107,10 @@ trabajo:
 3. transmisión de datos.
 
 * antes de cada bit, slave manda un bajo por 5Ous 
-0: un pull up por 26-28us
-1: un pull up pur 70us
+* 0: un pull up por 26-28us
+* 1: un pull up pur 70us
 
 4. slave manda un bajo por 50us al acabar la transmisión de datos
-
-2. Espekificaciones del driver a diseñar:
-
-* debe tener inet y done para facilitar la implementation temperatura como sulida con el valor de la tempercituste po "C
-
-* lo guarda hasta initel
 
 # 3. Arquitectura del sistema
 
