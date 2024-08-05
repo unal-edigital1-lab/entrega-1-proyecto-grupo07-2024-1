@@ -107,7 +107,7 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/contador.jpeg" alt="imagen" width="200px">
+<img src="./media/contador.jpeg" alt="imagen" width="300px">
 </p>
 </div>
 
@@ -125,7 +125,7 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/temporizador.jpeg" alt="imagen" width="200px">
+<img src="./media/temporizador.jpeg" alt="imagen" width="300px">
 </p>
 </div>
 
@@ -168,7 +168,7 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/Diagrama_cajanegra.png" alt="imagen" width="600px">
+<img src="./media/Diagrama_cajanegra.png" alt="imagen" width="700px">
 </p>
 </div>
 
@@ -177,7 +177,7 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 1. Distancia critica
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/SensorDistancia.png" alt="imagen" width="350px">
+<img src="./media/SensorDistancia.png" alt="imagen" width="400px">
 </p>
 </div>
 
@@ -232,7 +232,7 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 2.Temperatura critica inferior
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/SensorTemperatura.png" alt="imagen" width="350px">
+<img src="./media/SensorTemperatura.png" alt="imagen" width="400px">
 </p>
 </div>
 
@@ -254,7 +254,7 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/cajanegra1.png" alt="imagen" width="600px">
+<img src="./media/cajanegra1.png" alt="imagen" width="800px">
 </p>
 </div>
 
@@ -262,15 +262,15 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/DiagramaFinal.png" alt="imagen" width="700px">
+<img src="./media/DiagramaFinal.png" alt="imagen" width="900px">
 </p>
 </div>
 
-### 3.2.3 FSM1
+### 3.2.3 Maquina de estados principal
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/maqestados2.jpeg" alt="imagen" width="500px">
+<img src="./media/maqestados2.jpeg" alt="imagen" width="600px">
 </p>
 </div>
 
@@ -280,10 +280,10 @@ Recordando que:
 - Energia(e)
 - Oscuridad(o)
 
-### 3.2.4 FSM2
+### 3.2.4 Maquina de estados de los modos Test y Reset
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/maqestados3.png" alt="imagen" width="450px">
+<img src="./media/maqestados3.png" alt="imagen" width="500px">
 </p>
 </div>
