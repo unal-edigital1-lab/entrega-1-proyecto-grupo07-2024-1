@@ -258,6 +258,8 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 </p>
 </div>
 
+En la imagen se presenta el diagrama general de caja negra, donde se ilustran los componentes externos que interactúan con un sistema. A la izquierda se encuentran las entradas, que incluyen botones (JUGAR, ALIMENTAR, RESET, TEST), sensores (ultrasonido, temperatura y luz) y el reloj (CLK). Estas señales entran a la Caja Negra, un sistema que procesa la información y produce tres salidas principales: Energía, Hambre y Diversión, las cuales se almacenan en un banco de registros. Luego, el driver del display toma estos valores y los envía a una pantalla Nokia 5110, encargada de mostrar el estado del sistema. El diagrama ilustra cómo las entradas, procesadas por la caja negra, generan salidas que son finalmente visualizadas por el usuario en la pantalla.
+
 ### 3.2.2 Datapath
 
 <div>
@@ -265,6 +267,10 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 <img src="./media/DiagramaFinal.png" alt="imagen" width="900px">
 </p>
 </div>
+
+La imagen muestra el *Datapath* del sistema, donde se visualiza el flujo de datos a través de varios componentes lógicos. Este esquema incluye módulos como contadores, comparadores, multiplexores y calculadores para manejar las señales de temperatura, distancia y comida. Las entradas principales vienen de sensores (como ultrasonido y temperatura), y los botones de interacción (Jugar, Alimentar, Curar). El *divisor de frecuencia* genera señales de reloj (clk) para sincronizar los procesos.
+
+Cada cálculo relacionado con la energía (CalcE), hambre (CalcH), y diversión (CalcD) es administrado por bloques específicos que procesan las señales y permiten que el sistema tome decisiones en función de las entradas sensoriales y del usuario. Finalmente, los contadores y comparadores aseguran que el sistema esté operando dentro de los límites esperados y permiten generar señales de reset cuando es necesario. Este *Datapath* controla la secuencia y procesamiento de los datos para el correcto funcionamiento del sistema.
 
 ### 3.2.3 Maquina de estados principal
 
