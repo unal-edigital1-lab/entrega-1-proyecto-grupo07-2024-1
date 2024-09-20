@@ -5,7 +5,7 @@ module DivFrec(
 
 reg [24:0]maincount=0;
 
-assign dclk = maincount[4]; //5 pa implementar, 24 pa pruebas
+	assign dclk = maincount[4]; //5 para implementar, 24 para pruebas
 
 always @(posedge clk) begin
 	//dclk <= maincount[4];
