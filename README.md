@@ -248,17 +248,27 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 
 * La mascota debe tener caracteristicas visuales unicas para reflejar el estado en el que este.
 
+**Maquina de estados:**
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/maqestadosnokia.png" alt="imagen" width="350px">
+</p>
+</div>
+
 ## 3.2 Diagramas de bloques
 
 ### 3.2.1 Diagrama general de caja negra
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/cajanegra1.png" alt="imagen" width="800px">
+<img src="./media/Diagramacajanegra.png" alt="imagen" width="800px">
 </p>
 </div>
 
-En la imagen se presenta el diagrama general de caja negra, donde se ilustran los componentes externos que interactúan con un sistema. A la izquierda se encuentran las entradas, que incluyen botones (JUGAR, ALIMENTAR, RESET, TEST), sensores (ultrasonido, temperatura y luz) y el reloj (CLK). Estas señales entran a la Caja Negra, un sistema que procesa la información y produce tres salidas principales: Energía, Hambre y Diversión, las cuales se almacenan en un banco de registros. Luego, el driver del display toma estos valores y los envía a una pantalla Nokia 5110, encargada de mostrar el estado del sistema. El diagrama ilustra cómo las entradas, procesadas por la caja negra, generan salidas que son finalmente visualizadas por el usuario en la pantalla.
+La imagen muestra el diagrama de una caja negra que representa el sistema del Tamagotchi. En el diagrama, se observan varios bloques conectados entre sí que conforman los diferentes módulos y sensores del dispositivo. La caja negra recibe entradas desde botones físicos, como "JUGAR", "ALIMENTAR", "RESET", y "TEST", así como de sensores como un sensor ultrasonido HC-SR04, un sensor de temperatura DHT11 y un sensor de luz. Dentro de la caja negra, se incluyen los módulos de procesamiento, como el módulo "Measures", que recibe señales de los sensores y botones, y el módulo "procesmeas", que realiza un procesamiento adicional de las medidas. También se encuentra un módulo "maqestados" encargado de la lógica de estados del sistema.
+
+El sistema genera salidas hacia una pantalla Nokia 5110 mediante su respectivo controlador. Además, se cuenta con un controlador de display de 7 segmentos que permite ver el estado y el valor de las variables del sistema. Todos los módulos y dispositivos están sincronizados por una señal de reloj (CLK) y otros controladores como "DivFrec" que dividen la frecuencia de reloj para su correcto funcionamiento. Este diseño permite la interacción del usuario con el Tamagotchi a través de sensores y botones, mostrando el estado de la mascota en la pantalla y en los displays visuales.
 
 ### 3.2.2 Datapath
 
@@ -293,3 +303,5 @@ Recordando que:
 <img src="./media/maqestados3.png" alt="imagen" width="500px">
 </p>
 </div>
+
+# 4. Implementacion final
