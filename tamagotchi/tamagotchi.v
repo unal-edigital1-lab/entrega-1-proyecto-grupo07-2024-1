@@ -1,6 +1,5 @@
 module tamagotchi(
 	input clk,
-	input inx,
 	input echo,
 	output trigger,
 	inout wire dht11,
@@ -11,7 +10,6 @@ module tamagotchi(
 	input reset,
 	output [0:6] sseg,
    output [7:0] an,
-	output reg testx,
 	output reg led1,
 	
 	output rst,	//Negado
@@ -50,8 +48,8 @@ Nokia5110V2(.clk(clk), .stat(status), .h(h), .d(d), .e(e), .calor(calor), .frio(
 		  .regjugar(regjugar),
         .regalimentar(regalimentar),
         .regcurar(regcurar),
-        .regtest(regtest),
-        .regreset(regreset)
+		  .enTest(regtest),
+		  .enReset(regreset)
     );
 
     procesmeas process_measures (
@@ -85,7 +83,6 @@ Nokia5110V2(.clk(clk), .stat(status), .h(h), .d(d), .e(e), .calor(calor), .frio(
     );
 
 always @(posedge clk)begin
-	testx <= inx;
 	led1 <= cerca;
 	num[31:28] <= 4'he;
 	num[23:20] <= 4'hd; 
