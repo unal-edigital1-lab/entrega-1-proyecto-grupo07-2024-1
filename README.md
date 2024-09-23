@@ -161,6 +161,13 @@ Cada ciclo estos registros pueden subir, bajar, forzarse en un valor de reset es
 </p>
 </div>
 
+**Caso enfermo**
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/enfermobloque.png" alt="imagen" width="600px">
+</p>
+</div>
+
 ### Temporizador
 
 - **Input:** Clk, Init.
