@@ -126,11 +126,13 @@ La máquina de estados trabaja
 </p>
 </div>
 
-### 3.1.3 Módulo de toma de mediciones (measure)
+### 3.1.3 Módulo divisor de frecuencia (DivFrec)
+
+### 3.1.4 Módulo de toma de mediciones (measure)
 
 Este módulo esta controlado por sclk. Inicializa los sensores y registra sus valores para ser trabajados posteriormente. En el caso de test y reset, solo saca señales de control de tamagotchi cuando los respectivos pulsadores se mantienen presionados por aproximadamente 5 segundos.
 
-### 3.1.3 Procesamiento de mediciones (procesmeas)
+### 3.1.5 Procesamiento de mediciones (procesmeas)
 
 Este módulo actualiza valores internos de h, e y d (hreal, ereal y dreal) en base al estado actual y las entradas (sensores y pulsadores) del tamagotchi.
 
