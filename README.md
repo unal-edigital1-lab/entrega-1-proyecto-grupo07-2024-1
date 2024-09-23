@@ -300,5 +300,4 @@ Este sensor no requiere un driver debido a que el módulo físico ya transmite u
 
 # 4. Implementacion final
 
-El codigo verilog implementado para el desarrollo
- del prototipo final de la mascota se encuentra en la carpeta **tamagotchi**.
+El codigo verilog implementado para el desarrollo del prototipo final de la mascota se encuentra en la carpeta **tamagotchi**.
