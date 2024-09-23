@@ -132,6 +132,12 @@ Es necesario hacer una distinción entre h, e y d como registros de 6 posibles v
 
 Cada ciclo estos registros pueden subir, bajar, forzarse en un valor de reset específico o conservarse en sus valores máximos o mínimos para evitar saturaciones en los registros, que pueden desembocar en que la mascota muera de hambre tras alimentarse demasiado.
 
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/Bloques_procesmeas.png" alt="imagen" width="300px">
+</p>
+</div>
+
 ## 3.2 Descripcion de componentes
 
 ## Subsistemas
