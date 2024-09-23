@@ -134,7 +134,7 @@ Cada ciclo estos registros pueden subir, bajar, forzarse en un valor de reset es
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/Bloques_procesmeas.png" alt="imagen" width="300px">
+<img src="./media/Bloques_procesmeas.png" alt="imagen" width="700px">
 </p>
 </div>
 
