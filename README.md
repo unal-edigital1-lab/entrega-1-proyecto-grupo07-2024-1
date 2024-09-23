@@ -94,7 +94,7 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/Diagramacajanegraa.png" alt="imagen" width="800px">
+<img src="./media/Cajanegrageneral.jpg" alt="imagen" width="800px">
 </p>
 </div>
 
