@@ -128,6 +128,12 @@ La máquina de estados trabaja
 
 ### 3.1.3 Módulo divisor de frecuencia (DivFrec)
 
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/DivFreccajanegra.jpg" alt="imagen" width="400px">
+</p>
+</div>
+
 ### 3.1.4 Módulo de toma de mediciones (measure)
 
 Este módulo esta controlado por sclk. Inicializa los sensores y registra sus valores para ser trabajados posteriormente. En el caso de test y reset, solo saca señales de control de tamagotchi cuando los respectivos pulsadores se mantienen presionados por aproximadamente 5 segundos.
