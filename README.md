@@ -106,7 +106,7 @@ El sistema genera salidas hacia una pantalla Nokia 5110 mediante su respectivo c
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/maqestados2.jpeg" alt="imagen" width="600px">
+<img src="./media/maqestados2.png" alt="imagen" width="600px">
 </p>
 </div>
 
