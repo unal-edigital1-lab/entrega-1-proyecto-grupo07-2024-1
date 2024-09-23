@@ -1,0 +1,73 @@
+Orden en la serie de datos que se envia periodicamente a la pantalla
+
+DC=0: el byte es un comando
+DC=1: el byte es un dato a pintar
+
+Dir: direccion en write del MSB asociado al comando/dato
+Ta: tamaño (en bytes) del comando/dato
+Descripciones: 
+    esp= espacios, no toca asignarlos en el driver de la pantalla puesto que los registros se inicializan en 0
+    test: testigo
+////////////////////////////////////////
+DC Dir  Ta  Descripcion
+------------------------------
+ 0 4063 01  normal mode 
+ 0 4055 01  y en 0       
+ 0 4047 01  x en 0         
+
+ 1 4039 20 esp
+ 1 3879 44 estado
+ 1 3527 20 esp 
+
+ 1 3367 13 esp
+ 1 3263 04 letra h
+ 1 3231 01 esp
+ 1 3223 01 :
+ 1 3215 01 esp
+ 1 3207 04 num
+ 1 3175 04 esp
+ 1 3143 38 top
+ 1 2839 18 esp
+
+ 1 2695 13 esp
+ 1 2591 04 letra e
+ 1 2559 01 esp
+ 1 2551 01 :
+ 1 2543 01 esp
+ 1 2535 04 num
+ 1 2503 04 esp
+ 1 2471 28 upper
+ 1 2247 09 esp
+ 1 2175 06 test test
+ 1 2127 13 esp
+
+ 1 2023 13 esp
+ 1 1919 04 letra d
+ 1 1887 01 esp
+ 1 1879 01 :
+ 1 1871 01 esp
+ 1 1863 04 num
+ 1 1831 04 esp
+ 1 1799 28 lower
+ 1 1575 09 esp
+ 1 1503 06 test rst
+ 1 1455 13 esp
+
+ 1 1351 12 esp
+ 1 1255 06 test cerce
+ 1 1207 01 esp
+ 1 1199 06 test calorfrio
+ 1 1151 08 esp
+ 1 1087 18 body
+ 1  943 07 esp
+ 1  887 06 test alim
+ 1  839 01 esp
+ 1  831 06 test jugar
+ 1  783 13 esp
+
+ 1  679 19 esp
+ 1  527 45 tamagotchi
+ 1  167 20 esp
+
+ 0    7 01 comando invert          
+

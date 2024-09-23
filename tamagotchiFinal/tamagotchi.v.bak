@@ -1,0 +1,26 @@
+module tamagotchi(
+	input clk,
+	input rst,
+	input [7:0] in,
+	output [0:6] sseg,
+   output [7:0] an,
+	output led
+);
+
+reg [31:0] num = 0;
+num[31:28] = 4'he;
+num[23:20] = 4'hd; 
+num[15:12] = 4'hc;
+num[7:4] = 4'hf;
+
+DivFrec(.clk(clk), .sclk(sckl), .dclk());
+fulldisplay(.num(num), .clk(clk), .sseg(sseg), .an(an), .rst(rst), .led(led));
+
+always @(posedge sclk)begin
+	num[25:24] <= in[7:6];
+	num[17:16] <= in[5:4];
+	num[9:8] <= in[3:2];
+	num[1:0] <= in[1:0];
+end
+
+endmodule

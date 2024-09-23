@@ -1,0 +1,1634 @@
+Analysis & Synthesis report for tamagotchi
+Sun Sep 22 20:23:06 2024
+Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |tamagotchi|measures:measures|dht:comb_5|state
+ 10. State Machine - |tamagotchi|measures:measures|ultrasonido:comb_4|status
+ 11. State Machine - |tamagotchi|Nokia5110:comb_5|status
+ 12. Registers Removed During Synthesis
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Registers Packed Into Inferred Megafunctions
+ 16. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 17. Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_0|shift_taps_cpm:auto_generated|altsyncram_ih81:altsyncram2
+ 18. Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_1|shift_taps_dpm:auto_generated|altsyncram_jh81:altsyncram2
+ 19. Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_2|shift_taps_epm:auto_generated|altsyncram_kh81:altsyncram2
+ 20. Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_3|shift_taps_apm:auto_generated|altsyncram_ch81:altsyncram2
+ 21. Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_4|shift_taps_2pm:auto_generated|altsyncram_0i81:altsyncram2
+ 22. Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_5|shift_taps_8pm:auto_generated|altsyncram_qh81:altsyncram2
+ 23. Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_6|shift_taps_rnm:auto_generated|altsyncram_ae81:altsyncram2
+ 24. Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_7|shift_taps_snm:auto_generated|altsyncram_8e81:altsyncram2
+ 25. Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_8|shift_taps_nnm:auto_generated|altsyncram_0e81:altsyncram2
+ 26. Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_9|shift_taps_fmm:auto_generated|altsyncram_cb81:altsyncram2
+ 27. Parameter Settings for User Entity Instance: Nokia5110:comb_5
+ 28. Parameter Settings for User Entity Instance: measures:measures|ultrasonido:comb_4
+ 29. Parameter Settings for User Entity Instance: measures:measures|ultrasonido:comb_4|contador:comb_3
+ 30. Parameter Settings for User Entity Instance: measures:measures|ultrasonido:comb_4|temporizador:comb_4
+ 31. Parameter Settings for User Entity Instance: procesmeas:process_measures
+ 32. Parameter Settings for User Entity Instance: maqestados:state_machine
+ 33. Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_0
+ 34. Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_1
+ 35. Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_2
+ 36. Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_3
+ 37. Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_4
+ 38. Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_5
+ 39. Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_6
+ 40. Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_7
+ 41. Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_8
+ 42. Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_9
+ 43. Parameter Settings for Inferred Entity Instance: procesmeas:process_measures|lpm_divide:Div0
+ 44. Parameter Settings for Inferred Entity Instance: procesmeas:process_measures|lpm_divide:Div2
+ 45. Parameter Settings for Inferred Entity Instance: procesmeas:process_measures|lpm_divide:Div1
+ 46. Parameter Settings for Inferred Entity Instance: measures:measures|ultrasonido:comb_4|lpm_divide:Div0
+ 47. altshift_taps Parameter Settings by Entity Instance
+ 48. Port Connectivity Checks: "measures:measures|dht:comb_5"
+ 49. Port Connectivity Checks: "measures:measures|ultrasonido:comb_4|contador:comb_3"
+ 50. Port Connectivity Checks: "measures:measures|ultrasonido:comb_4"
+ 51. Port Connectivity Checks: "measures:measures|DivFrec:comb_3"
+ 52. Port Connectivity Checks: "measures:measures"
+ 53. Port Connectivity Checks: "fulldisplay:comb_4|BCDtoSSeg:bcdtosseg"
+ 54. Port Connectivity Checks: "fulldisplay:comb_4"
+ 55. Port Connectivity Checks: "DivFrec:comb_3"
+ 56. Post-Synthesis Netlist Statistics for Top Partition
+ 57. Elapsed Time Per Partition
+ 58. Analysis & Synthesis Messages
+ 59. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2023  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                        ;
++------------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sun Sep 22 20:23:06 2024          ;
+; Quartus Prime Version              ; 23.1std.0 Build 991 11/28/2023 SC Lite Edition ;
+; Revision Name                      ; tamagotchi                                     ;
+; Top-level Entity Name              ; tamagotchi                                     ;
+; Family                             ; Cyclone IV E                                   ;
+; Total logic elements               ; 4,776                                          ;
+;     Total combinational functions  ; 4,319                                          ;
+;     Dedicated logic registers      ; 3,087                                          ;
+; Total registers                    ; 3087                                           ;
+; Total pins                         ; 30                                             ;
+; Total virtual pins                 ; 0                                              ;
+; Total memory bits                  ; 1,822                                          ;
+; Embedded Multiplier 9-bit elements ; 0                                              ;
+; Total PLLs                         ; 0                                              ;
++------------------------------------+------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; EP4CE6E22A7        ;                    ;
+; Top-level entity name                                            ; tamagotchi         ; tamagotchi         ;
+; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 12          ;
+;                            ;             ;
+; Average used               ; 1.01        ;
+; Maximum used               ; 12          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.1%      ;
+;     Processor 4            ;   0.1%      ;
+;     Processor 5            ;   0.1%      ;
+;     Processor 6            ;   0.1%      ;
+;     Processor 7            ;   0.1%      ;
+;     Processor 8            ;   0.1%      ;
+;     Processors 9-12        ;   0.1%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                 ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                             ; Library ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------+---------+
+; tamagotchi.v                     ; yes             ; User Verilog HDL File        ; /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v                                    ;         ;
+; DivFrec.v                        ; yes             ; Auto-Found Verilog HDL File  ; /home/gabriel/Documentos/tamagotchiFinal/DivFrec.v                                       ;         ;
+; fulldisplay.v                    ; yes             ; Auto-Found Verilog HDL File  ; /home/gabriel/Documentos/tamagotchiFinal/fulldisplay.v                                   ;         ;
+; BCDtoSSeg.v                      ; yes             ; Auto-Found Verilog HDL File  ; /home/gabriel/Documentos/tamagotchiFinal/BCDtoSSeg.v                                     ;         ;
+; Nokia5110.v                      ; yes             ; Auto-Found Verilog HDL File  ; /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v                                     ;         ;
+; measures.v                       ; yes             ; Auto-Found Verilog HDL File  ; /home/gabriel/Documentos/tamagotchiFinal/measures.v                                      ;         ;
+; ultrasonido.v                    ; yes             ; Auto-Found Verilog HDL File  ; /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v                                   ;         ;
+; contador.v                       ; yes             ; Auto-Found Verilog HDL File  ; /home/gabriel/Documentos/tamagotchiFinal/contador.v                                      ;         ;
+; temporizador.v                   ; yes             ; Auto-Found Verilog HDL File  ; /home/gabriel/Documentos/tamagotchiFinal/temporizador.v                                  ;         ;
+; dht.v                            ; yes             ; Auto-Found Verilog HDL File  ; /home/gabriel/Documentos/tamagotchiFinal/dht.v                                           ;         ;
+; procesmeas.v                     ; yes             ; Auto-Found Verilog HDL File  ; /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v                                    ;         ;
+; maqestados.v                     ; yes             ; Auto-Found Verilog HDL File  ; /home/gabriel/Documentos/tamagotchiFinal/maqestados.v                                    ;         ;
+; altshift_taps.tdf                ; yes             ; Megafunction                 ; /home/gabriel/intelFPGA_lite/23.1std/quartus/libraries/megafunctions/altshift_taps.tdf   ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; /home/gabriel/intelFPGA_lite/23.1std/quartus/libraries/megafunctions/altdpram.inc        ;         ;
+; lpm_counter.inc                  ; yes             ; Megafunction                 ; /home/gabriel/intelFPGA_lite/23.1std/quartus/libraries/megafunctions/lpm_counter.inc     ;         ;
+; lpm_compare.inc                  ; yes             ; Megafunction                 ; /home/gabriel/intelFPGA_lite/23.1std/quartus/libraries/megafunctions/lpm_compare.inc     ;         ;
+; lpm_constant.inc                 ; yes             ; Megafunction                 ; /home/gabriel/intelFPGA_lite/23.1std/quartus/libraries/megafunctions/lpm_constant.inc    ;         ;
+; db/shift_taps_cpm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_cpm.tdf                           ;         ;
+; db/altsyncram_ih81.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_ih81.tdf                          ;         ;
+; db/cntr_ksf.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cntr_ksf.tdf                                 ;         ;
+; db/cmpr_vgc.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cmpr_vgc.tdf                                 ;         ;
+; db/shift_taps_dpm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_dpm.tdf                           ;         ;
+; db/altsyncram_jh81.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_jh81.tdf                          ;         ;
+; db/cntr_lsf.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cntr_lsf.tdf                                 ;         ;
+; db/cmpr_ugc.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cmpr_ugc.tdf                                 ;         ;
+; db/shift_taps_epm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_epm.tdf                           ;         ;
+; db/altsyncram_kh81.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_kh81.tdf                          ;         ;
+; db/cntr_msf.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cntr_msf.tdf                                 ;         ;
+; db/shift_taps_apm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_apm.tdf                           ;         ;
+; db/altsyncram_ch81.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_ch81.tdf                          ;         ;
+; db/cntr_hsf.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cntr_hsf.tdf                                 ;         ;
+; db/shift_taps_2pm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_2pm.tdf                           ;         ;
+; db/altsyncram_0i81.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_0i81.tdf                          ;         ;
+; db/cntr_rsf.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cntr_rsf.tdf                                 ;         ;
+; db/shift_taps_8pm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_8pm.tdf                           ;         ;
+; db/altsyncram_qh81.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_qh81.tdf                          ;         ;
+; db/cntr_nsf.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cntr_nsf.tdf                                 ;         ;
+; db/shift_taps_rnm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_rnm.tdf                           ;         ;
+; db/altsyncram_ae81.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_ae81.tdf                          ;         ;
+; db/cntr_vqf.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cntr_vqf.tdf                                 ;         ;
+; db/cmpr_tgc.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cmpr_tgc.tdf                                 ;         ;
+; db/shift_taps_snm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_snm.tdf                           ;         ;
+; db/altsyncram_8e81.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_8e81.tdf                          ;         ;
+; db/cntr_0rf.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cntr_0rf.tdf                                 ;         ;
+; db/cmpr_sgc.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cmpr_sgc.tdf                                 ;         ;
+; db/shift_taps_nnm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_nnm.tdf                           ;         ;
+; db/altsyncram_0e81.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_0e81.tdf                          ;         ;
+; db/cntr_pqf.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cntr_pqf.tdf                                 ;         ;
+; db/cmpr_rgc.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cmpr_rgc.tdf                                 ;         ;
+; db/shift_taps_fmm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_fmm.tdf                           ;         ;
+; db/altsyncram_cb81.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_cb81.tdf                          ;         ;
+; db/cntr_apf.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cntr_apf.tdf                                 ;         ;
+; db/cmpr_pgc.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/cmpr_pgc.tdf                                 ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; /home/gabriel/intelFPGA_lite/23.1std/quartus/libraries/megafunctions/lpm_divide.tdf      ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; /home/gabriel/intelFPGA_lite/23.1std/quartus/libraries/megafunctions/abs_divider.inc     ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; /home/gabriel/intelFPGA_lite/23.1std/quartus/libraries/megafunctions/sign_div_unsign.inc ;         ;
+; aglobal231.inc                   ; yes             ; Megafunction                 ; /home/gabriel/intelFPGA_lite/23.1std/quartus/libraries/megafunctions/aglobal231.inc      ;         ;
+; db/lpm_divide_3jm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/lpm_divide_3jm.tdf                           ;         ;
+; db/sign_div_unsign_rlh.tdf       ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/sign_div_unsign_rlh.tdf                      ;         ;
+; db/alt_u_div_97f.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/alt_u_div_97f.tdf                            ;         ;
+; db/add_sub_7pc.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/add_sub_7pc.tdf                              ;         ;
+; db/add_sub_8pc.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/add_sub_8pc.tdf                              ;         ;
+; db/lpm_divide_gkm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/lpm_divide_gkm.tdf                           ;         ;
+; db/sign_div_unsign_8nh.tdf       ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/sign_div_unsign_8nh.tdf                      ;         ;
+; db/alt_u_div_4af.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/gabriel/Documentos/tamagotchiFinal/db/alt_u_div_4af.tdf                            ;         ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                                ;
++---------------------------------------------+----------------------------------------------+
+; Resource                                    ; Usage                                        ;
++---------------------------------------------+----------------------------------------------+
+; Estimated Total logic elements              ; 4,776                                        ;
+;                                             ;                                              ;
+; Total combinational functions               ; 4319                                         ;
+; Logic element usage by number of LUT inputs ;                                              ;
+;     -- 4 input functions                    ; 1162                                         ;
+;     -- 3 input functions                    ; 1119                                         ;
+;     -- <=2 input functions                  ; 2038                                         ;
+;                                             ;                                              ;
+; Logic elements by mode                      ;                                              ;
+;     -- normal mode                          ; 3544                                         ;
+;     -- arithmetic mode                      ; 775                                          ;
+;                                             ;                                              ;
+; Total registers                             ; 3087                                         ;
+;     -- Dedicated logic registers            ; 3087                                         ;
+;     -- I/O registers                        ; 0                                            ;
+;                                             ;                                              ;
+; I/O pins                                    ; 30                                           ;
+; Total memory bits                           ; 1822                                         ;
+;                                             ;                                              ;
+; Embedded Multiplier 9-bit elements          ; 0                                            ;
+;                                             ;                                              ;
+; Maximum fan-out node                        ; Nokia5110:comb_5|DivFrec:comb_3|maincount[4] ;
+; Maximum fan-out                             ; 2829                                         ;
+; Total fan-out                               ; 21678                                        ;
+; Average fan-out                             ; 2.90                                         ;
++---------------------------------------------+----------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                             ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                              ; Entity Name         ; Library Name ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+; |tamagotchi                                  ; 4319 (1)            ; 3087 (13)                 ; 1822        ; 0            ; 0       ; 0         ; 30   ; 0            ; |tamagotchi                                                                                                                                      ; tamagotchi          ; work         ;
+;    |DivFrec:comb_3|                          ; 31 (31)             ; 10 (10)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|DivFrec:comb_3                                                                                                                       ; DivFrec             ; work         ;
+;    |Nokia5110:comb_5|                        ; 2539 (2336)         ; 2831 (2735)               ; 1822        ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5                                                                                                                     ; Nokia5110           ; work         ;
+;       |DivFrec:comb_3|                       ; 33 (33)             ; 26 (26)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|DivFrec:comb_3                                                                                                      ; DivFrec             ; work         ;
+;       |altshift_taps:write_rtl_0|            ; 23 (0)              ; 9 (0)                     ; 262         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_0                                                                                           ; altshift_taps       ; work         ;
+;          |shift_taps_cpm:auto_generated|     ; 23 (0)              ; 9 (0)                     ; 262         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_0|shift_taps_cpm:auto_generated                                                             ; shift_taps_cpm      ; work         ;
+;             |altsyncram_ih81:altsyncram2|    ; 0 (0)               ; 0 (0)                     ; 262         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_0|shift_taps_cpm:auto_generated|altsyncram_ih81:altsyncram2                                 ; altsyncram_ih81     ; work         ;
+;             |cntr_ksf:cntr1|                 ; 23 (21)             ; 9 (9)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_0|shift_taps_cpm:auto_generated|cntr_ksf:cntr1                                              ; cntr_ksf            ; work         ;
+;                |cmpr_vgc:cmpr4|              ; 2 (2)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_0|shift_taps_cpm:auto_generated|cntr_ksf:cntr1|cmpr_vgc:cmpr4                               ; cmpr_vgc            ; work         ;
+;       |altshift_taps:write_rtl_1|            ; 19 (0)              ; 8 (0)                     ; 254         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_1                                                                                           ; altshift_taps       ; work         ;
+;          |shift_taps_dpm:auto_generated|     ; 19 (0)              ; 8 (0)                     ; 254         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_1|shift_taps_dpm:auto_generated                                                             ; shift_taps_dpm      ; work         ;
+;             |altsyncram_jh81:altsyncram2|    ; 0 (0)               ; 0 (0)                     ; 254         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_1|shift_taps_dpm:auto_generated|altsyncram_jh81:altsyncram2                                 ; altsyncram_jh81     ; work         ;
+;             |cntr_lsf:cntr1|                 ; 19 (17)             ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_1|shift_taps_dpm:auto_generated|cntr_lsf:cntr1                                              ; cntr_lsf            ; work         ;
+;                |cmpr_ugc:cmpr4|              ; 2 (2)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_1|shift_taps_dpm:auto_generated|cntr_lsf:cntr1|cmpr_ugc:cmpr4                               ; cmpr_ugc            ; work         ;
+;       |altshift_taps:write_rtl_2|            ; 19 (0)              ; 8 (0)                     ; 246         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_2                                                                                           ; altshift_taps       ; work         ;
+;          |shift_taps_epm:auto_generated|     ; 19 (0)              ; 8 (0)                     ; 246         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_2|shift_taps_epm:auto_generated                                                             ; shift_taps_epm      ; work         ;
+;             |altsyncram_kh81:altsyncram2|    ; 0 (0)               ; 0 (0)                     ; 246         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_2|shift_taps_epm:auto_generated|altsyncram_kh81:altsyncram2                                 ; altsyncram_kh81     ; work         ;
+;             |cntr_msf:cntr1|                 ; 19 (17)             ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_2|shift_taps_epm:auto_generated|cntr_msf:cntr1                                              ; cntr_msf            ; work         ;
+;                |cmpr_ugc:cmpr4|              ; 2 (2)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_2|shift_taps_epm:auto_generated|cntr_msf:cntr1|cmpr_ugc:cmpr4                               ; cmpr_ugc            ; work         ;
+;       |altshift_taps:write_rtl_3|            ; 19 (0)              ; 8 (0)                     ; 206         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_3                                                                                           ; altshift_taps       ; work         ;
+;          |shift_taps_apm:auto_generated|     ; 19 (0)              ; 8 (0)                     ; 206         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_3|shift_taps_apm:auto_generated                                                             ; shift_taps_apm      ; work         ;
+;             |altsyncram_ch81:altsyncram2|    ; 0 (0)               ; 0 (0)                     ; 206         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_3|shift_taps_apm:auto_generated|altsyncram_ch81:altsyncram2                                 ; altsyncram_ch81     ; work         ;
+;             |cntr_hsf:cntr1|                 ; 19 (17)             ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_3|shift_taps_apm:auto_generated|cntr_hsf:cntr1                                              ; cntr_hsf            ; work         ;
+;                |cmpr_ugc:cmpr4|              ; 2 (2)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_3|shift_taps_apm:auto_generated|cntr_hsf:cntr1|cmpr_ugc:cmpr4                               ; cmpr_ugc            ; work         ;
+;       |altshift_taps:write_rtl_4|            ; 19 (0)              ; 8 (0)                     ; 198         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_4                                                                                           ; altshift_taps       ; work         ;
+;          |shift_taps_2pm:auto_generated|     ; 19 (0)              ; 8 (0)                     ; 198         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_4|shift_taps_2pm:auto_generated                                                             ; shift_taps_2pm      ; work         ;
+;             |altsyncram_0i81:altsyncram2|    ; 0 (0)               ; 0 (0)                     ; 198         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_4|shift_taps_2pm:auto_generated|altsyncram_0i81:altsyncram2                                 ; altsyncram_0i81     ; work         ;
+;             |cntr_rsf:cntr1|                 ; 19 (17)             ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_4|shift_taps_2pm:auto_generated|cntr_rsf:cntr1                                              ; cntr_rsf            ; work         ;
+;                |cmpr_ugc:cmpr4|              ; 2 (2)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_4|shift_taps_2pm:auto_generated|cntr_rsf:cntr1|cmpr_ugc:cmpr4                               ; cmpr_ugc            ; work         ;
+;       |altshift_taps:write_rtl_5|            ; 19 (0)              ; 8 (0)                     ; 316         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_5                                                                                           ; altshift_taps       ; work         ;
+;          |shift_taps_8pm:auto_generated|     ; 19 (0)              ; 8 (0)                     ; 316         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_5|shift_taps_8pm:auto_generated                                                             ; shift_taps_8pm      ; work         ;
+;             |altsyncram_qh81:altsyncram2|    ; 0 (0)               ; 0 (0)                     ; 316         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_5|shift_taps_8pm:auto_generated|altsyncram_qh81:altsyncram2                                 ; altsyncram_qh81     ; work         ;
+;             |cntr_nsf:cntr1|                 ; 19 (17)             ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_5|shift_taps_8pm:auto_generated|cntr_nsf:cntr1                                              ; cntr_nsf            ; work         ;
+;                |cmpr_ugc:cmpr4|              ; 2 (2)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_5|shift_taps_8pm:auto_generated|cntr_nsf:cntr1|cmpr_ugc:cmpr4                               ; cmpr_ugc            ; work         ;
+;       |altshift_taps:write_rtl_6|            ; 17 (0)              ; 7 (0)                     ; 140         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_6                                                                                           ; altshift_taps       ; work         ;
+;          |shift_taps_rnm:auto_generated|     ; 17 (0)              ; 7 (0)                     ; 140         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_6|shift_taps_rnm:auto_generated                                                             ; shift_taps_rnm      ; work         ;
+;             |altsyncram_ae81:altsyncram2|    ; 0 (0)               ; 0 (0)                     ; 140         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_6|shift_taps_rnm:auto_generated|altsyncram_ae81:altsyncram2                                 ; altsyncram_ae81     ; work         ;
+;             |cntr_vqf:cntr1|                 ; 17 (15)             ; 7 (7)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_6|shift_taps_rnm:auto_generated|cntr_vqf:cntr1                                              ; cntr_vqf            ; work         ;
+;                |cmpr_tgc:cmpr4|              ; 2 (2)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_6|shift_taps_rnm:auto_generated|cntr_vqf:cntr1|cmpr_tgc:cmpr4                               ; cmpr_tgc            ; work         ;
+;       |altshift_taps:write_rtl_7|            ; 15 (0)              ; 6 (0)                     ; 62          ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_7                                                                                           ; altshift_taps       ; work         ;
+;          |shift_taps_snm:auto_generated|     ; 15 (0)              ; 6 (0)                     ; 62          ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_7|shift_taps_snm:auto_generated                                                             ; shift_taps_snm      ; work         ;
+;             |altsyncram_8e81:altsyncram2|    ; 0 (0)               ; 0 (0)                     ; 62          ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_7|shift_taps_snm:auto_generated|altsyncram_8e81:altsyncram2                                 ; altsyncram_8e81     ; work         ;
+;             |cntr_0rf:cntr1|                 ; 15 (14)             ; 6 (6)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_7|shift_taps_snm:auto_generated|cntr_0rf:cntr1                                              ; cntr_0rf            ; work         ;
+;                |cmpr_sgc:cmpr4|              ; 1 (1)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_7|shift_taps_snm:auto_generated|cntr_0rf:cntr1|cmpr_sgc:cmpr4                               ; cmpr_sgc            ; work         ;
+;       |altshift_taps:write_rtl_8|            ; 12 (0)              ; 5 (0)                     ; 90          ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_8                                                                                           ; altshift_taps       ; work         ;
+;          |shift_taps_nnm:auto_generated|     ; 12 (0)              ; 5 (0)                     ; 90          ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_8|shift_taps_nnm:auto_generated                                                             ; shift_taps_nnm      ; work         ;
+;             |altsyncram_0e81:altsyncram2|    ; 0 (0)               ; 0 (0)                     ; 90          ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_8|shift_taps_nnm:auto_generated|altsyncram_0e81:altsyncram2                                 ; altsyncram_0e81     ; work         ;
+;             |cntr_pqf:cntr1|                 ; 12 (11)             ; 5 (5)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_8|shift_taps_nnm:auto_generated|cntr_pqf:cntr1                                              ; cntr_pqf            ; work         ;
+;                |cmpr_rgc:cmpr4|              ; 1 (1)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_8|shift_taps_nnm:auto_generated|cntr_pqf:cntr1|cmpr_rgc:cmpr4                               ; cmpr_rgc            ; work         ;
+;       |altshift_taps:write_rtl_9|            ; 8 (0)               ; 3 (0)                     ; 48          ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_9                                                                                           ; altshift_taps       ; work         ;
+;          |shift_taps_fmm:auto_generated|     ; 8 (0)               ; 3 (0)                     ; 48          ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_9|shift_taps_fmm:auto_generated                                                             ; shift_taps_fmm      ; work         ;
+;             |altsyncram_cb81:altsyncram2|    ; 0 (0)               ; 0 (0)                     ; 48          ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_9|shift_taps_fmm:auto_generated|altsyncram_cb81:altsyncram2                                 ; altsyncram_cb81     ; work         ;
+;             |cntr_apf:cntr1|                 ; 8 (8)               ; 3 (3)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|Nokia5110:comb_5|altshift_taps:write_rtl_9|shift_taps_fmm:auto_generated|cntr_apf:cntr1                                              ; cntr_apf            ; work         ;
+;    |fulldisplay:comb_4|                      ; 43 (36)             ; 27 (27)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|fulldisplay:comb_4                                                                                                                   ; fulldisplay         ; work         ;
+;       |BCDtoSSeg:bcdtosseg|                  ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|fulldisplay:comb_4|BCDtoSSeg:bcdtosseg                                                                                               ; BCDtoSSeg           ; work         ;
+;    |maqestados:state_machine|                ; 41 (41)             ; 3 (3)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|maqestados:state_machine                                                                                                             ; maqestados          ; work         ;
+;    |measures:measures|                       ; 865 (23)            ; 160 (18)                  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|measures:measures                                                                                                                    ; measures            ; work         ;
+;       |DivFrec:comb_3|                       ; 0 (0)               ; 1 (1)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|measures:measures|DivFrec:comb_3                                                                                                     ; DivFrec             ; work         ;
+;       |dht:comb_5|                           ; 113 (113)           ; 78 (78)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|measures:measures|dht:comb_5                                                                                                         ; dht                 ; work         ;
+;       |ultrasonido:comb_4|                   ; 729 (59)            ; 63 (18)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|measures:measures|ultrasonido:comb_4                                                                                                 ; ultrasonido         ; work         ;
+;          |contador:comb_3|                   ; 33 (33)             ; 33 (33)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|measures:measures|ultrasonido:comb_4|contador:comb_3                                                                                 ; contador            ; work         ;
+;          |lpm_divide:Div0|                   ; 622 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|measures:measures|ultrasonido:comb_4|lpm_divide:Div0                                                                                 ; lpm_divide          ; work         ;
+;             |lpm_divide_gkm:auto_generated|  ; 622 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|measures:measures|ultrasonido:comb_4|lpm_divide:Div0|lpm_divide_gkm:auto_generated                                                   ; lpm_divide_gkm      ; work         ;
+;                |sign_div_unsign_8nh:divider| ; 622 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|measures:measures|ultrasonido:comb_4|lpm_divide:Div0|lpm_divide_gkm:auto_generated|sign_div_unsign_8nh:divider                       ; sign_div_unsign_8nh ; work         ;
+;                   |alt_u_div_4af:divider|    ; 622 (622)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|measures:measures|ultrasonido:comb_4|lpm_divide:Div0|lpm_divide_gkm:auto_generated|sign_div_unsign_8nh:divider|alt_u_div_4af:divider ; alt_u_div_4af       ; work         ;
+;          |temporizador:comb_4|               ; 15 (15)             ; 12 (12)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|measures:measures|ultrasonido:comb_4|temporizador:comb_4                                                                             ; temporizador        ; work         ;
+;    |procesmeas:process_measures|             ; 799 (331)           ; 43 (43)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures                                                                                                          ; procesmeas          ; work         ;
+;       |lpm_divide:Div0|                      ; 156 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures|lpm_divide:Div0                                                                                          ; lpm_divide          ; work         ;
+;          |lpm_divide_3jm:auto_generated|     ; 156 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures|lpm_divide:Div0|lpm_divide_3jm:auto_generated                                                            ; lpm_divide_3jm      ; work         ;
+;             |sign_div_unsign_rlh:divider|    ; 156 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures|lpm_divide:Div0|lpm_divide_3jm:auto_generated|sign_div_unsign_rlh:divider                                ; sign_div_unsign_rlh ; work         ;
+;                |alt_u_div_97f:divider|       ; 156 (156)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures|lpm_divide:Div0|lpm_divide_3jm:auto_generated|sign_div_unsign_rlh:divider|alt_u_div_97f:divider          ; alt_u_div_97f       ; work         ;
+;       |lpm_divide:Div1|                      ; 156 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures|lpm_divide:Div1                                                                                          ; lpm_divide          ; work         ;
+;          |lpm_divide_3jm:auto_generated|     ; 156 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures|lpm_divide:Div1|lpm_divide_3jm:auto_generated                                                            ; lpm_divide_3jm      ; work         ;
+;             |sign_div_unsign_rlh:divider|    ; 156 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures|lpm_divide:Div1|lpm_divide_3jm:auto_generated|sign_div_unsign_rlh:divider                                ; sign_div_unsign_rlh ; work         ;
+;                |alt_u_div_97f:divider|       ; 156 (156)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures|lpm_divide:Div1|lpm_divide_3jm:auto_generated|sign_div_unsign_rlh:divider|alt_u_div_97f:divider          ; alt_u_div_97f       ; work         ;
+;       |lpm_divide:Div2|                      ; 156 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures|lpm_divide:Div2                                                                                          ; lpm_divide          ; work         ;
+;          |lpm_divide_3jm:auto_generated|     ; 156 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures|lpm_divide:Div2|lpm_divide_3jm:auto_generated                                                            ; lpm_divide_3jm      ; work         ;
+;             |sign_div_unsign_rlh:divider|    ; 156 (0)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures|lpm_divide:Div2|lpm_divide_3jm:auto_generated|sign_div_unsign_rlh:divider                                ; sign_div_unsign_rlh ; work         ;
+;                |alt_u_div_97f:divider|       ; 156 (156)           ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tamagotchi|procesmeas:process_measures|lpm_divide:Div2|lpm_divide_3jm:auto_generated|sign_div_unsign_rlh:divider|alt_u_div_97f:divider          ; alt_u_div_97f       ; work         ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                    ;
++-----------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                                                            ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++-----------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Nokia5110:comb_5|altshift_taps:write_rtl_0|shift_taps_cpm:auto_generated|altsyncram_ih81:altsyncram2|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 262          ; 1            ; 262          ; 1            ; 262  ; None ;
+; Nokia5110:comb_5|altshift_taps:write_rtl_1|shift_taps_dpm:auto_generated|altsyncram_jh81:altsyncram2|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 254          ; 1            ; 254          ; 1            ; 254  ; None ;
+; Nokia5110:comb_5|altshift_taps:write_rtl_2|shift_taps_epm:auto_generated|altsyncram_kh81:altsyncram2|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 246          ; 1            ; 246          ; 1            ; 246  ; None ;
+; Nokia5110:comb_5|altshift_taps:write_rtl_3|shift_taps_apm:auto_generated|altsyncram_ch81:altsyncram2|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 206          ; 1            ; 206          ; 1            ; 206  ; None ;
+; Nokia5110:comb_5|altshift_taps:write_rtl_4|shift_taps_2pm:auto_generated|altsyncram_0i81:altsyncram2|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 198          ; 1            ; 198          ; 1            ; 198  ; None ;
+; Nokia5110:comb_5|altshift_taps:write_rtl_5|shift_taps_8pm:auto_generated|altsyncram_qh81:altsyncram2|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 158          ; 2            ; 158          ; 2            ; 316  ; None ;
+; Nokia5110:comb_5|altshift_taps:write_rtl_6|shift_taps_rnm:auto_generated|altsyncram_ae81:altsyncram2|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 70           ; 2            ; 70           ; 2            ; 140  ; None ;
+; Nokia5110:comb_5|altshift_taps:write_rtl_7|shift_taps_snm:auto_generated|altsyncram_8e81:altsyncram2|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 62           ; 1            ; 62           ; 1            ; 62   ; None ;
+; Nokia5110:comb_5|altshift_taps:write_rtl_8|shift_taps_nnm:auto_generated|altsyncram_0e81:altsyncram2|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 30           ; 3            ; 30           ; 3            ; 90   ; None ;
+; Nokia5110:comb_5|altshift_taps:write_rtl_9|shift_taps_fmm:auto_generated|altsyncram_cb81:altsyncram2|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 6            ; 8            ; 6            ; 8            ; 48   ; None ;
++-----------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |tamagotchi|measures:measures|dht:comb_5|state                                                                                                        ;
++--------------------------+--------------------+------------+-----------------+-------------------------+--------------------------+--------------------+--------------+
+; Name                     ; state.PROCESS_DATA ; state.WAIT ; state.READ_DATA ; state.WAIT_RESPONSE_LOW ; state.WAIT_RESPONSE_HIGH ; state.START_SIGNAL ; state.ENABLE ;
++--------------------------+--------------------+------------+-----------------+-------------------------+--------------------------+--------------------+--------------+
+; state.ENABLE             ; 0                  ; 0          ; 0               ; 0                       ; 0                        ; 0                  ; 0            ;
+; state.START_SIGNAL       ; 0                  ; 0          ; 0               ; 0                       ; 0                        ; 1                  ; 1            ;
+; state.WAIT_RESPONSE_HIGH ; 0                  ; 0          ; 0               ; 0                       ; 1                        ; 0                  ; 1            ;
+; state.WAIT_RESPONSE_LOW  ; 0                  ; 0          ; 0               ; 1                       ; 0                        ; 0                  ; 1            ;
+; state.READ_DATA          ; 0                  ; 0          ; 1               ; 0                       ; 0                        ; 0                  ; 1            ;
+; state.WAIT               ; 0                  ; 1          ; 0               ; 0                       ; 0                        ; 0                  ; 1            ;
+; state.PROCESS_DATA       ; 1                  ; 0          ; 0               ; 0                       ; 0                        ; 0                  ; 1            ;
++--------------------------+--------------------+------------+-----------------+-------------------------+--------------------------+--------------------+--------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------+
+; State Machine - |tamagotchi|measures:measures|ultrasonido:comb_4|status ;
++----------------+-----------+-------------+------------------------------+
+; Name           ; status.00 ; status.ECHO ; status.TRIGGER               ;
++----------------+-----------+-------------+------------------------------+
+; status.00      ; 0         ; 0           ; 0                            ;
+; status.TRIGGER ; 1         ; 0           ; 1                            ;
+; status.ECHO    ; 1         ; 1           ; 0                            ;
++----------------+-----------+-------------+------------------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------+
+; State Machine - |tamagotchi|Nokia5110:comb_5|status                ;
++-------------+-------------+-------------+-------------+------------+
+; Name        ; status.WAIT ; status.SEND ; status.IDLE ; status.RST ;
++-------------+-------------+-------------+-------------+------------+
+; status.RST  ; 0           ; 0           ; 0           ; 0          ;
+; status.IDLE ; 0           ; 0           ; 1           ; 1          ;
+; status.SEND ; 0           ; 1           ; 0           ; 1          ;
+; status.WAIT ; 1           ; 0           ; 0           ; 1          ;
++-------------+-------------+-------------+-------------+------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                               ;
++-------------------------------------------------------+----------------------------------------------------------+
+; Register name                                         ; Reason for Removal                                       ;
++-------------------------------------------------------+----------------------------------------------------------+
+; num[4..7]                                             ; Stuck at VCC due to stuck port data_in                   ;
+; num[12,13]                                            ; Stuck at GND due to stuck port data_in                   ;
+; num[14,15,20]                                         ; Stuck at VCC due to stuck port data_in                   ;
+; num[21]                                               ; Stuck at GND due to stuck port data_in                   ;
+; num[22,23]                                            ; Stuck at VCC due to stuck port data_in                   ;
+; num[28]                                               ; Stuck at GND due to stuck port data_in                   ;
+; num[29..31]                                           ; Stuck at VCC due to stuck port data_in                   ;
+; measures:measures|dht:comb_5|temperature[8..15]       ; Stuck at GND due to stuck port data_in                   ;
+; measures:measures|DivFrec:comb_3|maincount[4]         ; Merged with DivFrec:comb_3|maincount[4]                  ;
+; measures:measures|DivFrec:comb_3|maincount[24]        ; Merged with DivFrec:comb_3|maincount[24]                 ;
+; measures:measures|DivFrec:comb_3|maincount[23]        ; Merged with DivFrec:comb_3|maincount[23]                 ;
+; measures:measures|DivFrec:comb_3|maincount[22]        ; Merged with DivFrec:comb_3|maincount[22]                 ;
+; measures:measures|DivFrec:comb_3|maincount[21]        ; Merged with DivFrec:comb_3|maincount[21]                 ;
+; measures:measures|DivFrec:comb_3|maincount[20]        ; Merged with DivFrec:comb_3|maincount[20]                 ;
+; measures:measures|DivFrec:comb_3|maincount[19]        ; Merged with DivFrec:comb_3|maincount[19]                 ;
+; measures:measures|DivFrec:comb_3|maincount[18]        ; Merged with DivFrec:comb_3|maincount[18]                 ;
+; measures:measures|DivFrec:comb_3|maincount[17]        ; Merged with DivFrec:comb_3|maincount[17]                 ;
+; measures:measures|DivFrec:comb_3|maincount[16]        ; Merged with DivFrec:comb_3|maincount[16]                 ;
+; measures:measures|DivFrec:comb_3|maincount[15]        ; Merged with DivFrec:comb_3|maincount[15]                 ;
+; measures:measures|DivFrec:comb_3|maincount[14]        ; Merged with DivFrec:comb_3|maincount[14]                 ;
+; measures:measures|DivFrec:comb_3|maincount[13]        ; Merged with DivFrec:comb_3|maincount[13]                 ;
+; measures:measures|DivFrec:comb_3|maincount[12]        ; Merged with DivFrec:comb_3|maincount[12]                 ;
+; measures:measures|DivFrec:comb_3|maincount[11]        ; Merged with DivFrec:comb_3|maincount[11]                 ;
+; measures:measures|DivFrec:comb_3|maincount[10]        ; Merged with DivFrec:comb_3|maincount[10]                 ;
+; measures:measures|DivFrec:comb_3|maincount[9]         ; Merged with DivFrec:comb_3|maincount[9]                  ;
+; measures:measures|DivFrec:comb_3|maincount[8]         ; Merged with DivFrec:comb_3|maincount[8]                  ;
+; measures:measures|DivFrec:comb_3|maincount[7]         ; Merged with DivFrec:comb_3|maincount[7]                  ;
+; measures:measures|DivFrec:comb_3|maincount[6]         ; Merged with DivFrec:comb_3|maincount[6]                  ;
+; measures:measures|DivFrec:comb_3|maincount[5]         ; Merged with DivFrec:comb_3|maincount[5]                  ;
+; measures:measures|DivFrec:comb_3|maincount[3]         ; Merged with DivFrec:comb_3|maincount[3]                  ;
+; measures:measures|DivFrec:comb_3|maincount[2]         ; Merged with DivFrec:comb_3|maincount[2]                  ;
+; measures:measures|DivFrec:comb_3|maincount[1]         ; Merged with DivFrec:comb_3|maincount[1]                  ;
+; measures:measures|DivFrec:comb_3|maincount[0]         ; Merged with DivFrec:comb_3|maincount[0]                  ;
+; DivFrec:comb_3|maincount[0]                           ; Merged with Nokia5110:comb_5|DivFrec:comb_3|maincount[0] ;
+; fulldisplay:comb_4|cfreq[0]                           ; Merged with Nokia5110:comb_5|DivFrec:comb_3|maincount[0] ;
+; fulldisplay:comb_4|count[0]                           ; Merged with fulldisplay:comb_4|bcd[3]                    ;
+; DivFrec:comb_3|maincount[1]                           ; Merged with Nokia5110:comb_5|DivFrec:comb_3|maincount[1] ;
+; measures:measures|ultrasonido:comb_4|dist[0,1]        ; Lost fanout                                              ;
+; Nokia5110:comb_5|writedc[0]                           ; Stuck at GND due to stuck port data_in                   ;
+; procesmeas:process_measures|hreal[8]                  ; Stuck at GND due to stuck port data_in                   ;
+; procesmeas:process_measures|dreal[8]                  ; Stuck at GND due to stuck port data_in                   ;
+; measures:measures|dht:comb_5|state~11                 ; Lost fanout                                              ;
+; measures:measures|dht:comb_5|state~12                 ; Lost fanout                                              ;
+; measures:measures|dht:comb_5|state~13                 ; Lost fanout                                              ;
+; measures:measures|dht:comb_5|state~14                 ; Lost fanout                                              ;
+; Nokia5110:comb_5|status~6                             ; Lost fanout                                              ;
+; Nokia5110:comb_5|status~7                             ; Lost fanout                                              ;
+; fulldisplay:comb_4|cfreq[1]                           ; Merged with Nokia5110:comb_5|DivFrec:comb_3|maincount[1] ;
+; DivFrec:comb_3|maincount[2]                           ; Merged with Nokia5110:comb_5|DivFrec:comb_3|maincount[2] ;
+; fulldisplay:comb_4|cfreq[2]                           ; Merged with Nokia5110:comb_5|DivFrec:comb_3|maincount[2] ;
+; DivFrec:comb_3|maincount[3]                           ; Merged with Nokia5110:comb_5|DivFrec:comb_3|maincount[3] ;
+; fulldisplay:comb_4|cfreq[3]                           ; Merged with Nokia5110:comb_5|DivFrec:comb_3|maincount[3] ;
+; DivFrec:comb_3|maincount[4]                           ; Merged with fulldisplay:comb_4|cfreq[4]                  ;
+; DivFrec:comb_3|maincount[5]                           ; Merged with fulldisplay:comb_4|cfreq[5]                  ;
+; DivFrec:comb_3|maincount[6]                           ; Merged with fulldisplay:comb_4|cfreq[6]                  ;
+; DivFrec:comb_3|maincount[7]                           ; Merged with fulldisplay:comb_4|cfreq[7]                  ;
+; DivFrec:comb_3|maincount[8]                           ; Merged with fulldisplay:comb_4|cfreq[8]                  ;
+; DivFrec:comb_3|maincount[9]                           ; Merged with fulldisplay:comb_4|cfreq[9]                  ;
+; DivFrec:comb_3|maincount[10]                          ; Merged with fulldisplay:comb_4|cfreq[10]                 ;
+; DivFrec:comb_3|maincount[11]                          ; Merged with fulldisplay:comb_4|cfreq[11]                 ;
+; DivFrec:comb_3|maincount[12]                          ; Merged with fulldisplay:comb_4|cfreq[12]                 ;
+; DivFrec:comb_3|maincount[13]                          ; Merged with fulldisplay:comb_4|cfreq[13]                 ;
+; DivFrec:comb_3|maincount[14]                          ; Merged with fulldisplay:comb_4|cfreq[14]                 ;
+; DivFrec:comb_3|maincount[15]                          ; Merged with fulldisplay:comb_4|cfreq[15]                 ;
+; fulldisplay:comb_4|cfreq[17..26]                      ; Lost fanout                                              ;
+; procesmeas:process_measures|ereal[8]                  ; Stuck at GND due to stuck port data_in                   ;
+; measures:measures|dht:comb_5|state.WAIT_RESPONSE_HIGH ; Stuck at GND due to stuck port data_in                   ;
+; Total Number of Removed Registers = 93                ;                                                          ;
++-------------------------------------------------------+----------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 3087  ;
+; Number of registers using Synchronous Clear  ; 73    ;
+; Number of registers using Synchronous Load   ; 473   ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 2394  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; procesmeas:process_measures|ereal[7]    ; 5       ;
+; procesmeas:process_measures|ereal[6]    ; 3       ;
+; procesmeas:process_measures|ereal[5]    ; 3       ;
+; procesmeas:process_measures|ereal[4]    ; 3       ;
+; procesmeas:process_measures|ereal[3]    ; 3       ;
+; procesmeas:process_measures|ereal[2]    ; 2       ;
+; procesmeas:process_measures|ereal[1]    ; 7       ;
+; procesmeas:process_measures|ereal[0]    ; 5       ;
+; procesmeas:process_measures|dreal[7]    ; 4       ;
+; procesmeas:process_measures|dreal[6]    ; 2       ;
+; procesmeas:process_measures|dreal[5]    ; 2       ;
+; procesmeas:process_measures|dreal[4]    ; 2       ;
+; procesmeas:process_measures|dreal[3]    ; 2       ;
+; procesmeas:process_measures|dreal[2]    ; 2       ;
+; procesmeas:process_measures|dreal[1]    ; 4       ;
+; procesmeas:process_measures|dreal[0]    ; 3       ;
+; procesmeas:process_measures|hreal[7]    ; 2       ;
+; procesmeas:process_measures|hreal[6]    ; 2       ;
+; procesmeas:process_measures|hreal[5]    ; 2       ;
+; procesmeas:process_measures|hreal[4]    ; 2       ;
+; procesmeas:process_measures|hreal[3]    ; 2       ;
+; procesmeas:process_measures|hreal[2]    ; 2       ;
+; procesmeas:process_measures|hreal[1]    ; 4       ;
+; procesmeas:process_measures|hreal[0]    ; 3       ;
+; procesmeas:process_measures|count[3]    ; 2       ;
+; procesmeas:process_measures|count[2]    ; 2       ;
+; procesmeas:process_measures|count[4]    ; 2       ;
+; procesmeas:process_measures|count[1]    ; 2       ;
+; procesmeas:process_measures|count[6]    ; 2       ;
+; procesmeas:process_measures|count[7]    ; 2       ;
+; procesmeas:process_measures|count[0]    ; 2       ;
+; procesmeas:process_measures|count[5]    ; 2       ;
+; Total number of inverted registers = 32 ;         ;
++-----------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Packed Into Inferred Megafunctions                                                                                                              ;
++---------------------------------------------------------------------------------------------------------------+------------------------------+------------+
+; Register Name                                                                                                 ; Megafunction                 ; Type       ;
++---------------------------------------------------------------------------------------------------------------+------------------------------+------------+
+; Nokia5110:comb_5|write[3264..3527]                                                                            ; Nokia5110:comb_5|write_rtl_0 ; SHIFT_TAPS ;
+; Nokia5110:comb_5|write[528..783]                                                                              ; Nokia5110:comb_5|write_rtl_1 ; SHIFT_TAPS ;
+; Nokia5110:comb_5|write[2592..2839]                                                                            ; Nokia5110:comb_5|write_rtl_2 ; SHIFT_TAPS ;
+; Nokia5110:comb_5|write[1920..2127]                                                                            ; Nokia5110:comb_5|write_rtl_3 ; SHIFT_TAPS ;
+; Nokia5110:comb_5|write[1256..1455]                                                                            ; Nokia5110:comb_5|write_rtl_4 ; SHIFT_TAPS ;
+; Nokia5110:comb_5|write[8..167,3880..4039]                                                                     ; Nokia5110:comb_5|write_rtl_5 ; SHIFT_TAPS ;
+; Nokia5110:comb_5|write[1504..1575,2176..2247]                                                                 ; Nokia5110:comb_5|write_rtl_6 ; SHIFT_TAPS ;
+; Nokia5110:comb_5|write[1088..1151]                                                                            ; Nokia5110:comb_5|write_rtl_7 ; SHIFT_TAPS ;
+; Nokia5110:comb_5|write[1800..1831,2472..2503,3144..3175]                                                      ; Nokia5110:comb_5|write_rtl_8 ; SHIFT_TAPS ;
+; Nokia5110:comb_5|write[832..839,1200..1207,1864..1871,1880..1887,2536..2543,2552..2559,3208..3215,3224..3231] ; Nokia5110:comb_5|write_rtl_9 ; SHIFT_TAPS ;
++---------------------------------------------------------------------------------------------------------------+------------------------------+------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------+
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |tamagotchi|measures:measures|ultrasonido:comb_4|temporizador:comb_4|out     ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |tamagotchi|measures:measures|ultrasonido:comb_4|contador:comb_3|periodo[18] ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |tamagotchi|measures:measures|dht:comb_5|bit_index[3]                        ;
+; 3:1                ; 157 bits  ; 314 LEs       ; 157 LEs              ; 157 LEs                ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[2546]                                     ;
+; 3:1                ; 98 bits   ; 196 LEs       ; 98 LEs               ; 98 LEs                 ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[2147]                                     ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 12 LEs               ; 3 LEs                  ; Yes        ; |tamagotchi|fulldisplay:comb_4|bcd[0]                                        ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[4055]                                     ;
+; 4:1                ; 835 bits  ; 1670 LEs      ; 835 LEs              ; 835 LEs                ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[2968]                                     ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[3183]                                     ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[2511]                                     ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[1847]                                     ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[1857]                                     ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[3177]                                     ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[2529]                                     ;
+; 5:1                ; 504 bits  ; 1512 LEs      ; 1008 LEs             ; 504 LEs                ; Yes        ; |tamagotchi|Nokia5110:comb_5|writedc[156]                                    ;
+; 10:1               ; 413 bits  ; 2478 LEs      ; 2065 LEs             ; 413 LEs                ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[1638]                                     ;
+; 10:1               ; 20 bits   ; 120 LEs       ; 80 LEs               ; 40 LEs                 ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[1852]                                     ;
+; 10:1               ; 20 bits   ; 120 LEs       ; 80 LEs               ; 40 LEs                 ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[3181]                                     ;
+; 10:1               ; 20 bits   ; 120 LEs       ; 80 LEs               ; 40 LEs                 ; Yes        ; |tamagotchi|Nokia5110:comb_5|write[2532]                                     ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 32 LEs               ; 288 LEs                ; Yes        ; |tamagotchi|measures:measures|dht:comb_5|timer[15]                           ;
+; 21:1               ; 3 bits    ; 42 LEs        ; 27 LEs               ; 15 LEs                 ; Yes        ; |tamagotchi|maqestados:state_machine|status[2]                               ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 14 LEs               ; 6 LEs                  ; Yes        ; |tamagotchi|procesmeas:process_measures|dreal[4]                             ;
+; 15:1               ; 2 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; Yes        ; |tamagotchi|procesmeas:process_measures|hreal[4]                             ;
+; 18:1               ; 5 bits    ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |tamagotchi|procesmeas:process_measures|dreal[1]                             ;
+; 18:1               ; 4 bits    ; 48 LEs        ; 32 LEs               ; 16 LEs                 ; Yes        ; |tamagotchi|procesmeas:process_measures|hreal[5]                             ;
+; 28:1               ; 2 bits    ; 36 LEs        ; 28 LEs               ; 8 LEs                  ; Yes        ; |tamagotchi|procesmeas:process_measures|ereal[0]                             ;
+; 28:1               ; 2 bits    ; 36 LEs        ; 28 LEs               ; 8 LEs                  ; Yes        ; |tamagotchi|procesmeas:process_measures|ereal[5]                             ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |tamagotchi|measures:measures|ultrasonido:comb_4|Selector3                   ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |tamagotchi|Nokia5110:comb_5|Selector2672                                    ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |tamagotchi|Nokia5110:comb_5|Selector2671                                    ;
+; 14:1               ; 2 bits    ; 18 LEs        ; 8 LEs                ; 10 LEs                 ; No         ; |tamagotchi|measures:measures|dht:comb_5|Selector38                          ;
+; 14:1               ; 5 bits    ; 45 LEs        ; 25 LEs               ; 20 LEs                 ; No         ; |tamagotchi|measures:measures|dht:comb_5|Selector39                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_0|shift_taps_cpm:auto_generated|altsyncram_ih81:altsyncram2 ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                            ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                             ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_1|shift_taps_dpm:auto_generated|altsyncram_jh81:altsyncram2 ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                            ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                             ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_2|shift_taps_epm:auto_generated|altsyncram_kh81:altsyncram2 ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                            ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                             ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_3|shift_taps_apm:auto_generated|altsyncram_ch81:altsyncram2 ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                            ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                             ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_4|shift_taps_2pm:auto_generated|altsyncram_0i81:altsyncram2 ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                            ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                             ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_5|shift_taps_8pm:auto_generated|altsyncram_qh81:altsyncram2 ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                            ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                             ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_6|shift_taps_rnm:auto_generated|altsyncram_ae81:altsyncram2 ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                            ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                             ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_7|shift_taps_snm:auto_generated|altsyncram_8e81:altsyncram2 ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                            ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                             ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_8|shift_taps_nnm:auto_generated|altsyncram_0e81:altsyncram2 ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                            ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                             ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for Nokia5110:comb_5|altshift_taps:write_rtl_9|shift_taps_fmm:auto_generated|altsyncram_cb81:altsyncram2 ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                            ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                             ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Nokia5110:comb_5 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; bitNum         ; 4063  ; Signed Integer                       ;
+; bitNum_len     ; 12    ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: measures:measures|ultrasonido:comb_4 ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; START          ; 0     ; Signed Integer                                           ;
+; TRIGGER        ; 1     ; Signed Integer                                           ;
+; ECHO           ; 2     ; Signed Integer                                           ;
+; END            ; 4     ; Signed Integer                                           ;
+; BIT_echo       ; 32    ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: measures:measures|ultrasonido:comb_4|contador:comb_3 ;
++----------------+-------+--------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                     ;
++----------------+-------+--------------------------------------------------------------------------+
+; BIT_periodo    ; 32    ; Signed Integer                                                           ;
++----------------+-------+--------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: measures:measures|ultrasonido:comb_4|temporizador:comb_4 ;
++----------------+-----------+--------------------------------------------------------------------------+
+; Parameter Name ; Value     ; Type                                                                     ;
++----------------+-----------+--------------------------------------------------------------------------+
+; BIT_fin        ; 9         ; Signed Integer                                                           ;
+; fin            ; 111110100 ; Unsigned Binary                                                          ;
++----------------+-----------+--------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: procesmeas:process_measures ;
++----------------+----------+----------------------------------------------+
+; Parameter Name ; Value    ; Type                                         ;
++----------------+----------+----------------------------------------------+
+; bitsValReal    ; 8        ; Signed Integer                               ;
+; rstValue       ; 11111111 ; Unsigned Binary                              ;
+; lowValue       ; 01010000 ; Unsigned Binary                              ;
+; maxValue       ; 11111111 ; Unsigned Binary                              ;
+; nivelSize      ; 51       ; Signed Integer                               ;
+; fact1          ; 1        ; Signed Integer                               ;
+; fact2          ; 2        ; Signed Integer                               ;
+; fact3          ; 4        ; Signed Integer                               ;
+; fact4          ; 8        ; Signed Integer                               ;
++----------------+----------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: maqestados:state_machine ;
++----------------+-------+----------------------------------------------+
+; Parameter Name ; Value ; Type                                         ;
++----------------+-------+----------------------------------------------+
+; FELIZ          ; 000   ; Unsigned Binary                              ;
+; ABURRIDO       ; 001   ; Unsigned Binary                              ;
+; CANSADO        ; 010   ; Unsigned Binary                              ;
+; DESCANSO       ; 011   ; Unsigned Binary                              ;
+; HAMBRIENTO     ; 100   ; Unsigned Binary                              ;
+; ENFERMO        ; 101   ; Unsigned Binary                              ;
+; MUERTO         ; 110   ; Unsigned Binary                              ;
++----------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_0 ;
++----------------+----------------+-----------------------------------------------------------+
+; Parameter Name ; Value          ; Type                                                      ;
++----------------+----------------+-----------------------------------------------------------+
+; WIDTH_BYTEENA  ; 1              ; Untyped                                                   ;
+; NUMBER_OF_TAPS ; 1              ; Untyped                                                   ;
+; TAP_DISTANCE   ; 264            ; Untyped                                                   ;
+; WIDTH          ; 1              ; Untyped                                                   ;
+; POWER_UP_STATE ; CLEARED        ; Untyped                                                   ;
+; CBXI_PARAMETER ; shift_taps_cpm ; Untyped                                                   ;
++----------------+----------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_1 ;
++----------------+----------------+-----------------------------------------------------------+
+; Parameter Name ; Value          ; Type                                                      ;
++----------------+----------------+-----------------------------------------------------------+
+; WIDTH_BYTEENA  ; 1              ; Untyped                                                   ;
+; NUMBER_OF_TAPS ; 1              ; Untyped                                                   ;
+; TAP_DISTANCE   ; 256            ; Untyped                                                   ;
+; WIDTH          ; 1              ; Untyped                                                   ;
+; POWER_UP_STATE ; CLEARED        ; Untyped                                                   ;
+; CBXI_PARAMETER ; shift_taps_dpm ; Untyped                                                   ;
++----------------+----------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_2 ;
++----------------+----------------+-----------------------------------------------------------+
+; Parameter Name ; Value          ; Type                                                      ;
++----------------+----------------+-----------------------------------------------------------+
+; WIDTH_BYTEENA  ; 1              ; Untyped                                                   ;
+; NUMBER_OF_TAPS ; 1              ; Untyped                                                   ;
+; TAP_DISTANCE   ; 248            ; Untyped                                                   ;
+; WIDTH          ; 1              ; Untyped                                                   ;
+; POWER_UP_STATE ; CLEARED        ; Untyped                                                   ;
+; CBXI_PARAMETER ; shift_taps_epm ; Untyped                                                   ;
++----------------+----------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_3 ;
++----------------+----------------+-----------------------------------------------------------+
+; Parameter Name ; Value          ; Type                                                      ;
++----------------+----------------+-----------------------------------------------------------+
+; WIDTH_BYTEENA  ; 1              ; Untyped                                                   ;
+; NUMBER_OF_TAPS ; 1              ; Untyped                                                   ;
+; TAP_DISTANCE   ; 208            ; Untyped                                                   ;
+; WIDTH          ; 1              ; Untyped                                                   ;
+; POWER_UP_STATE ; CLEARED        ; Untyped                                                   ;
+; CBXI_PARAMETER ; shift_taps_apm ; Untyped                                                   ;
++----------------+----------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_4 ;
++----------------+----------------+-----------------------------------------------------------+
+; Parameter Name ; Value          ; Type                                                      ;
++----------------+----------------+-----------------------------------------------------------+
+; WIDTH_BYTEENA  ; 1              ; Untyped                                                   ;
+; NUMBER_OF_TAPS ; 1              ; Untyped                                                   ;
+; TAP_DISTANCE   ; 200            ; Untyped                                                   ;
+; WIDTH          ; 1              ; Untyped                                                   ;
+; POWER_UP_STATE ; CLEARED        ; Untyped                                                   ;
+; CBXI_PARAMETER ; shift_taps_2pm ; Untyped                                                   ;
++----------------+----------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_5 ;
++----------------+----------------+-----------------------------------------------------------+
+; Parameter Name ; Value          ; Type                                                      ;
++----------------+----------------+-----------------------------------------------------------+
+; WIDTH_BYTEENA  ; 1              ; Untyped                                                   ;
+; NUMBER_OF_TAPS ; 1              ; Untyped                                                   ;
+; TAP_DISTANCE   ; 160            ; Untyped                                                   ;
+; WIDTH          ; 2              ; Untyped                                                   ;
+; POWER_UP_STATE ; CLEARED        ; Untyped                                                   ;
+; CBXI_PARAMETER ; shift_taps_8pm ; Untyped                                                   ;
++----------------+----------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_6 ;
++----------------+----------------+-----------------------------------------------------------+
+; Parameter Name ; Value          ; Type                                                      ;
++----------------+----------------+-----------------------------------------------------------+
+; WIDTH_BYTEENA  ; 1              ; Untyped                                                   ;
+; NUMBER_OF_TAPS ; 1              ; Untyped                                                   ;
+; TAP_DISTANCE   ; 72             ; Untyped                                                   ;
+; WIDTH          ; 2              ; Untyped                                                   ;
+; POWER_UP_STATE ; CLEARED        ; Untyped                                                   ;
+; CBXI_PARAMETER ; shift_taps_rnm ; Untyped                                                   ;
++----------------+----------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_7 ;
++----------------+----------------+-----------------------------------------------------------+
+; Parameter Name ; Value          ; Type                                                      ;
++----------------+----------------+-----------------------------------------------------------+
+; WIDTH_BYTEENA  ; 1              ; Untyped                                                   ;
+; NUMBER_OF_TAPS ; 1              ; Untyped                                                   ;
+; TAP_DISTANCE   ; 64             ; Untyped                                                   ;
+; WIDTH          ; 1              ; Untyped                                                   ;
+; POWER_UP_STATE ; CLEARED        ; Untyped                                                   ;
+; CBXI_PARAMETER ; shift_taps_snm ; Untyped                                                   ;
++----------------+----------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_8 ;
++----------------+----------------+-----------------------------------------------------------+
+; Parameter Name ; Value          ; Type                                                      ;
++----------------+----------------+-----------------------------------------------------------+
+; WIDTH_BYTEENA  ; 1              ; Untyped                                                   ;
+; NUMBER_OF_TAPS ; 1              ; Untyped                                                   ;
+; TAP_DISTANCE   ; 32             ; Untyped                                                   ;
+; WIDTH          ; 3              ; Untyped                                                   ;
+; POWER_UP_STATE ; CLEARED        ; Untyped                                                   ;
+; CBXI_PARAMETER ; shift_taps_nnm ; Untyped                                                   ;
++----------------+----------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Nokia5110:comb_5|altshift_taps:write_rtl_9 ;
++----------------+----------------+-----------------------------------------------------------+
+; Parameter Name ; Value          ; Type                                                      ;
++----------------+----------------+-----------------------------------------------------------+
+; WIDTH_BYTEENA  ; 1              ; Untyped                                                   ;
+; NUMBER_OF_TAPS ; 1              ; Untyped                                                   ;
+; TAP_DISTANCE   ; 8              ; Untyped                                                   ;
+; WIDTH          ; 8              ; Untyped                                                   ;
+; POWER_UP_STATE ; CLEARED        ; Untyped                                                   ;
+; CBXI_PARAMETER ; shift_taps_fmm ; Untyped                                                   ;
++----------------+----------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: procesmeas:process_measures|lpm_divide:Div0 ;
++------------------------+----------------+----------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                               ;
++------------------------+----------------+----------------------------------------------------+
+; LPM_WIDTHN             ; 32             ; Untyped                                            ;
+; LPM_WIDTHD             ; 6              ; Untyped                                            ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_PIPELINE           ; 0              ; Untyped                                            ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                            ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                            ;
+; CBXI_PARAMETER         ; lpm_divide_3jm ; Untyped                                            ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                            ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                            ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                         ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                       ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                       ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                     ;
++------------------------+----------------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: procesmeas:process_measures|lpm_divide:Div2 ;
++------------------------+----------------+----------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                               ;
++------------------------+----------------+----------------------------------------------------+
+; LPM_WIDTHN             ; 32             ; Untyped                                            ;
+; LPM_WIDTHD             ; 6              ; Untyped                                            ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_PIPELINE           ; 0              ; Untyped                                            ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                            ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                            ;
+; CBXI_PARAMETER         ; lpm_divide_3jm ; Untyped                                            ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                            ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                            ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                         ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                       ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                       ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                     ;
++------------------------+----------------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: procesmeas:process_measures|lpm_divide:Div1 ;
++------------------------+----------------+----------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                               ;
++------------------------+----------------+----------------------------------------------------+
+; LPM_WIDTHN             ; 32             ; Untyped                                            ;
+; LPM_WIDTHD             ; 6              ; Untyped                                            ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_PIPELINE           ; 0              ; Untyped                                            ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                            ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                            ;
+; CBXI_PARAMETER         ; lpm_divide_3jm ; Untyped                                            ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                            ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                            ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                         ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                       ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                       ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                     ;
++------------------------+----------------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: measures:measures|ultrasonido:comb_4|lpm_divide:Div0 ;
++------------------------+----------------+-------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                        ;
++------------------------+----------------+-------------------------------------------------------------+
+; LPM_WIDTHN             ; 32             ; Untyped                                                     ;
+; LPM_WIDTHD             ; 13             ; Untyped                                                     ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                     ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                     ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                     ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                     ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                     ;
+; CBXI_PARAMETER         ; lpm_divide_gkm ; Untyped                                                     ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                     ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                     ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                  ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                              ;
++------------------------+----------------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------+
+; altshift_taps Parameter Settings by Entity Instance                     ;
++----------------------------+--------------------------------------------+
+; Name                       ; Value                                      ;
++----------------------------+--------------------------------------------+
+; Number of entity instances ; 10                                         ;
+; Entity Instance            ; Nokia5110:comb_5|altshift_taps:write_rtl_0 ;
+;     -- NUMBER_OF_TAPS      ; 1                                          ;
+;     -- TAP_DISTANCE        ; 264                                        ;
+;     -- WIDTH               ; 1                                          ;
+; Entity Instance            ; Nokia5110:comb_5|altshift_taps:write_rtl_1 ;
+;     -- NUMBER_OF_TAPS      ; 1                                          ;
+;     -- TAP_DISTANCE        ; 256                                        ;
+;     -- WIDTH               ; 1                                          ;
+; Entity Instance            ; Nokia5110:comb_5|altshift_taps:write_rtl_2 ;
+;     -- NUMBER_OF_TAPS      ; 1                                          ;
+;     -- TAP_DISTANCE        ; 248                                        ;
+;     -- WIDTH               ; 1                                          ;
+; Entity Instance            ; Nokia5110:comb_5|altshift_taps:write_rtl_3 ;
+;     -- NUMBER_OF_TAPS      ; 1                                          ;
+;     -- TAP_DISTANCE        ; 208                                        ;
+;     -- WIDTH               ; 1                                          ;
+; Entity Instance            ; Nokia5110:comb_5|altshift_taps:write_rtl_4 ;
+;     -- NUMBER_OF_TAPS      ; 1                                          ;
+;     -- TAP_DISTANCE        ; 200                                        ;
+;     -- WIDTH               ; 1                                          ;
+; Entity Instance            ; Nokia5110:comb_5|altshift_taps:write_rtl_5 ;
+;     -- NUMBER_OF_TAPS      ; 1                                          ;
+;     -- TAP_DISTANCE        ; 160                                        ;
+;     -- WIDTH               ; 2                                          ;
+; Entity Instance            ; Nokia5110:comb_5|altshift_taps:write_rtl_6 ;
+;     -- NUMBER_OF_TAPS      ; 1                                          ;
+;     -- TAP_DISTANCE        ; 72                                         ;
+;     -- WIDTH               ; 2                                          ;
+; Entity Instance            ; Nokia5110:comb_5|altshift_taps:write_rtl_7 ;
+;     -- NUMBER_OF_TAPS      ; 1                                          ;
+;     -- TAP_DISTANCE        ; 64                                         ;
+;     -- WIDTH               ; 1                                          ;
+; Entity Instance            ; Nokia5110:comb_5|altshift_taps:write_rtl_8 ;
+;     -- NUMBER_OF_TAPS      ; 1                                          ;
+;     -- TAP_DISTANCE        ; 32                                         ;
+;     -- WIDTH               ; 3                                          ;
+; Entity Instance            ; Nokia5110:comb_5|altshift_taps:write_rtl_9 ;
+;     -- NUMBER_OF_TAPS      ; 1                                          ;
+;     -- TAP_DISTANCE        ; 8                                          ;
+;     -- WIDTH               ; 8                                          ;
++----------------------------+--------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "measures:measures|dht:comb_5"                                                                            ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; rst  ; Input  ; Info     ; Explicitly unconnected                                                                                   ;
+; seg  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; an   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "measures:measures|ultrasonido:comb_4|contador:comb_3"                               ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; done ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "measures:measures|ultrasonido:comb_4"                                               ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; done ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "measures:measures|DivFrec:comb_3"                                                   ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; dclk ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "measures:measures"                                              ;
++------+---------+------------------+--------------------------------------------------------+
+; Port ; Type    ; Severity         ; Details                                                ;
++------+---------+------------------+--------------------------------------------------------+
+; sseg ; Unknown ; Critical Warning ; Named port was not declared by the instantiated entity ;
+; an   ; Unknown ; Critical Warning ; Named port was not declared by the instantiated entity ;
++------+---------+------------------+--------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fulldisplay:comb_4|BCDtoSSeg:bcdtosseg"                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; an   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fulldisplay:comb_4"                                                                                                                                                                   ;
++---------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                                                                                                                            ;
++---------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; rst     ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; rst[-1] ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; led     ; Output ; Info     ; Explicitly unconnected                                                                                                                                                             ;
++---------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------+
+; Port Connectivity Checks: "DivFrec:comb_3"        ;
++------+--------+----------+------------------------+
+; Port ; Type   ; Severity ; Details                ;
++------+--------+----------+------------------------+
+; dclk ; Output ; Info     ; Explicitly unconnected ;
++------+--------+----------+------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 30                          ;
+; cycloneiii_ff         ; 3087                        ;
+;     ENA               ; 1848                        ;
+;     ENA SCLR          ; 73                          ;
+;     ENA SLD           ; 473                         ;
+;     plain             ; 693                         ;
+; cycloneiii_io_obuf    ; 1                           ;
+; cycloneiii_lcell_comb ; 4320                        ;
+;     arith             ; 775                         ;
+;         1 data inputs ; 12                          ;
+;         2 data inputs ; 399                         ;
+;         3 data inputs ; 364                         ;
+;     normal            ; 3545                        ;
+;         0 data inputs ; 65                          ;
+;         1 data inputs ; 82                          ;
+;         2 data inputs ; 1481                        ;
+;         3 data inputs ; 755                         ;
+;         4 data inputs ; 1162                        ;
+; cycloneiii_ram_block  ; 21                          ;
+;                       ;                             ;
+; Max LUT depth         ; 57.50                       ;
+; Average LUT depth     ; 9.84                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:06     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+    Info: Processing started: Sun Sep 22 20:22:54 2024
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off tamagotchi -c tamagotchi
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file tamagotchi.v
+    Info (12023): Found entity 1: tamagotchi File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 1
+Warning (12019): Can't analyze file -- file extra.v is missing
+Warning (10236): Verilog HDL Implicit Net warning at tamagotchi.v(29): created implicit net for "sclk" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 29
+Warning (10236): Verilog HDL Implicit Net warning at tamagotchi.v(46): created implicit net for "calor" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 46
+Warning (10236): Verilog HDL Implicit Net warning at tamagotchi.v(46): created implicit net for "frio" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 46
+Warning (10236): Verilog HDL Implicit Net warning at tamagotchi.v(47): created implicit net for "cerca" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 47
+Warning (10236): Verilog HDL Implicit Net warning at tamagotchi.v(66): created implicit net for "regluz" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 66
+Warning (10236): Verilog HDL Implicit Net warning at tamagotchi.v(68): created implicit net for "regjugar" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 68
+Warning (10236): Verilog HDL Implicit Net warning at tamagotchi.v(69): created implicit net for "regalimentar" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 69
+Warning (10236): Verilog HDL Implicit Net warning at tamagotchi.v(70): created implicit net for "regcurar" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 70
+Warning (10236): Verilog HDL Implicit Net warning at tamagotchi.v(71): created implicit net for "regtest" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 71
+Warning (10236): Verilog HDL Implicit Net warning at tamagotchi.v(72): created implicit net for "regreset" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 72
+Warning (10236): Verilog HDL Implicit Net warning at tamagotchi.v(91): created implicit net for "o" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 91
+Warning (10236): Verilog HDL Implicit Net warning at tamagotchi.v(92): created implicit net for "enMue" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 92
+Critical Warning (10846): Verilog HDL Instantiation warning at tamagotchi.v(31): instance has no name File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 31
+Critical Warning (10846): Verilog HDL Instantiation warning at tamagotchi.v(40): instance has no name File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 40
+Critical Warning (10846): Verilog HDL Instantiation warning at tamagotchi.v(50): instance has no name File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 50
+Info (12127): Elaborating entity "tamagotchi" for the top level hierarchy
+Warning (12125): Using design file DivFrec.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: DivFrec File: /home/gabriel/Documentos/tamagotchiFinal/DivFrec.v Line: 4
+Info (12128): Elaborating entity "DivFrec" for hierarchy "DivFrec:comb_3" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 31
+Warning (10230): Verilog HDL assignment warning at DivFrec.v(15): truncated value with size 32 to match size of target (25) File: /home/gabriel/Documentos/tamagotchiFinal/DivFrec.v Line: 15
+Warning (12125): Using design file fulldisplay.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: fulldisplay File: /home/gabriel/Documentos/tamagotchiFinal/fulldisplay.v Line: 4
+Info (12128): Elaborating entity "fulldisplay" for hierarchy "fulldisplay:comb_4" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 40
+Warning (10230): Verilog HDL assignment warning at fulldisplay.v(26): truncated value with size 32 to match size of target (27) File: /home/gabriel/Documentos/tamagotchiFinal/fulldisplay.v Line: 26
+Warning (10230): Verilog HDL assignment warning at fulldisplay.v(36): truncated value with size 32 to match size of target (3) File: /home/gabriel/Documentos/tamagotchiFinal/fulldisplay.v Line: 36
+Warning (12125): Using design file BCDtoSSeg.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: BCDtoSSeg File: /home/gabriel/Documentos/tamagotchiFinal/BCDtoSSeg.v Line: 1
+Info (12128): Elaborating entity "BCDtoSSeg" for hierarchy "fulldisplay:comb_4|BCDtoSSeg:bcdtosseg" File: /home/gabriel/Documentos/tamagotchiFinal/fulldisplay.v Line: 15
+Warning (10463): Verilog HDL Declaration warning at Nokia5110.v(40): "null" is SystemVerilog-2005 keyword File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 40
+Warning (10229): Verilog HDL Expression warning at Nokia5110.v(61): truncated literal to match 352 bits File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 61
+Warning (12125): Using design file Nokia5110.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: Nokia5110 File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 5
+Warning (10236): Verilog HDL Implicit Net warning at Nokia5110.v(102): created implicit net for "init" File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 102
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(35): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 35
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(39): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 39
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(40): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 40
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(42): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 42
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(43): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 43
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(44): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 44
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(45): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 45
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(46): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 46
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(47): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 47
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(48): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 48
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(49): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 49
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(50): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 50
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(51): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 51
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(52): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 52
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(53): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 53
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(54): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 54
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(55): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 55
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(56): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 56
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(57): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 57
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(58): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 58
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(59): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 59
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(60): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 60
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(61): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 61
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(62): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 62
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(63): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 63
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(64): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 64
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(65): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 65
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(66): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 66
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(67): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 67
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(68): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 68
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(69): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 69
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(70): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 70
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(71): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 71
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(72): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 72
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(73): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 73
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(74): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 74
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(75): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 75
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(76): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 76
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(77): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 77
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(78): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 78
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(79): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 79
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(80): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 80
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(81): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 81
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(82): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 82
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(83): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 83
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(84): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 84
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(85): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 85
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(86): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 86
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(87): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 87
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(88): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 88
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(89): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 89
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(90): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 90
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(91): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 91
+Warning (10222): Verilog HDL Parameter Declaration warning at Nokia5110.v(92): Parameter Declaration in module "Nokia5110" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 92
+Critical Warning (10846): Verilog HDL Instantiation warning at Nokia5110.v(102): instance has no name File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 102
+Info (12128): Elaborating entity "Nokia5110" for hierarchy "Nokia5110:comb_5" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 50
+Warning (10230): Verilog HDL assignment warning at Nokia5110.v(109): truncated value with size 32 to match size of target (3) File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 109
+Warning (10230): Verilog HDL assignment warning at Nokia5110.v(216): truncated value with size 48 to match size of target (8) File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 216
+Warning (10230): Verilog HDL assignment warning at Nokia5110.v(239): truncated value with size 32 to match size of target (12) File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 239
+Warning (10230): Verilog HDL assignment warning at Nokia5110.v(239): truncated value with size 32 to match size of target (3) File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 239
+Warning (10230): Verilog HDL assignment warning at Nokia5110.v(248): truncated value with size 32 to match size of target (3) File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 248
+Warning (10463): Verilog HDL Declaration warning at measures.v(33): "dist" is SystemVerilog-2005 keyword File: /home/gabriel/Documentos/tamagotchiFinal/measures.v Line: 33
+Warning (12125): Using design file measures.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: measures File: /home/gabriel/Documentos/tamagotchiFinal/measures.v Line: 4
+Warning (10236): Verilog HDL Implicit Net warning at measures.v(37): created implicit net for "clk1" File: /home/gabriel/Documentos/tamagotchiFinal/measures.v Line: 37
+Warning (10236): Verilog HDL Implicit Net warning at measures.v(37): created implicit net for "dclk" File: /home/gabriel/Documentos/tamagotchiFinal/measures.v Line: 37
+Warning (10236): Verilog HDL Implicit Net warning at measures.v(38): created implicit net for "done" File: /home/gabriel/Documentos/tamagotchiFinal/measures.v Line: 38
+Critical Warning (10846): Verilog HDL Instantiation warning at measures.v(37): instance has no name File: /home/gabriel/Documentos/tamagotchiFinal/measures.v Line: 37
+Critical Warning (10846): Verilog HDL Instantiation warning at measures.v(38): instance has no name File: /home/gabriel/Documentos/tamagotchiFinal/measures.v Line: 38
+Critical Warning (10846): Verilog HDL Instantiation warning at measures.v(39): instance has no name File: /home/gabriel/Documentos/tamagotchiFinal/measures.v Line: 39
+Info (12128): Elaborating entity "measures" for hierarchy "measures:measures" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 73
+Warning (10230): Verilog HDL assignment warning at measures.v(56): truncated value with size 32 to match size of target (3) File: /home/gabriel/Documentos/tamagotchiFinal/measures.v Line: 56
+Warning (10230): Verilog HDL assignment warning at measures.v(60): truncated value with size 32 to match size of target (3) File: /home/gabriel/Documentos/tamagotchiFinal/measures.v Line: 60
+Warning (10463): Verilog HDL Declaration warning at ultrasonido.v(9): "dist" is SystemVerilog-2005 keyword File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 9
+Warning (12125): Using design file ultrasonido.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: ultrasonido File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 2
+Critical Warning (10846): Verilog HDL Instantiation warning at ultrasonido.v(20): instance has no name File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 20
+Critical Warning (10846): Verilog HDL Instantiation warning at ultrasonido.v(21): instance has no name File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 21
+Info (12128): Elaborating entity "ultrasonido" for hierarchy "measures:measures|ultrasonido:comb_4" File: /home/gabriel/Documentos/tamagotchiFinal/measures.v Line: 38
+Warning (10230): Verilog HDL assignment warning at ultrasonido.v(44): truncated value with size 32 to match size of target (16) File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 44
+Warning (12125): Using design file contador.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: contador File: /home/gabriel/Documentos/tamagotchiFinal/contador.v Line: 2
+Warning (10222): Verilog HDL Parameter Declaration warning at contador.v(12): Parameter Declaration in module "contador" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/contador.v Line: 12
+Info (12128): Elaborating entity "contador" for hierarchy "measures:measures|ultrasonido:comb_4|contador:comb_3" File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 20
+Warning (10036): Verilog HDL or VHDL warning at contador.v(14): object "con" assigned a value but never read File: /home/gabriel/Documentos/tamagotchiFinal/contador.v Line: 14
+Warning (10230): Verilog HDL assignment warning at contador.v(22): truncated value with size 32 to match size of target (1) File: /home/gabriel/Documentos/tamagotchiFinal/contador.v Line: 22
+Warning (10230): Verilog HDL assignment warning at contador.v(30): truncated value with size 32 to match size of target (1) File: /home/gabriel/Documentos/tamagotchiFinal/contador.v Line: 30
+Warning (10230): Verilog HDL assignment warning at contador.v(34): truncated value with size 32 to match size of target (1) File: /home/gabriel/Documentos/tamagotchiFinal/contador.v Line: 34
+Warning (12125): Using design file temporizador.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: temporizador File: /home/gabriel/Documentos/tamagotchiFinal/temporizador.v Line: 2
+Warning (10222): Verilog HDL Parameter Declaration warning at temporizador.v(11): Parameter Declaration in module "temporizador" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /home/gabriel/Documentos/tamagotchiFinal/temporizador.v Line: 11
+Info (12128): Elaborating entity "temporizador" for hierarchy "measures:measures|ultrasonido:comb_4|temporizador:comb_4" File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 21
+Warning (10230): Verilog HDL assignment warning at temporizador.v(23): truncated value with size 32 to match size of target (1) File: /home/gabriel/Documentos/tamagotchiFinal/temporizador.v Line: 23
+Warning (10230): Verilog HDL assignment warning at temporizador.v(28): truncated value with size 32 to match size of target (9) File: /home/gabriel/Documentos/tamagotchiFinal/temporizador.v Line: 28
+Warning (10230): Verilog HDL assignment warning at temporizador.v(32): truncated value with size 32 to match size of target (1) File: /home/gabriel/Documentos/tamagotchiFinal/temporizador.v Line: 32
+Warning (10230): Verilog HDL assignment warning at temporizador.v(36): truncated value with size 32 to match size of target (1) File: /home/gabriel/Documentos/tamagotchiFinal/temporizador.v Line: 36
+Warning (12125): Using design file dht.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: dht File: /home/gabriel/Documentos/tamagotchiFinal/dht.v Line: 6
+Info (12128): Elaborating entity "dht" for hierarchy "measures:measures|dht:comb_5" File: /home/gabriel/Documentos/tamagotchiFinal/measures.v Line: 39
+Warning (10036): Verilog HDL or VHDL warning at dht.v(22): object "humidity" assigned a value but never read File: /home/gabriel/Documentos/tamagotchiFinal/dht.v Line: 22
+Warning (10855): Verilog HDL warning at dht.v(48): initial value for variable humidity should be constant File: /home/gabriel/Documentos/tamagotchiFinal/dht.v Line: 48
+Warning (10855): Verilog HDL warning at dht.v(48): initial value for variable temperature should be constant File: /home/gabriel/Documentos/tamagotchiFinal/dht.v Line: 48
+Warning (10230): Verilog HDL assignment warning at dht.v(122): truncated value with size 32 to match size of target (6) File: /home/gabriel/Documentos/tamagotchiFinal/dht.v Line: 122
+Warning (10230): Verilog HDL assignment warning at dht.v(141): truncated value with size 32 to match size of target (4) File: /home/gabriel/Documentos/tamagotchiFinal/dht.v Line: 141
+Warning (10230): Verilog HDL assignment warning at dht.v(142): truncated value with size 32 to match size of target (4) File: /home/gabriel/Documentos/tamagotchiFinal/dht.v Line: 142
+Warning (10034): Output port "seg" at dht.v(12) has no driver File: /home/gabriel/Documentos/tamagotchiFinal/dht.v Line: 12
+Warning (10034): Output port "an" at dht.v(14) has no driver File: /home/gabriel/Documentos/tamagotchiFinal/dht.v Line: 14
+Warning (12125): Using design file procesmeas.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: procesmeas File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 3
+Info (12128): Elaborating entity "procesmeas" for hierarchy "procesmeas:process_measures" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 93
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(34): truncated value with size 32 to match size of target (3) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 34
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(35): truncated value with size 32 to match size of target (3) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 35
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(36): truncated value with size 32 to match size of target (3) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 36
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(51): truncated value with size 32 to match size of target (9) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 51
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(52): truncated value with size 32 to match size of target (9) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 52
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(53): truncated value with size 32 to match size of target (9) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 53
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(76): truncated value with size 32 to match size of target (9) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 76
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(77): truncated value with size 32 to match size of target (9) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 77
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(78): truncated value with size 32 to match size of target (9) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 78
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(101): truncated value with size 32 to match size of target (9) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 101
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(102): truncated value with size 32 to match size of target (9) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 102
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(122): truncated value with size 32 to match size of target (9) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 122
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(138): truncated value with size 32 to match size of target (9) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 138
+Warning (10230): Verilog HDL assignment warning at procesmeas.v(155): truncated value with size 32 to match size of target (8) File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 155
+Warning (12125): Using design file maqestados.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: maqestados File: /home/gabriel/Documentos/tamagotchiFinal/maqestados.v Line: 3
+Info (12128): Elaborating entity "maqestados" for hierarchy "maqestados:state_machine" File: /home/gabriel/Documentos/tamagotchiFinal/tamagotchi.v Line: 103
+Info (19000): Inferred 10 megafunctions from design logic
+    Info (276034): Inferred altshift_taps megafunction from the following design logic: "Nokia5110:comb_5|write_rtl_0"
+        Info (286033): Parameter NUMBER_OF_TAPS set to 1
+        Info (286033): Parameter TAP_DISTANCE set to 264
+        Info (286033): Parameter WIDTH set to 1
+    Info (276034): Inferred altshift_taps megafunction from the following design logic: "Nokia5110:comb_5|write_rtl_1"
+        Info (286033): Parameter NUMBER_OF_TAPS set to 1
+        Info (286033): Parameter TAP_DISTANCE set to 256
+        Info (286033): Parameter WIDTH set to 1
+    Info (276034): Inferred altshift_taps megafunction from the following design logic: "Nokia5110:comb_5|write_rtl_2"
+        Info (286033): Parameter NUMBER_OF_TAPS set to 1
+        Info (286033): Parameter TAP_DISTANCE set to 248
+        Info (286033): Parameter WIDTH set to 1
+    Info (276034): Inferred altshift_taps megafunction from the following design logic: "Nokia5110:comb_5|write_rtl_3"
+        Info (286033): Parameter NUMBER_OF_TAPS set to 1
+        Info (286033): Parameter TAP_DISTANCE set to 208
+        Info (286033): Parameter WIDTH set to 1
+    Info (276034): Inferred altshift_taps megafunction from the following design logic: "Nokia5110:comb_5|write_rtl_4"
+        Info (286033): Parameter NUMBER_OF_TAPS set to 1
+        Info (286033): Parameter TAP_DISTANCE set to 200
+        Info (286033): Parameter WIDTH set to 1
+    Info (276034): Inferred altshift_taps megafunction from the following design logic: "Nokia5110:comb_5|write_rtl_5"
+        Info (286033): Parameter NUMBER_OF_TAPS set to 1
+        Info (286033): Parameter TAP_DISTANCE set to 160
+        Info (286033): Parameter WIDTH set to 2
+    Info (276034): Inferred altshift_taps megafunction from the following design logic: "Nokia5110:comb_5|write_rtl_6"
+        Info (286033): Parameter NUMBER_OF_TAPS set to 1
+        Info (286033): Parameter TAP_DISTANCE set to 72
+        Info (286033): Parameter WIDTH set to 2
+    Info (276034): Inferred altshift_taps megafunction from the following design logic: "Nokia5110:comb_5|write_rtl_7"
+        Info (286033): Parameter NUMBER_OF_TAPS set to 1
+        Info (286033): Parameter TAP_DISTANCE set to 64
+        Info (286033): Parameter WIDTH set to 1
+    Info (276034): Inferred altshift_taps megafunction from the following design logic: "Nokia5110:comb_5|write_rtl_8"
+        Info (286033): Parameter NUMBER_OF_TAPS set to 1
+        Info (286033): Parameter TAP_DISTANCE set to 32
+        Info (286033): Parameter WIDTH set to 3
+    Info (276034): Inferred altshift_taps megafunction from the following design logic: "Nokia5110:comb_5|write_rtl_9"
+        Info (286033): Parameter NUMBER_OF_TAPS set to 1
+        Info (286033): Parameter TAP_DISTANCE set to 8
+        Info (286033): Parameter WIDTH set to 8
+Info (278001): Inferred 4 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "procesmeas:process_measures|Div0" File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 34
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "procesmeas:process_measures|Div2" File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 36
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "procesmeas:process_measures|Div1" File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 35
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "measures:measures|ultrasonido:comb_4|Div0" File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 44
+Info (12130): Elaborated megafunction instantiation "Nokia5110:comb_5|altshift_taps:write_rtl_0"
+Info (12133): Instantiated megafunction "Nokia5110:comb_5|altshift_taps:write_rtl_0" with the following parameter:
+    Info (12134): Parameter "NUMBER_OF_TAPS" = "1"
+    Info (12134): Parameter "TAP_DISTANCE" = "264"
+    Info (12134): Parameter "WIDTH" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/shift_taps_cpm.tdf
+    Info (12023): Found entity 1: shift_taps_cpm File: /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_cpm.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ih81.tdf
+    Info (12023): Found entity 1: altsyncram_ih81 File: /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_ih81.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_ksf.tdf
+    Info (12023): Found entity 1: cntr_ksf File: /home/gabriel/Documentos/tamagotchiFinal/db/cntr_ksf.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_vgc.tdf
+    Info (12023): Found entity 1: cmpr_vgc File: /home/gabriel/Documentos/tamagotchiFinal/db/cmpr_vgc.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "Nokia5110:comb_5|altshift_taps:write_rtl_1"
+Info (12133): Instantiated megafunction "Nokia5110:comb_5|altshift_taps:write_rtl_1" with the following parameter:
+    Info (12134): Parameter "NUMBER_OF_TAPS" = "1"
+    Info (12134): Parameter "TAP_DISTANCE" = "256"
+    Info (12134): Parameter "WIDTH" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/shift_taps_dpm.tdf
+    Info (12023): Found entity 1: shift_taps_dpm File: /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_dpm.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_jh81.tdf
+    Info (12023): Found entity 1: altsyncram_jh81 File: /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_jh81.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_lsf.tdf
+    Info (12023): Found entity 1: cntr_lsf File: /home/gabriel/Documentos/tamagotchiFinal/db/cntr_lsf.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_ugc.tdf
+    Info (12023): Found entity 1: cmpr_ugc File: /home/gabriel/Documentos/tamagotchiFinal/db/cmpr_ugc.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "Nokia5110:comb_5|altshift_taps:write_rtl_2"
+Info (12133): Instantiated megafunction "Nokia5110:comb_5|altshift_taps:write_rtl_2" with the following parameter:
+    Info (12134): Parameter "NUMBER_OF_TAPS" = "1"
+    Info (12134): Parameter "TAP_DISTANCE" = "248"
+    Info (12134): Parameter "WIDTH" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/shift_taps_epm.tdf
+    Info (12023): Found entity 1: shift_taps_epm File: /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_epm.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_kh81.tdf
+    Info (12023): Found entity 1: altsyncram_kh81 File: /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_kh81.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_msf.tdf
+    Info (12023): Found entity 1: cntr_msf File: /home/gabriel/Documentos/tamagotchiFinal/db/cntr_msf.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "Nokia5110:comb_5|altshift_taps:write_rtl_3"
+Info (12133): Instantiated megafunction "Nokia5110:comb_5|altshift_taps:write_rtl_3" with the following parameter:
+    Info (12134): Parameter "NUMBER_OF_TAPS" = "1"
+    Info (12134): Parameter "TAP_DISTANCE" = "208"
+    Info (12134): Parameter "WIDTH" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/shift_taps_apm.tdf
+    Info (12023): Found entity 1: shift_taps_apm File: /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_apm.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ch81.tdf
+    Info (12023): Found entity 1: altsyncram_ch81 File: /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_ch81.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_hsf.tdf
+    Info (12023): Found entity 1: cntr_hsf File: /home/gabriel/Documentos/tamagotchiFinal/db/cntr_hsf.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "Nokia5110:comb_5|altshift_taps:write_rtl_4"
+Info (12133): Instantiated megafunction "Nokia5110:comb_5|altshift_taps:write_rtl_4" with the following parameter:
+    Info (12134): Parameter "NUMBER_OF_TAPS" = "1"
+    Info (12134): Parameter "TAP_DISTANCE" = "200"
+    Info (12134): Parameter "WIDTH" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/shift_taps_2pm.tdf
+    Info (12023): Found entity 1: shift_taps_2pm File: /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_2pm.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_0i81.tdf
+    Info (12023): Found entity 1: altsyncram_0i81 File: /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_0i81.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_rsf.tdf
+    Info (12023): Found entity 1: cntr_rsf File: /home/gabriel/Documentos/tamagotchiFinal/db/cntr_rsf.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "Nokia5110:comb_5|altshift_taps:write_rtl_5"
+Info (12133): Instantiated megafunction "Nokia5110:comb_5|altshift_taps:write_rtl_5" with the following parameter:
+    Info (12134): Parameter "NUMBER_OF_TAPS" = "1"
+    Info (12134): Parameter "TAP_DISTANCE" = "160"
+    Info (12134): Parameter "WIDTH" = "2"
+Info (12021): Found 1 design units, including 1 entities, in source file db/shift_taps_8pm.tdf
+    Info (12023): Found entity 1: shift_taps_8pm File: /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_8pm.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_qh81.tdf
+    Info (12023): Found entity 1: altsyncram_qh81 File: /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_qh81.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_nsf.tdf
+    Info (12023): Found entity 1: cntr_nsf File: /home/gabriel/Documentos/tamagotchiFinal/db/cntr_nsf.tdf Line: 28
+Info (12130): Elaborated megafunction instantiation "Nokia5110:comb_5|altshift_taps:write_rtl_6"
+Info (12133): Instantiated megafunction "Nokia5110:comb_5|altshift_taps:write_rtl_6" with the following parameter:
+    Info (12134): Parameter "NUMBER_OF_TAPS" = "1"
+    Info (12134): Parameter "TAP_DISTANCE" = "72"
+    Info (12134): Parameter "WIDTH" = "2"
+Info (12021): Found 1 design units, including 1 entities, in source file db/shift_taps_rnm.tdf
+    Info (12023): Found entity 1: shift_taps_rnm File: /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_rnm.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ae81.tdf
+    Info (12023): Found entity 1: altsyncram_ae81 File: /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_ae81.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_vqf.tdf
+    Info (12023): Found entity 1: cntr_vqf File: /home/gabriel/Documentos/tamagotchiFinal/db/cntr_vqf.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_tgc.tdf
+    Info (12023): Found entity 1: cmpr_tgc File: /home/gabriel/Documentos/tamagotchiFinal/db/cmpr_tgc.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "Nokia5110:comb_5|altshift_taps:write_rtl_7"
+Info (12133): Instantiated megafunction "Nokia5110:comb_5|altshift_taps:write_rtl_7" with the following parameter:
+    Info (12134): Parameter "NUMBER_OF_TAPS" = "1"
+    Info (12134): Parameter "TAP_DISTANCE" = "64"
+    Info (12134): Parameter "WIDTH" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/shift_taps_snm.tdf
+    Info (12023): Found entity 1: shift_taps_snm File: /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_snm.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_8e81.tdf
+    Info (12023): Found entity 1: altsyncram_8e81 File: /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_8e81.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_0rf.tdf
+    Info (12023): Found entity 1: cntr_0rf File: /home/gabriel/Documentos/tamagotchiFinal/db/cntr_0rf.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_sgc.tdf
+    Info (12023): Found entity 1: cmpr_sgc File: /home/gabriel/Documentos/tamagotchiFinal/db/cmpr_sgc.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "Nokia5110:comb_5|altshift_taps:write_rtl_8"
+Info (12133): Instantiated megafunction "Nokia5110:comb_5|altshift_taps:write_rtl_8" with the following parameter:
+    Info (12134): Parameter "NUMBER_OF_TAPS" = "1"
+    Info (12134): Parameter "TAP_DISTANCE" = "32"
+    Info (12134): Parameter "WIDTH" = "3"
+Info (12021): Found 1 design units, including 1 entities, in source file db/shift_taps_nnm.tdf
+    Info (12023): Found entity 1: shift_taps_nnm File: /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_nnm.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_0e81.tdf
+    Info (12023): Found entity 1: altsyncram_0e81 File: /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_0e81.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_pqf.tdf
+    Info (12023): Found entity 1: cntr_pqf File: /home/gabriel/Documentos/tamagotchiFinal/db/cntr_pqf.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_rgc.tdf
+    Info (12023): Found entity 1: cmpr_rgc File: /home/gabriel/Documentos/tamagotchiFinal/db/cmpr_rgc.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "Nokia5110:comb_5|altshift_taps:write_rtl_9"
+Info (12133): Instantiated megafunction "Nokia5110:comb_5|altshift_taps:write_rtl_9" with the following parameter:
+    Info (12134): Parameter "NUMBER_OF_TAPS" = "1"
+    Info (12134): Parameter "TAP_DISTANCE" = "8"
+    Info (12134): Parameter "WIDTH" = "8"
+Info (12021): Found 1 design units, including 1 entities, in source file db/shift_taps_fmm.tdf
+    Info (12023): Found entity 1: shift_taps_fmm File: /home/gabriel/Documentos/tamagotchiFinal/db/shift_taps_fmm.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_cb81.tdf
+    Info (12023): Found entity 1: altsyncram_cb81 File: /home/gabriel/Documentos/tamagotchiFinal/db/altsyncram_cb81.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_apf.tdf
+    Info (12023): Found entity 1: cntr_apf File: /home/gabriel/Documentos/tamagotchiFinal/db/cntr_apf.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_pgc.tdf
+    Info (12023): Found entity 1: cmpr_pgc File: /home/gabriel/Documentos/tamagotchiFinal/db/cmpr_pgc.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "procesmeas:process_measures|lpm_divide:Div0" File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 34
+Info (12133): Instantiated megafunction "procesmeas:process_measures|lpm_divide:Div0" with the following parameter: File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 34
+    Info (12134): Parameter "LPM_WIDTHN" = "32"
+    Info (12134): Parameter "LPM_WIDTHD" = "6"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_3jm.tdf
+    Info (12023): Found entity 1: lpm_divide_3jm File: /home/gabriel/Documentos/tamagotchiFinal/db/lpm_divide_3jm.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_rlh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_rlh File: /home/gabriel/Documentos/tamagotchiFinal/db/sign_div_unsign_rlh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_97f.tdf
+    Info (12023): Found entity 1: alt_u_div_97f File: /home/gabriel/Documentos/tamagotchiFinal/db/alt_u_div_97f.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_7pc.tdf
+    Info (12023): Found entity 1: add_sub_7pc File: /home/gabriel/Documentos/tamagotchiFinal/db/add_sub_7pc.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_8pc.tdf
+    Info (12023): Found entity 1: add_sub_8pc File: /home/gabriel/Documentos/tamagotchiFinal/db/add_sub_8pc.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "measures:measures|ultrasonido:comb_4|lpm_divide:Div0" File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 44
+Info (12133): Instantiated megafunction "measures:measures|ultrasonido:comb_4|lpm_divide:Div0" with the following parameter: File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 44
+    Info (12134): Parameter "LPM_WIDTHN" = "32"
+    Info (12134): Parameter "LPM_WIDTHD" = "13"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_gkm.tdf
+    Info (12023): Found entity 1: lpm_divide_gkm File: /home/gabriel/Documentos/tamagotchiFinal/db/lpm_divide_gkm.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_8nh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_8nh File: /home/gabriel/Documentos/tamagotchiFinal/db/sign_div_unsign_8nh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_4af.tdf
+    Info (12023): Found entity 1: alt_u_div_4af File: /home/gabriel/Documentos/tamagotchiFinal/db/alt_u_div_4af.tdf Line: 27
+Warning (12241): 4 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 18 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file /home/gabriel/Documentos/tamagotchiFinal/output_files/tamagotchi.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 4911 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 7 input pins
+    Info (21059): Implemented 22 output pins
+    Info (21060): Implemented 1 bidirectional pins
+    Info (21061): Implemented 4860 logic cells
+    Info (21064): Implemented 21 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 140 warnings
+    Info: Peak virtual memory: 516 megabytes
+    Info: Processing ended: Sun Sep 22 20:23:06 2024
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:19
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in /home/gabriel/Documentos/tamagotchiFinal/output_files/tamagotchi.map.smsg.
+
+

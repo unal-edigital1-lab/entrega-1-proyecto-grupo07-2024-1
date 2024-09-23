@@ -1,0 +1,485 @@
+module Nokia5110V2 #(
+	parameter bitNum = 2031, 		//numero bits a enviar por operacion (multiplo de 8) -1
+	parameter bitNum_len = 11	//numero de bits necesario para guardar bitNum
+	)(
+	input clk,
+	//input init, 		// Envia la cadena de informacion
+	
+	// Controladores
+	input [2:0] stat,
+	input [2:0] h,
+	input [2:0] e,
+	input [2:0] d,
+	input calor,
+	input frio,
+	input cerca,
+	input luz,
+	input jugar,
+	input alimentar,
+	input test,
+	input reset,
+	
+	
+	// A la pantalla
+	output reg rst,	// negado
+	output reg ce,		// negado
+	output reg dc,			// 0: command	1: data
+	output reg din,
+	output dclk
+	
+	// Pruebas
+	/*
+	input [7:0] randomIn, // pines
+	output reg alto_pantalla //Cambia en los posedge
+	*/
+	);
+
+// Para la maquina de estados
+parameter RST = 0, IDLE = 1, SEND = 2, WAIT = 3;
+reg [1:0] status;
+
+// Cadenas de bits importantes
+parameter setup = 48'h21c020080c80;
+parameter null =  48'h0000000000000;
+
+parameter dot = 40'h1c7e7e7e1c;
+parameter num0 = 32'h3C42423C;
+parameter num1 = 32'h00427E02;
+parameter num2 = 32'h4E4A4A7A;
+parameter num3 = 32'h424A4A7E;
+parameter num4 = 32'h7808087E;
+parameter num5 = 32'h7252525E;
+parameter hparam = 32'h7E08087E;
+parameter eparam = 32'h7E4A4A42;
+parameter dparam = 32'h7E42427E;
+parameter luzparam = 8'h0d;
+parameter calorparam = 48'h0E2E4E002448;
+parameter frioparam  = 48'h446E44103810;
+parameter cercaparam = 48'h18187E7E1818;
+parameter jugarparam = 48'h0C240404240C;
+parameter alimparam  = 48'h307878380604;
+parameter testparam  = 48'h000428303800;
+parameter resetparam = 48'h7232524A4C4E;
+parameter felizparam = 352'h7E484840001C2A2A18007E005E00262A32220000000000000000000000000000000000000000000000000000;
+parameter aburrparam = 352'h7E48487E001E100E100E001E021E001E10001E105E000E12127E000C12120C00000000000000000000000000;
+parameter cansaparam = 352'h3C424224000C12121E02001E10100E003A2A2E000C12121E02000E12127E000C12120C000000000000000000;
+parameter descaparam = 352'h7E42427E001C2A2A18003A2A2E000C1212000C12121E02001E10100E003A2A2E000C12120C00000000000000;
+parameter hambrparam = 352'h7E08087E000C12121E02001E100E100E007E12120E001E10005E001C2A2A18001E10100E007E12000C12120C;
+parameter enferparam = 352'h7E4A4A42001E10100E001E2820001C2A2A18001E10001E100E100E000C12120C000000000000000000000000;
+parameter muertparam = 352'h7E3018307E001E021E001C2A2A18001E10007E12000C12120C00000000000000000000000000000000000000;
+parameter topcomun = 304'h000000001F3F7F7F7F7F3F1F0707071F3F7F7F7F7F7F3F1F0000000000000000000000000000;
+parameter topcansa = 304'h000000001F3F7F7F7F7F3F1F0707071F3F7F7F7F7F7F3F1F00FE82BABA82828282828282FE38;
+parameter topdorm1 = 304'h000000001F3F7F7F7F7F3F1F0707071F3F7F7F7F7F7F3F1F00171D005C7400B8E80000000000;
+parameter topdorm2 = 304'hB8EB0E001F3F7F7F7F7F3F1F0707071F3F7F7F7F7F7F3F1F0000000000000000000000000000;
+parameter uppercomun1 = 224'h030C3060E1E2E4E7E4E7E3E0E0E0E0E0E1E2E4E7E4E7E3E060300C03;
+parameter uppercomun2 = 224'h030C3060E1E3E4E7E4E4E30E0E0E0E0EE1E3E4E7E4E4E3E060300C03;
+parameter uppercansad = 224'h030C3060E0E0E0E2E1E0E0E0E0E0E0E0E0E0E0E1E2E0E0E060300C03;
+parameter upperdormid = 224'h030C3060E0E1E1E1E1E1E1E1E0E0E0E0E1E1E1E1E1E1E1E060300C03;
+parameter uppermuerto = 224'h030C3060E0E0E2E1E0E1E2E0E0E0E0E0E2E1E0E1E2E0E0E060300C03;
+parameter lowerfel1 = 224'hF00C0201814020E0E0E0C80404040404844820E0E0E0C00101020CF0;
+parameter lowerfel2 = 224'h030C3060E1C0E0E02020C8040404040484C8E0E02020C00101020CF0;
+parameter lowerabu1 = 224'h030C3060E1C0E0E02020C2060A0A0A0A86C2E0E02020C00101020CF0;
+parameter lowerabu2 = 224'hF00C0201814020E0E0E0C2060A0A0A0A864220E0E0E0C00101020CF0;
+parameter lowercans = 224'hF00C020101000020408002060A0A0A0A060280402000000101020CF0;
+parameter lowerdorm = 224'hF00C0201010000000000000808080808080000000000000101020CF0;
+parameter lowerham1 = 224'hF00C0201814020E0E0E0C80404040707874C20E0E0E0C00101020CF0;
+parameter lowerham2 = 224'h030C3060E1C0E0E02020C8070707040484CCE0E02020C00101020CF0;
+parameter lowerenf1 = 224'hF08C42219F5E3EFEFEFEDE1E1E1E1E1E9E5E3EFEFEFEDE1F21428CF0;
+parameter lowerenf2 = 224'hF08C42219FDEFEFEFE3EDE1E1E1E1E1E9EDEFEFEFE3FDE1F21428CF0;
+parameter lowermuer = 224'hF00C020101002040804020000A040A00204080402000000101020CF0;
+parameter bodycomun1 = 144'h98A4C49C828284848484868681819EC4A498;
+parameter bodycomun2 = 144'h98A4C49E818186848484848482829CC4A498;
+parameter bodymuerto = 144'h98A4C49E818186848484868681819EC4A498;
+//parameter test1 = 48'h21c020080c80;
+//parameter test2 = 48'hc0300c030c30;
+//parameter test2 = 48'h000000000000;
+parameter test2 = 48'hffffffffffff;
+parameter dctest1 = 6'b000000;
+//parameter dctest2 = 252'hfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff;
+
+// Registros internos
+reg [2:0] cont; 		//contador de un bit
+reg [bitNum_len-1:0] conb;	//cuenta por cada bit enviado
+reg [2:0] con_aux; //contador auxiliar hasta 7
+reg [bitNum:0] write; //secuencia a transmitir
+reg [((bitNum-7)/8):0] writedc; //secuencia a transmitir
+reg aux; //Para las animaciones
+
+//reg [31:0] testinput; //Prueba
+
+// Divisor de frecuencia
+DivFrec(.clk(clk), .sclk(init), .dclk(dclk)); // Cambiar DivFrec en base a si se hace una prueba o una implementacion
+
+always @(negedge dclk)begin
+
+	// Pruebas
+	/*
+	testinput[31] <= randomIn[7]; testinput[27] <= randomIn[6]; 
+	testinput[23] <= randomIn[5]; testinput[19] <= randomIn[4]; 
+	testinput[15] <= randomIn[3]; testinput[11] <= randomIn[2]; 
+	testinput[7] <= randomIn[1]; testinput[3] <= randomIn[0]; 
+	*/
+	case(status)
+		RST: begin
+			cont <= cont + 1; conb <= 0;
+			rst <= 0; ce <= 0;
+			write[47:0] <= setup;			// Aqui va la cadena de seteo e impresion de constantes para din
+			writedc [((bitNum-7)/8):0] <= dctest1;			// Aqui va la cadena de seteo e impresion de constantes para dc	//descomentar solo si hay problemas
+			if(cont==7) status = SEND;
+		end
+		IDLE: begin
+			cont <= 0;
+			//write[47:0] <= test2;
+			//writedc[251:0] <= dctest2;
+			//writedc[253:252] <= 2'b11;
+			//write <= test2; 			 // Aqui va una serie de ifs en la implementacion
+			//write <= test2 + testinput; // Segunda prueba, comentar arriba
+			//writedc <= dctest2;			// Esto si debe quedar constante
+			// estaticos
+			writedc[250:246]<=5'b11111;
+			writedc[244:201]<=44'hfffffffffff;
+			writedc[198:149]<=50'b11111111111111111111111111111111111111111111111111;
+			writedc[146:107]<=40'hffffffffff;
+			writedc[105:100]<=6'b111111;
+			writedc[97:56]<=42'b111111111111111111111111111111111111111111;
+			writedc[54:49]<=6'b111111;
+			writedc[46:34]<=13'b1111111111111;
+			
+			writedc[32:1]<=32'hffffffff;
+			write[271:264]<=8'h9e;	write[391:376]<=16'h448d;
+			write[447:440]<=8'hbe;  write[727:720]<=8'h24;	write[783:736] <= dparam; write[799:784]<=16'h438d;
+			write[855:848]<=8'hbe;  write[1135:1128]<=8'h24;	write[1175:1144] <= eparam; write[1191:1176]<=16'h428d;
+			write[1551:1544]<=8'h24;	write[1591:1560] <= hparam; write[1607:1592]<=16'h418d;
+			write[1967:1960]<=8'h99;	write[2031:2008]<=24'h0c4090;
+			// dinamicos
+			case(h)
+				0: write [1535:1504] <= num0;
+				1: write [1535:1504] <= num1;
+				2: write [1535:1504] <= num2;
+				3: write [1535:1504] <= num3;
+				4: write [1535:1504] <= num4;
+				5: write [1535:1504] <= num5;
+			endcase
+			case(e)
+				0: write [1119:1088] <= num0;
+				1: write [1119:1088] <= num1;
+				2: write [1119:1088] <= num2;
+				3: write [1119:1088] <= num3;
+				4: write [1119:1088] <= num4;
+				5: write [1119:1088] <= num5;
+			endcase
+			case(d)
+				0: write [711:680] <= num0;
+				1: write [711:680] <= num1;
+				2: write [711:680] <= num2;
+				3: write [711:680] <= num3;
+				4: write [711:680] <= num4;
+				5: write [711:680] <= num5;
+			endcase
+			/*
+			if (stat == 3'd0 && aux) begin
+				write[1959:1608] <= felizparam;
+				write[1495:1192] <= topcomun;
+				write[2007:1968] <= dot;
+				write[1079:856] <= uppercomun1;
+				write[671:448] <= lowerfel1;
+				write[263:120] <= bodycomun1;
+			end
+			else if (stat == 3'd0 && !aux) begin
+				write[1959:1608] <= felizparam;
+				write[1495:1192] <= topcomun;
+				write[2007:1968] <= null;
+				write[1079:856] <= uppercomun2;
+				write[671:448] <= lowerfel2;
+				write[263:120] <= bodycomun2;
+			end
+			else if (stat == 3'd1 && aux) begin
+				write[1959:1608] <= aburrparam;
+				write[1495:1192] <= topcomun;
+				write[2007:1968] <= dot;
+				write[1079:856] <= uppercomun1;
+				write[671:448] <= lowerabu1;
+				write[263:120] <= bodycomun1;
+			end
+			else if (stat == 3'd1 && !aux) begin
+				write[1959:1608] <= aburrparam;
+				write[1495:1192] <= topcomun;
+				write[2007:1968] <= null;
+				write[1079:856] <= uppercomun2;
+				write[671:448] <= lowerabu2;
+				write[263:120] <= bodycomun2;
+			end
+			else if (stat == 3'd2 && aux) begin
+				write[1959:1608] <= cansaparam;
+				write[1495:1192] <= topcansa;
+				write[2007:1968] <= dot;
+				write[1079:856] <= uppercansad;
+				write[671:448] <= lowercans;
+				write[263:120] <= bodycomun1;
+			end
+			else if (stat == 3'd2 && !aux) begin
+				write[1959:1608] <= cansaparam;
+				write[1495:1192] <= topcansa;
+				write[2007:1968] <= null;
+				write[1079:856] <= uppercomun1;
+				write[671:448] <= lowerabu1;
+				write[263:120] <= bodycomun2;
+			end
+			else if (stat == 3'd3 && aux) begin
+				write[1959:1608] <= descaparam;
+				write[1079:856] <= upperdormid;
+				write[671:448] <= lowerdorm;
+				write[263:120] <= bodymuerto;
+				write[2007:1968] <= dot;
+				write[1495:1192] <= topdorm1;
+			end
+			else if (stat == 3'd3 && !aux) begin
+				write[1959:1608] <= descaparam;
+				write[1079:856] <= upperdormid;
+				write[671:448] <= lowerdorm;
+				write[263:120] <= bodymuerto;
+				write[2007:1968] <= null;
+				write[1495:1192] <= topdorm2;
+			end
+			else if (stat == 3'd4 && aux) begin
+				write[1959:1608] <= hambrparam;
+				write[1495:1192] <= topcomun;
+				write[2007:1968] <= dot;
+				write[1079:856] <= uppercomun1;
+				write[671:448] <= lowerham1;
+				write[263:120] <= bodycomun1;
+			end
+			else if (stat == 3'd4 && !aux) begin
+				write[1959:1608] <= hambrparam;
+				write[1495:1192] <= topcomun;
+				write[2007:1968] <= null;
+				write[1079:856] <= uppercomun2;
+				write[671:448] <= lowerham2;
+				write[263:120] <= bodycomun2;
+			end
+			else if (stat == 3'd5 && aux) begin
+				write[1959:1608] <= enferparam;
+				write[1495:1192] <= topcomun;
+				write[2007:1968] <= dot;
+				write[1079:856] <= uppercomun1;
+				write[671:448] <= lowerenf1;
+				write[263:120] <= bodycomun1;
+			end
+			else if (stat == 3'd5 && !aux ) begin
+				write[1959:1608] <= enferparam;
+				write[1495:1192] <= topcomun;
+				write[2007:1968] <= null;
+				write[1079:856] <= uppercomun2;
+				write[671:448] <= lowerenf2;
+				write[263:120] <= bodycomun2;
+			end
+			else if (stat == 3'd6) begin
+				write[1959:1608] <= muertparam;
+				write[1495:1192] <= topcomun;
+				write[1079:856] <= uppermuerto;
+				write[671:448] <= lowermuer;
+				write[263:120] <= bodymuerto;
+			end
+			*/
+			case(stat)
+				0: begin
+					write[1959:1608] <= felizparam;
+					write[1495:1192] <= topcomun;
+					write[1079:856] <= uppercomun1;
+					write[671:448] <= lowerfel1;
+					write[263:120] <= bodycomun1;
+					/*
+					case(aux) 
+					1: begin
+						
+					end
+					0: begin
+						write[2007:1968] <= null;
+						write[1079:856] <= uppercomun2;
+						write[671:448] <= lowerfel2;
+						write[263:120] <= bodycomun2;
+					end
+					endcase
+					*/
+				end
+				1: begin
+					write[1959:1608] <= aburrparam;
+					write[1495:1192] <= topcomun;
+					write[1079:856] <= uppercomun1;
+					write[671:448] <= lowerabu1;
+					write[263:120] <= bodycomun1;
+					/*
+					case(aux)
+					1: begin
+						write[2007:1968] <= dot;
+						write[1079:856] <= uppercomun1;
+						write[671:448] <= lowerabu1;
+						write[263:120] <= bodycomun1;
+					end
+					0:	begin
+						write[2007:1968] <= null;
+						write[1079:856] <= uppercomun2;
+						write[671:448] <= lowerabu2;
+						write[263:120] <= bodycomun2;
+					end
+					endcase
+					*/
+				end
+				2: begin
+					write[1959:1608] <= cansaparam;
+					write[1495:1192] <= topcansa;
+					write[1079:856] <= uppercansad;
+					write[671:448] <= lowercans;
+					write[263:120] <= bodycomun1;
+					/*
+					case(aux) 
+					1: begin
+						write[2007:1968] <= dot;
+						write[1079:856] <= uppercansad;
+						write[671:448] <= lowercans;
+						write[263:120] <= bodycomun1;
+					end
+					0:	begin
+						write[2007:1968] <= null;
+						write[1079:856] <= uppercomun1;
+						write[671:448] <= lowerabu1;
+						write[263:120] <= bodycomun2;
+					end
+					endcase */
+				end
+				3: begin
+					write[1959:1608] <= descaparam;
+					write[1079:856] <= upperdormid;
+					write[671:448] <= lowerdorm;
+					write[263:120] <= bodymuerto;
+					write[1495:1192] <= topdorm1;/*
+					case(aux) 
+					1: begin
+						write[2007:1968] <= dot;
+						write[1495:1192] <= topdorm1;
+					end 
+					0: begin
+						write[2007:1968] <= null;
+						write[1495:1192] <= topdorm2;
+					end
+					endcase */
+				end
+				4: begin
+					write[1959:1608] <= hambrparam;
+					write[1495:1192] <= topcomun; 
+					write[1079:856] <= uppercomun1;
+						write[671:448] <= lowerham1;
+						write[263:120] <= bodycomun1; /*
+					case(aux) 
+					1: begin
+						write[2007:1968] <= dot;
+						write[1079:856] <= uppercomun1;
+						write[671:448] <= lowerham1;
+						write[263:120] <= bodycomun1;
+					end 
+					0: begin
+						write[2007:1968] <= null;
+						write[1079:856] <= uppercomun2;
+						write[671:448] <= lowerham2;
+						write[263:120] <= bodycomun2;
+					end
+					endcase */
+				end
+				5: begin
+					write[1959:1608] <= enferparam;
+					write[1495:1192] <= topcomun; 
+					write[1079:856] <= uppercomun1;
+					write[671:448] <= lowerenf1;
+					write[263:120] <= bodycomun1;/*
+					case(aux)
+				1:	begin
+						write[2007:1968] <= dot;
+						write[1079:856] <= uppercomun1;
+						write[671:448] <= lowerenf1;
+						write[263:120] <= bodycomun1;
+					end
+				0:	begin
+						write[2007:1968] <= null;
+						write[1079:856] <= uppercomun2;
+						write[671:448] <= lowerenf2;
+						write[263:120] <= bodycomun2;
+					end
+					endcase */
+				end
+				6: begin
+					write[1959:1608] <= muertparam;
+					write[1495:1192] <= topcomun;
+					write[1079:856] <= uppermuerto;
+					write[671:448] <= lowermuer;
+					write[263:120] <= bodymuerto; /*
+					case(aux)
+				1:	begin
+						write[2007:1968] <= dot;
+					end 
+				0: begin
+						write[2007:1968] <= null;
+					end
+					endcase */
+				end
+				endcase
+			case(calor) 
+			1: write[319:272]<= calorparam;
+			0: write[319:272]<=null;
+			endcase
+			case(frio) 
+			1: write[319:272]<= frioparam;
+			0: write[319:272]<=null;
+			endcase
+			case(cerca) 
+			1: write[375:328] <= cercaparam;
+			0: write[375:328] <=null;
+			endcase
+			case(luz) 
+			0: write[7:0] <=luzparam;
+			1: write[7:0] <= null;
+			endcase
+			case(jugar) 
+			1: write[55:8] <= jugarparam;
+			0: write[55:8] <= null;
+			endcase
+			case(alimentar) 
+			1: write[111:64] <= alimparam;
+			0: write[111:64] <=null;
+			endcase
+			case(test) 
+			1: write[847:800] <= testparam;
+			0: write[847:800] <=null;
+			endcase
+			case(reset) 
+			1: write[439:392] <= resetparam;
+			0: write[439:392] <=null;
+			endcase
+			// cambio de estado
+			if(init) status = SEND; // !init para pruebas
+		end
+		SEND: begin
+			cont <= 0; conb <= conb + 1; con_aux <= con_aux + 1; //revisar que este coordinado
+			rst <= 1; ce <= 0; 
+			din <= write[bitNum];	write <= write << 1; // Envio del bit y actualizacion para din
+			dc <= writedc[(bitNum-7)/8]; // Envio del bit para dc
+			if(con_aux == 7) writedc <= writedc << 1; 
+			if(conb == bitNum) status = WAIT;
+		end
+		WAIT: begin
+			cont <= cont + 1; conb <= 0;
+			ce <= 1;
+			if(cont==7) status = IDLE;
+		end
+		default: status = RST;
+	endcase
+end
+always @(posedge init) begin
+	aux <= !aux;
+end
+
+endmodule
+
+/*
+Falta:
+4. serie de write dc pa todo
+*/

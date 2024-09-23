@@ -1,0 +1,185 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 125C Model Setup 'clk'
+Slack : -66.404
+TNS   : -1219.813
+
+Type  : Slow 1200mV 125C Model Setup 'DivFrec:comb_3|sclk'
+Slack : -27.071
+TNS   : -468.817
+
+Type  : Slow 1200mV 125C Model Setup 'Nokia5110:comb_5|DivFrec:comb_3|maincount[4]'
+Slack : -3.387
+TNS   : -7288.209
+
+Type  : Slow 1200mV 125C Model Setup 'fulldisplay:comb_4|cfreq[16]'
+Slack : -1.647
+TNS   : -9.015
+
+Type  : Slow 1200mV 125C Model Setup 'measures:measures|DivFrec:comb_3|sclk'
+Slack : -1.197
+TNS   : -4.187
+
+Type  : Slow 1200mV 125C Model Hold 'Nokia5110:comb_5|DivFrec:comb_3|maincount[4]'
+Slack : 0.347
+TNS   : 0.000
+
+Type  : Slow 1200mV 125C Model Hold 'clk'
+Slack : 0.411
+TNS   : 0.000
+
+Type  : Slow 1200mV 125C Model Hold 'measures:measures|DivFrec:comb_3|sclk'
+Slack : 0.428
+TNS   : 0.000
+
+Type  : Slow 1200mV 125C Model Hold 'DivFrec:comb_3|sclk'
+Slack : 0.430
+TNS   : 0.000
+
+Type  : Slow 1200mV 125C Model Hold 'fulldisplay:comb_4|cfreq[16]'
+Slack : 0.430
+TNS   : 0.000
+
+Type  : Slow 1200mV 125C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -306.348
+
+Type  : Slow 1200mV 125C Model Minimum Pulse Width 'Nokia5110:comb_5|DivFrec:comb_3|maincount[4]'
+Slack : -2.799
+TNS   : -4313.784
+
+Type  : Slow 1200mV 125C Model Minimum Pulse Width 'DivFrec:comb_3|sclk'
+Slack : -1.487
+TNS   : -69.889
+
+Type  : Slow 1200mV 125C Model Minimum Pulse Width 'measures:measures|DivFrec:comb_3|sclk'
+Slack : -1.487
+TNS   : -25.279
+
+Type  : Slow 1200mV 125C Model Minimum Pulse Width 'fulldisplay:comb_4|cfreq[16]'
+Slack : -1.487
+TNS   : -20.818
+
+Type  : Slow 1200mV -40C Model Setup 'clk'
+Slack : -55.808
+TNS   : -1014.568
+
+Type  : Slow 1200mV -40C Model Setup 'DivFrec:comb_3|sclk'
+Slack : -22.678
+TNS   : -391.385
+
+Type  : Slow 1200mV -40C Model Setup 'Nokia5110:comb_5|DivFrec:comb_3|maincount[4]'
+Slack : -2.992
+TNS   : -6184.410
+
+Type  : Slow 1200mV -40C Model Setup 'fulldisplay:comb_4|cfreq[16]'
+Slack : -1.346
+TNS   : -5.946
+
+Type  : Slow 1200mV -40C Model Setup 'measures:measures|DivFrec:comb_3|sclk'
+Slack : -0.937
+TNS   : -2.152
+
+Type  : Slow 1200mV -40C Model Hold 'clk'
+Slack : 0.328
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'Nokia5110:comb_5|DivFrec:comb_3|maincount[4]'
+Slack : 0.330
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'fulldisplay:comb_4|cfreq[16]'
+Slack : 0.345
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'measures:measures|DivFrec:comb_3|sclk'
+Slack : 0.345
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'DivFrec:comb_3|sclk'
+Slack : 0.358
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -265.140
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'Nokia5110:comb_5|DivFrec:comb_3|maincount[4]'
+Slack : -2.649
+TNS   : -3739.524
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'DivFrec:comb_3|sclk'
+Slack : -1.285
+TNS   : -60.395
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'measures:measures|DivFrec:comb_3|sclk'
+Slack : -1.285
+TNS   : -21.845
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'fulldisplay:comb_4|cfreq[16]'
+Slack : -1.285
+TNS   : -17.990
+
+Type  : Fast 1200mV -40C Model Setup 'clk'
+Slack : -29.826
+TNS   : -453.772
+
+Type  : Fast 1200mV -40C Model Setup 'DivFrec:comb_3|sclk'
+Slack : -11.601
+TNS   : -186.430
+
+Type  : Fast 1200mV -40C Model Setup 'Nokia5110:comb_5|DivFrec:comb_3|maincount[4]'
+Slack : -1.314
+TNS   : -2228.091
+
+Type  : Fast 1200mV -40C Model Setup 'fulldisplay:comb_4|cfreq[16]'
+Slack : -0.284
+TNS   : -0.284
+
+Type  : Fast 1200mV -40C Model Setup 'measures:measures|DivFrec:comb_3|sclk'
+Slack : -0.005
+TNS   : -0.005
+
+Type  : Fast 1200mV -40C Model Hold 'Nokia5110:comb_5|DivFrec:comb_3|maincount[4]'
+Slack : 0.142
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'clk'
+Slack : 0.171
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'fulldisplay:comb_4|cfreq[16]'
+Slack : 0.180
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'measures:measures|DivFrec:comb_3|sclk'
+Slack : 0.180
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'DivFrec:comb_3|sclk'
+Slack : 0.183
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -219.962
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'Nokia5110:comb_5|DivFrec:comb_3|maincount[4]'
+Slack : -1.000
+TNS   : -2856.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'DivFrec:comb_3|sclk'
+Slack : -1.000
+TNS   : -47.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'measures:measures|DivFrec:comb_3|sclk'
+Slack : -1.000
+TNS   : -17.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'fulldisplay:comb_4|cfreq[16]'
+Slack : -1.000
+TNS   : -14.000
+
+------------------------------------------------------------

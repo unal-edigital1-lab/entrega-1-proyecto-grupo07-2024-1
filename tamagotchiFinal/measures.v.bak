@@ -1,0 +1,30 @@
+module measures (
+	input sclk,
+	input [15:0] temp,
+	input [15:0] dist,
+	input luz,
+	input jugar,
+	input alimentar,
+	//input test,
+	//input reset,
+	
+	output reg frio,
+	output reg calor,
+	output reg cerca,
+	output reg regluz,
+	output reg regjugar,
+	output reg regalimentar,
+	output reg regcurar,
+	output wire sensorinit,
+	//output reg regtest,
+	//output reg regreset
+);
+
+measuresprueba (.sclk(), .temp(), .dist(), .luz(), .jugar(), .alimentar(), 
+					.frio(), .calor(), .cerca(), .regluz(), .regjugar(), .regalimentar(), .regcurar(), .sensorinit())
+					
+
+always @(posedge sclk) begin
+end
+
+endmodule

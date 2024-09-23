@@ -1,0 +1,134 @@
+module procesmeas (
+	input clk,
+	input sclk,
+	input frio,
+	input calor,
+	input cerca,
+	input luz,
+	input jugar,
+	input alimentar,
+	input curar,
+	input test,
+	input reset,
+	input [2:0] status,
+	
+	output reg [2:0] h,
+	output reg [2:0] d,
+	output reg [2:0] e,
+	output reg o,
+	output enMue 
+);
+	
+param fact1 = 2'd2; 	
+reg [7:0] hreal = 8'd200;	
+reg [7:0] dreal = 8'd200;
+reg [7:0] ereal = 8'd200;
+reg [7:0] count = 8'd200;
+reg regtest = 0;
+	
+always @(posedge sclk) begin
+        case (status)
+            3'b000: begin //FELIZ
+					 if (regtest) begin
+						 ereal = 8'd200;
+						 hreal = 8'd200;
+						 dreal = 8'd80;
+					 end else begin
+						 if (hreal > 8'd0 && hreal < 8'd155) begin
+							hreal = hreal - 1 + (fact1 * alimentar) - (fact1 * frio);
+						 end
+						 if (dreal > 8'd0 && dreal < 8'd155) begin
+								dreal = dreal - 1 + (fact1 * jugar) + (fact1 * cerca);
+						 end
+						 if (ereal > 8'd0 && ereal < 8'd155) begin
+								ereal = ereal - 1 - (fact1 * jugar) - (fact1 * calor) - (fact1 * !luz);
+						 end
+					 end
+					 enMue <= 0;
+            end
+            3'b001: begin //ABURRIDO
+					 if (regtest) begin
+						 ereal = 8'd200;
+						 hreal = 8'd200;
+						 dreal = 8'd80;
+					 end else begin
+					 if (hreal > 8'd0 && hreal < 8'd155) begin
+							hreal = hreal - 1 + (fact1 * alimentar) - (fact1 * frio);
+					 end
+					 if (dreal > 8'd0 && dreal < 8'd155) begin
+							dreal = dreal - 1 + (fact1 * jugar) + (fact1 * cerca);
+					 end
+					 if (ereal > 8'd0 && ereal < 8'd155) begin
+							ereal = ereal - 1 - (fact1 * jugar) - (fact1 * calor) - (fact1 * !luz);
+					 end
+            end
+            3'b010: begin //CANSADO
+					 if (regtest) begin
+						 ereal = 8'd200;
+						 hreal = 8'd200;
+						 dreal = 8'd80;
+					 end else begin
+                if (hreal > 8'd0 && hreal < 8'd155) begin
+							hreal = hreal - 1 + (fact1 * alimentar) - (fact1 * frio);
+					 end
+					 if (ereal > 8'd0 && ereal < 8'd155) begin
+							ereal = ereal - 1 - (fact1 * calor);
+					 end
+            end
+            3'b011: begin //DESCANSO
+				    if (regtest) begin
+						 ereal = 8'd200;
+						 hreal = 8'd200;
+						 dreal = 8'd80;
+					 end else begin
+					 if (ereal > 8'd0 && ereal < 8'd155) begin
+							ereal = ereal + fact1;
+					 end
+            end
+            3'b100: begin //HAMBRIENTO
+				    if (regtest) begin
+						 ereal = 8'd200;
+						 hreal = 8'd200;
+						 dreal = 8'd80;
+					 end else begin
+                if (hreal > 8'd0 && hreal < 8'd155) begin
+							hreal = hreal - 1 + (fact1 * alimentar) - (fact1 * frio); //Revisar facts
+					 end
+            end
+            3'b101: begin //ENFERMO
+				    if (regtest) begin
+						 ereal = 8'd200;
+						 hreal = 8'd200;
+						 dreal = 8'd80;
+					 end else begin
+					 count <= count + 1;
+					 if (curar) begin
+							ereal = 8'd200;
+							hreal = 8'd200;
+							dreal = 8'd200;
+					 end
+					 if (count == 8'd155) begin
+							enMue <= 1;
+							count <= 0;
+					 end
+            end
+            3'b110: begin //MUERTO
+				    if (regtest) begin
+						 ereal = 8'd200;
+						 hreal = 8'd200;
+						 dreal = 8'd80;
+					 end else begin
+					 //Mirar RESET
+            end
+        endcase
+    end	
+
+always @(posedge clk) begin
+	 if (reset) begin
+			ereal = 8'd200;
+			hreal = 8'd200;
+			dreal = 8'd200;
+	 end
+end	 
+	 
+endmodule

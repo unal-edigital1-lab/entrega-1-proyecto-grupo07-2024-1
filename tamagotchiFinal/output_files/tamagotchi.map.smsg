@@ -1,0 +1,9 @@
+Warning (10268): Verilog HDL information at Nokia5110.v(104): always construct contains both blocking and non-blocking assignments File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 104
+Info (10281): Verilog HDL Declaration information at Nokia5110.v(27): object "rst" differs only in case from object "RST" in the same scope File: /home/gabriel/Documentos/tamagotchiFinal/Nokia5110.v Line: 27
+Warning (10268): Verilog HDL information at ultrasonido.v(23): always construct contains both blocking and non-blocking assignments File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 23
+Info (10281): Verilog HDL Declaration information at ultrasonido.v(6): object "trigger" differs only in case from object "TRIGGER" in the same scope File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 6
+Info (10281): Verilog HDL Declaration information at ultrasonido.v(5): object "echo" differs only in case from object "ECHO" in the same scope File: /home/gabriel/Documentos/tamagotchiFinal/ultrasonido.v Line: 5
+Warning (10268): Verilog HDL information at contador.v(17): always construct contains both blocking and non-blocking assignments File: /home/gabriel/Documentos/tamagotchiFinal/contador.v Line: 17
+Warning (10268): Verilog HDL information at temporizador.v(15): always construct contains both blocking and non-blocking assignments File: /home/gabriel/Documentos/tamagotchiFinal/temporizador.v Line: 15
+Warning (10268): Verilog HDL information at dht.v(62): always construct contains both blocking and non-blocking assignments File: /home/gabriel/Documentos/tamagotchiFinal/dht.v Line: 62
+Warning (10268): Verilog HDL information at procesmeas.v(32): always construct contains both blocking and non-blocking assignments File: /home/gabriel/Documentos/tamagotchiFinal/procesmeas.v Line: 32
