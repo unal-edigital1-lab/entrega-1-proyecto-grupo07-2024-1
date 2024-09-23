@@ -88,7 +88,51 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 
 # 3. Arquitectura del sistema
 
-## 3.1 Descripcion de componentes
+## 3.1 Diagramas de bloques
+
+### 3.1.1 Diagrama general de caja negra
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/Diagramacajanegra.png" alt="imagen" width="800px">
+</p>
+</div>
+
+La imagen muestra el diagrama de una caja negra que representa el sistema del Tamagotchi. En el diagrama, se observan varios bloques conectados entre sí que conforman los diferentes módulos y sensores del dispositivo. La caja negra recibe entradas desde botones físicos, como "JUGAR", "ALIMENTAR", "RESET", y "TEST", así como de sensores como un sensor ultrasonido HC-SR04, un sensor de temperatura DHT11 y un sensor de luz. Dentro de la caja negra, se incluyen los módulos de procesamiento, como el módulo "Measures", que recibe señales de los sensores y botones, y el módulo "procesmeas", que realiza un procesamiento adicional de las medidas. También se encuentra un módulo "maqestados" encargado de la lógica de estados del sistema.
+
+El sistema genera salidas hacia una pantalla Nokia 5110 mediante su respectivo controlador. Además, se cuenta con un controlador de display de 7 segmentos que permite ver el estado y el valor de las variables del sistema. Todos los módulos y dispositivos están sincronizados por una señal de reloj (CLK) y otros controladores como "DivFrec" que dividen la frecuencia de reloj para su correcto funcionamiento. Este diseño permite la interacción del usuario con el Tamagotchi a través de sensores y botones, mostrando el estado de la mascota en la pantalla y en los displays visuales.
+
+### 3.1.2 Maquina de estados principal (maqestados)
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/maqestados2.jpeg" alt="imagen" width="600px">
+</p>
+</div>
+
+Recordando que:
+- Diversión(d)
+- Hambre(h)
+- Energia(e)
+- Oscuridad(o)
+
+Se aclara además que los botones Test y Reset controlan indirectamente los estados variando unicamente los valores de d, h y e; en vez del estado en sí mismo.
+
+La máquina de estados trabaja 
+
+### 3.1.3 Módulo de toma de mediciones (measure)
+
+Este módulo esta controlado por sclk. Inicializa los sensores y registra sus valores para ser trabajados posteriormente. En el caso de test y reset, solo saca señales de control de tamagotchi cuando los respectivos pulsadores se mantienen presionados por aproximadamente 5 segundos.
+
+### 3.1.3 Procesamiento de mediciones (procesmeas)
+
+Este módulo actualiza valores internos de h, e y d (hreal, ereal y dreal) en base al estado actual y las entradas (sensores y pulsadores) del tamagotchi.
+
+Es necesario hacer una distinción entre h, e y d como registros de 6 posibles valores que representan visualmente el nivel del tamagotchi con hreal, ereal y dreal, que son registros de 8 bits (256 valores) que varian cada ciclo de operación del tamagotchi según las condiciones que este experimente.
+
+Cada ciclo estos registros pueden subir, bajar, forzarse en un valor de reset específico o conservarse en sus valores máximos o mínimos para evitar saturaciones en los registros, que pueden desembocar en que la mascota muera de hambre tras alimentarse demasiado.
+
+## 3.2 Descripcion de componentes
 
 ## Subsistemas
 
@@ -128,6 +172,15 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 <img src="./media/temporizador.jpeg" alt="imagen" width="300px">
 </p>
 </div>
+
+### Divisor de Frecuencia
+- **Input:** Clk.
+- **Output:** Sclk, Dclk.
+
+**Especificaciones:**
+
+- Sclk debe ser una señal periodica de frecuencia ajustable que tenga una duración corta en alto y larga en bajo, para controlar y coordinar la toma de mediciones de los sensores.
+- Dclk debe ser una señal de reloj con frecuencia inferior a 4MHz (especificaciones de la pantalla Nokia5110).
 
 ## Ultrasonido(HC-SR04)
 
@@ -172,14 +225,9 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 </p>
 </div>
 
-**Bloque de implementacion:**
+**Implementacion:**
 
-1. Distancia critica
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/SensorDistancia.png" alt="imagen" width="400px">
-</p>
-</div>
+1. Distancia critica: 10cm
 
 ## Temperatura(DHT11)
 
@@ -210,31 +258,18 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 * Debe tener init y done para facilitar la implementacion.
 * Temperatura como salida con el valor de la temperatura en °C y lo guarda hasta init = 1.
 
-**Maquina de estados:**
+**Implementacion:**
 
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/maqestadostemp.jpeg" alt="imagen" width="350px">
-</p>
+1.Temperatura critica superior: 20°C \
+2.Temperatura critica inferior: 15°C
 </div>
 
-**Diagrama de caja negra:**
+## Sensor de luz (módulo sensor de luz)
+- **In:** Data
 
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/Diagrama_cajanegra2.png" alt="imagen" width="600px">
-</p>
-</div>
+**Trabajo:**
 
-**Bloque de implementacion:**
-
-1.Temperatura critica superior \
-2.Temperatura critica inferior
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/SensorTemperatura.png" alt="imagen" width="400px">
-</p>
-</div>
+Este sensor no requiere un driver debido a que el módulo físico ya transmite una señal de un bit según lo que reciba el sensor. La sensibilidad del sensor se puede ajustar con un potenciometro que hace perte del módulo.
 
 ## Pantalla(NOKIA 5110)
 
@@ -256,54 +291,7 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 </p>
 </div>
 
-## 3.2 Diagramas de bloques
-
-### 3.2.1 Diagrama general de caja negra
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/Diagramacajanegra.png" alt="imagen" width="800px">
-</p>
-</div>
-
-La imagen muestra el diagrama de una caja negra que representa el sistema del Tamagotchi. En el diagrama, se observan varios bloques conectados entre sí que conforman los diferentes módulos y sensores del dispositivo. La caja negra recibe entradas desde botones físicos, como "JUGAR", "ALIMENTAR", "RESET", y "TEST", así como de sensores como un sensor ultrasonido HC-SR04, un sensor de temperatura DHT11 y un sensor de luz. Dentro de la caja negra, se incluyen los módulos de procesamiento, como el módulo "Measures", que recibe señales de los sensores y botones, y el módulo "procesmeas", que realiza un procesamiento adicional de las medidas. También se encuentra un módulo "maqestados" encargado de la lógica de estados del sistema.
-
-El sistema genera salidas hacia una pantalla Nokia 5110 mediante su respectivo controlador. Además, se cuenta con un controlador de display de 7 segmentos que permite ver el estado y el valor de las variables del sistema. Todos los módulos y dispositivos están sincronizados por una señal de reloj (CLK) y otros controladores como "DivFrec" que dividen la frecuencia de reloj para su correcto funcionamiento. Este diseño permite la interacción del usuario con el Tamagotchi a través de sensores y botones, mostrando el estado de la mascota en la pantalla y en los displays visuales.
-
-### 3.2.2 Datapath
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/DiagramaFinal.png" alt="imagen" width="900px">
-</p>
-</div>
-
-La imagen muestra el *Datapath* del sistema, donde se visualiza el flujo de datos a través de varios componentes lógicos. Este esquema incluye módulos como contadores, comparadores, multiplexores y calculadores para manejar las señales de temperatura, distancia y comida. Las entradas principales vienen de sensores (como ultrasonido y temperatura), y los botones de interacción (Jugar, Alimentar, Curar). El *divisor de frecuencia* genera señales de reloj (clk) para sincronizar los procesos.
-
-Cada cálculo relacionado con la energía (CalcE), hambre (CalcH), y diversión (CalcD) es administrado por bloques específicos que procesan las señales y permiten que el sistema tome decisiones en función de las entradas sensoriales y del usuario. Finalmente, los contadores y comparadores aseguran que el sistema esté operando dentro de los límites esperados y permiten generar señales de reset cuando es necesario. Este *Datapath* controla la secuencia y procesamiento de los datos para el correcto funcionamiento del sistema.
-
-### 3.2.3 Maquina de estados principal
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/maqestados2.jpeg" alt="imagen" width="600px">
-</p>
-</div>
-
-Recordando que:
-- Diversión(d)
-- Hambre(h)
-- Energia(e)
-- Oscuridad(o)
-
-### 3.2.4 Maquina de estados de los modos Test y Reset
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/maqestados3.png" alt="imagen" width="500px">
-</p>
-</div>
 
 # 4. Implementacion final
 
-El codigo verilog implementado para el desarrollo del prototipo final de la mascota se encuentra en la carpeta **tamagotchiFinal**.
+El codigo verilog implementado para el desarrollo del prototipo final de la mascota se encuentra en la carpeta **tamagotchi**.
