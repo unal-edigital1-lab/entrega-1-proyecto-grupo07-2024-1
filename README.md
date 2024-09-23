@@ -122,7 +122,7 @@ La máquina de estados trabaja
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/maqestadoscajanegra.jpg" alt="imagen" width="600px">
+<img src="./media/maqestadoscajanegra.jpg" alt="imagen" width="400px">
 </p>
 </div>
 
