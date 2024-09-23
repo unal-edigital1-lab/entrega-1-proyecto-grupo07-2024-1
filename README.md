@@ -120,6 +120,12 @@ Se aclara además que los botones Test y Reset controlan indirectamente los esta
 
 La máquina de estados trabaja 
 
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/maqestadoscajanegra.jpg" alt="imagen" width="600px">
+</p>
+</div>
+
 ### 3.1.3 Módulo de toma de mediciones (measure)
 
 Este módulo esta controlado por sclk. Inicializa los sensores y registra sus valores para ser trabajados posteriormente. En el caso de test y reset, solo saca señales de control de tamagotchi cuando los respectivos pulsadores se mantienen presionados por aproximadamente 5 segundos.
