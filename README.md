@@ -128,6 +128,8 @@ Se aclara además que los botones Test y Reset controlan indirectamente los esta
 </p>
 </div>
 
+La máquina de estados define los distintos estados del tamagotchi, representados por códigos binarios de 3 bits. El sistema toma entradas de 3 bits que indican el hambre (h), energía (e), diversión (d), entradas de 1 bit como la señal de luz u oscuridad (o), así como una señal de muerte (enMue). Dependiendo de estas entradas, el tamagotchi transiciona entre los diferentes estados según las condiciones lógicas predefinidas. El estado actual se genera como salida para ser usado en la visualizacion general del sistema.
+
 ### 3.1.3 Módulo divisor de frecuencia (DivFrec)
 
 - **Input:** Clk.
