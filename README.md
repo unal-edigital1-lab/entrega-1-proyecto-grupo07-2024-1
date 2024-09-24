@@ -369,12 +369,12 @@ El codigo verilog implementado para el desarrollo del prototipo final de la masc
 
 # Funcionamiento fisico
 
-[![Alt text](https://img.youtube.com/vi/configuroweb/0.jpg)](https://www.youtube.com/watch?v=biFUtQbGLT0)
+[![Alt text](https://img.youtube.com/vi/biFUtQbGLT0/0.jpg)](https://www.youtube.com/watch?v=biFUtQbGLT0)
 
-[![Alt text](https://img.youtube.com/vi/configuroweb/0.jpg)](https://www.youtube.com/watch?v=bF8Sdmfmh7Y)
+[![Alt text](https://img.youtube.com/vi/bF8Sdmfmh7Y/0.jpg)](https://www.youtube.com/watch?v=bF8Sdmfmh7Y)
 
-[![Alt text](https://img.youtube.com/vi/configuroweb/0.jpg)](https://www.youtube.com/watch?v=9FcqDuONuYg)
+[![Alt text](https://img.youtube.com/vi/9FcqDuONuYg/0.jpg)](https://www.youtube.com/watch?v=9FcqDuONuYg)
 
-[![Alt text](https://img.youtube.com/vi/configuroweb/0.jpg)](https://www.youtube.com/watch?v=z3MY4BITmAo)
+[![Alt text](https://img.youtube.com/vi/z3MY4BITmAo/0.jpg)](https://www.youtube.com/watch?v=z3MY4BITmAo)
 
 
