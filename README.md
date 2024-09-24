@@ -156,13 +156,21 @@ Notas:
 
 ### 3.1.4 Módulo de toma de mediciones (measure)
 
-Este módulo esta controlado por sclk. Inicializa los sensores y registra sus valores para ser trabajados posteriormente. En el caso de test y reset, solo saca señales de control de tamagotchi cuando los respectivos pulsadores se mantienen presionados por aproximadamente 5 segundos.
+Este módulo esta controlado por sclk. Inicializa los sensores y registra sus valores para ser trabajados posteriormente, recibe entradas como los pulsadores para jugar, alimentar, test y reset. A partir de estas entradas, el sistema genera salidas binarias que representan condiciones de temperatura (frío o calor), cercanía de un objeto, control de luz, y estados de los botones.
+
+**Diagrama de caja negra:**
 
 <div>
 <p style = 'text-align:center;'>
 <img src="./media/measures.jpg" alt="imagen" width="600px">
 </p>
 </div>
+
+**Explicación de diseño:**
+
+- El muestreo de estas señales correspondientes a las interacciones externas se hace con la ayuda de un divisor de frecuencia, con el objetivo de crear un reloj más lento, tal como funciona en su gran mayoria el tamagotchi.
+
+- Este modulo cuenta con una lógica para manejar los pulsadores de test y reset, con contadores que esperan 5 ciclos antes de activar estas señales de control, el tiempo de espera oscila entre 5 y 6 segundos.
 
 ### 3.1.5 Procesamiento de mediciones (procesmeas)
 
