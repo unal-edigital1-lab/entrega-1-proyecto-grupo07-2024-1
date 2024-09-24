@@ -168,7 +168,9 @@ Este módulo esta controlado por sclk. Inicializa los sensores y registra sus va
 
 **Explicación de diseño:**
 
-- El muestreo de estas señales correspondientes a las interacciones externas se hace con la ayuda de un divisor de frecuencia, con el objetivo de crear un reloj más lento, tal como funciona en su gran mayoria el tamagotchi.
+- Las medidas tomadas por los sensores son comparadas con valores limites definidos a criterio propio, con el objetivo de trabajar netamente con valores binarios de manera interna en el tamagotchi. Para el caso del ultrasonido se toma su salida "dist" y se convierte en una señal digital definida como "cerca" si detecta un cuerpo en un rango de 10cm(100mm). Por otra parte, en el sensor de temperatura, la salida "temp" pasa a "frio" si la medicion es menor a 15°C o pasa a "calor" si registra una temperatura mayor a 20°C.
+
+- La activacion de la salida para la curacion del tamagotchi denominada "regcurar", se realiza unicamente si los pulsadores de jugar y alimentar son activados de manera simultanea, ademas de que solo puede estar en estado "enfermo" para realizar esta accion.
 
 - Este modulo cuenta con una lógica para manejar los pulsadores de test y reset, con contadores que esperan 5 ciclos antes de activar estas señales de control, el tiempo de espera oscila entre 5 y 6 segundos.
 
@@ -178,7 +180,7 @@ Este módulo actualiza valores internos de h, e y d (hreal, ereal y dreal) en ba
 
 Es necesario hacer una distinción entre h, e y d como registros de 6 posibles valores que representan visualmente el nivel del tamagotchi con hreal, ereal y dreal, que son registros de 8 bits (256 valores) que varian cada ciclo de operación del tamagotchi según las condiciones que este experimente.
 
-Cada ciclo estos registros pueden subir, bajar, forzarse en un valor de reset específico o conservarse en sus valores máximos o mínimos para evitar saturaciones en los registros, que pueden desembocar en que la mascota muera de hambre tras alimentarse demasiado.
+En cada ciclo estos registros pueden subir, bajar, forzarse en un valor de reset específico o conservarse en sus valores máximos o mínimos para evitar saturaciones en los registros, que pueden desembocar en que la mascota muera de hambre tras alimentarse demasiado.
 
 <div>
 <p style = 'text-align:center;'>
