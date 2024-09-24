@@ -138,6 +138,18 @@ La máquina de estados trabaja
 
 Este módulo esta controlado por sclk. Inicializa los sensores y registra sus valores para ser trabajados posteriormente. En el caso de test y reset, solo saca señales de control de tamagotchi cuando los respectivos pulsadores se mantienen presionados por aproximadamente 5 segundos.
 
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/measureTest.png" alt="imagen" width="700px">
+</p>
+</div>
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/measureReset.png" alt="imagen" width="700px">
+</p>
+</div>
+
 ### 3.1.3 Procesamiento de mediciones (procesmeas)
 
 Este módulo actualiza valores internos de h, e y d (hreal, ereal y dreal) en base al estado actual y las entradas (sensores y pulsadores) del tamagotchi.
