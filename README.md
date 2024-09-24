@@ -158,6 +158,13 @@ Cada ciclo estos registros pueden subir, bajar, forzarse en un valor de reset es
 </p>
 </div>
 
+**Caso enfermo**
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/enfermobloque.png" alt="imagen" width="600px">
+</p>
+</div>
+
 ## 3.2 Descripcion de componentes
 
 ## Subsistemas
@@ -178,13 +185,6 @@ Cada ciclo estos registros pueden subir, bajar, forzarse en un valor de reset es
 <div>
 <p style = 'text-align:center;'>
 <img src="./media/contador.jpeg" alt="imagen" width="300px">
-</p>
-</div>
-
-**Caso enfermo**
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/enfermobloque.png" alt="imagen" width="600px">
 </p>
 </div>
 
