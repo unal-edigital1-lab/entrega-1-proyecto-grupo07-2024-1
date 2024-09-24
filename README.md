@@ -455,11 +455,19 @@ El codigo verilog implementado para el desarrollo del prototipo final de la masc
 
 # 5. Funcionamiento fisico
 
+**Componentes del proyecto:**
+
 [![Alt text](https://img.youtube.com/vi/biFUtQbGLT0/0.jpg)](https://www.youtube.com/watch?v=biFUtQbGLT0)
+
+**Funcionamiento con interacciones externas:**
 
 [![Alt text](https://img.youtube.com/vi/bF8Sdmfmh7Y/0.jpg)](https://www.youtube.com/watch?v=bF8Sdmfmh7Y)
 
+**Funcionamiento TEST y RESET:**
+
 [![Alt text](https://img.youtube.com/vi/9FcqDuONuYg/0.jpg)](https://www.youtube.com/watch?v=9FcqDuONuYg)
+
+**Funcionamiento general del Tamagotchi:**
 
 [![Alt text](https://img.youtube.com/vi/z3MY4BITmAo/0.jpg)](https://www.youtube.com/watch?v=z3MY4BITmAo)
 
