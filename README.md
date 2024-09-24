@@ -308,15 +308,29 @@ Este sensor no requiere un driver debido a que el módulo físico ya transmite u
 
 ## Pantalla(NOKIA 5110)
 
-- **Input:** SDIN = Data, SCLK, D/C = Data/Command, SCE = Chip Enable, RST = Reset, OSC = Oscillator, VLCD = 5Vdc.
+- **Output:** SDIN = Data, SCLK, D/C = Data/Command, SCE = Chip Enable, RST = Reset,  VLCD = 5Vdc.
+
+**Trabajo:**
+
+* El control de la pantalla consiste, de forma muy general, en el uso conjunto de tres pines: Din: con el que la pantalla recibe información de forma serial, DC: que define si esta información corresponde a un comando (DC=0) o a un dato de "pintura" de pixeles (DC=1) y CE: que habilita, al ponerse en bajo, la recepción de datos. 
+
+* El protocolo de comunicación es SPI. Es necesario enviarle a la pantalla serialmente "paquetes" de 8 bits (bytes) a través de DIN, esto implica que la pintura de la pantalla no se hace bit a bit sino byte a byte. Así pues, cambiar un pixel de la pantalla requiere considerar los demás 7 bits que componen el byte.
+
+* Si bien se puede mandar uno o múltiples bytes cada vez que se pone CE en bajo, la pantalla espera recibir serialmente un número de bits que sea múltiplo de 8. Si se interrumpe el envío del byte, la pantalla asumirá que los primeros bits al retomar el proximo envio corresponden a los bytes faltantes del envio interrumpido.
+
+* Para la inicialización del periferico es necesario enviar una señal en bajo por RST a la vez que se envia una señal en bajo por CE. Tras esta operación, el pin RST sirve para cancelar el envio del byte en caso de errores.
+
+* Adicionalmente, la señal de clk con la que se trabaja en la pantalla no debe superar los 4MHz. La pantalla toma en los flancos positivos de clk el valor de DIN, por lo que se recomienda realizar los cambios en este pin durante los flancos negativos de clk.
+
+* Finalmente, cabe aclarar que existen versiones de este periferico que solo funcionan con un 1 lógico de 5V, por lo que para acoplarlo a la fpga puede ser necesario el uso de conversores de nivel lógico.
 
 **Especificaciones del driver:**
 
-* La pantalla debe mostrar el nivel de energia, hambre y diversion del tamagotchi con el formato: Letra que represente la variable, dos puntos, nivel de la variable, dos puntos, nivel de la variable en forma de numero. Por ejemplo: E: 3, correspondiente al nivel de energia igual a 3.
+* La pantalla debe mostrar el nivel de energia, hambre y diversion del tamagotchi con el formato: Letra que represente la variable, dos puntos, nivel de la variable, dos puntos, nivel de la variable en forma de número. Por ejemplo: E : 3, correspondiente al nivel de energia igual a 3.
 
 * Debe mostrar explicitamente el estado del tamagotchi en la zona superior.
 
-* La mascota debe tener caracteristicas visuales unicas para reflejar el estado en el que este.
+* La mascota debe tener caracteristicas visuales únicas para reflejar el estado en el que este.
 
 **Maquina de estados:**
 
@@ -325,6 +339,28 @@ Este sensor no requiere un driver debido a que el módulo físico ya transmite u
 <img src="./media/maqestadosnokia.png" alt="imagen" width="350px">
 </p>
 </div>
+
+**Explicación de diseño**
+
+Para trabajar la pantalla se utiliza un registro de 4064 bits llamado "write" donde se asignarán los valores a enviar según las entradas del driver, asi como un registro de 508 (4064/8) bits "writedc" con la secuencia correspondiente a la naturaleza de cada byte enviado, es decir, cuales bytes en write corresponden a un comando y cuales a valores de pintura.
+
+Adicionalmente, se pueden ver parametros con los valores escritos en hexadecimal que representan las secuencias para el pintado de algunos símbolos importantes como numeros, testigos para los sensores y pulsadores del sistema, los nombres de los estados posibles del tamagotchi o el propio cuerpo de la mascota y sus posibles variaciones para expresar las necesidades que sienta.
+
+En el estado de RESET se realiza la inicialización de la pantalla y se asignan unos valores iniciales a write para la configuración general de la pantalla. Gracias a la propiedad de que tanto write como writedc empizan con todos sus valores en 0 y el hecho de que el comando "h00" se define en el datasheet de la pantalla como un comando que no tiene efecto sobre esta, solo hay necesidad de asignar unos pocos bytes a write para efectuar correctamente la configuración de la pantalla.
+
+El estado SEND envia bit por bit, iniciando por el MSB, los valores en write y en writedc, utilizando contadores para coordinar el envio, realizando corrimientos a write cada ciclo de reloj, a writedc cada ocho ciclos y asignando los MSB de ambos registros a su respectivo puerto de salida.
+
+Se agrega ademas un estado WAIT que se encarga de esperar unos pocos ciclos entre los estados de SEND y IDLE. Este estado es un vestigio de una primera versión del módulo que trataba el envio de cada byte dentro de su propio submodulo, en esta versión era necesario un estado de espera entre el envio de bytes puesto que tocaba actulizar el byte a enviar y deshabilitar el envio de datos para conservar la coordinación del sistema. Es necesario reconocer que este es potencialmente un estado redundante en el diseño implementado finalmente, sin embargo nunca realizamos pruebas omitiendolo y optamos por dejarlo.
+
+Finalmente, en el estado de IDLE se asignan los valores de write y writedc mientras se espera al siguiente envío.
+
+Cabe destacar que existen bits en write que llamamos "estaticos", es decir, bits de comando o pintura que se conservan en todos los estados del tamagotchi. Un ejemplo de bits estaticos serían los asociados a la pintura de la palabra "tamagotchi", puesto que este mensaje siempre se muestra en la pantalla. writedc es en sí mismo un estatico, ya que la secuencia de comandos y pintura no cambia.
+
+Los bits dinamicos de write son espacios que dependen de las entradas del driver. Un ejemplo de bits dinamicos serían los que corresponden a los pixeles de la pantalla que imprimen el valor númerico de h, ya que este puede tener 5 posibles valores. Se puede ver entonces que se reescriben los mismos bits del registro write entre los diferentes parametros asociados a cada número según la entrada h, la dirección de estos bits reescritos corresponden a cuales bits de la totalidad del envío corresponden al valor numerico de h.
+
+Dada la forma en la que se implementó el driver de la pantalla se puede intuir el siguiente problema: asignar las direcciones en la memoria de write según el orden en que cada comando/simbolo tiene lugar en la totalidad del envío. Para esto, se consideró que la pantalla naturalmente va pintando bytes verticales de izquierda a derecha y de arriba a abajo y se asignaron a mano las direcciones en base al documento Orden que se puede encontrar en la carpeta tamagotchi del repositorio. Este orden nace a su vez del diseño realizado en pixilart.com que se puede visualizar abriendo el documento tamagotchiDiseño.pixil en dicha pagina web.
+
+Por último, cabe aclarar que el ultimo byte del envio es un dinamico que depende de si el sistema percibe oscuridad y consiste de un comando que niega todos los pixeles de la pantalla. Asimismo, los primeros tres bytes del envio corresponden a los comandos: poner la pantalla en modo normal (por si estaba negada) y asignar el cursor de pintura en el byte (0,0) de la pantalla. Los demas bytes son de pintura; dado que la pantalla no tiene un comando para limpiar su memoria interna, es necesario limpiarla pintando activamente espacios en blanco.
 
 
 # 4. Implementacion final
