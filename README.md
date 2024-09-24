@@ -120,7 +120,7 @@ Recordando que:
 
 Se aclara además que los botones Test y Reset controlan indirectamente los estados variando unicamente los valores de d, h y e; en vez del estado en sí mismo.
 
-La máquina de estados trabaja 
+**Diagrama de caja negra:**
 
 <div>
 <p style = 'text-align:center;'>
@@ -441,7 +441,7 @@ Por último, cabe aclarar que el ultimo byte del envio es un dinamico que depend
 
 # 4. Implementacion final
 
-El codigo verilog implementado para el desarrollo del prototipo final de la mascota se encuentra en la carpeta **tamagotchi**.
+El codigo verilog implementado para el desarrollo del prototipo final de la mascota se encuentra en la carpeta **tamagotchiFinal**, ademas se tiene el archivo .txt que define el orden en la serie de datos que se envia periodicamente a la pantalla y el archivo .pixil donde esta el diseño del tamagotchi y los testigos en la pantalla de las interacciones.
 
 # 5. Funcionamiento fisico
 
