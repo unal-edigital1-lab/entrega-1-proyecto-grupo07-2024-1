@@ -140,17 +140,11 @@ Este módulo esta controlado por sclk. Inicializa los sensores y registra sus va
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/measureTest.png" alt="imagen" width="700px">
+<img src="./media/measures.jpg" alt="imagen" width="600px">
 </p>
 </div>
 
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/measureReset.png" alt="imagen" width="700px">
-</p>
-</div>
-
-### 3.1.3 Procesamiento de mediciones (procesmeas)
+### 3.1.5 Procesamiento de mediciones (procesmeas)
 
 Este módulo actualiza valores internos de h, e y d (hreal, ereal y dreal) en base al estado actual y las entradas (sensores y pulsadores) del tamagotchi.
 
