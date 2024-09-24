@@ -33,7 +33,7 @@ Para la interacción de Tamagutchi con su entorno, se propone incorporar 3 senso
 
 ## 1.3 Sistema de Visualizacion
 
-Para la visualización del Tamagutchi, la representacion de sus emociones, de sus interacciones y los valores numéricos representativos de los estados se empleará el display "Nokia 5110", esto permite al usuario entender las necesidades de la mascota virtual y actuar para su bienestar. Ademas se implementa el display 7 segmentos dispuesto en la FPGA para visualizar el estado y el nivel de sus emociones.
+Para la visualización del Tamagutchi, la representacion de sus emociones, de sus interacciones y los valores numéricos representativos de los estados se empleará el display "Nokia 5110", esto permite al usuario entender las necesidades de la mascota virtual y actuar para su bienestar. Ademas se implementa el display 7 segmentos dispuesto en la FPGA para visualizar el estado y el nivel de las emociones.
 
 # 2. Especificaciones de Diseño
 
