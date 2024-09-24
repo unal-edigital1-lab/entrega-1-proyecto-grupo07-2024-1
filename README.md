@@ -130,11 +130,29 @@ La máquina de estados trabaja
 
 ### 3.1.3 Módulo divisor de frecuencia (DivFrec)
 
+- **Input:** Clk.
+- **Output:** Sclk, Dclk.
+
+**Especificaciones:**
+
+- Sclk debe ser una señal periodica de frecuencia ajustable que tenga una duración corta en alto y larga en bajo, para controlar y coordinar la toma de mediciones de los sensores.
+- Dclk debe ser una señal de reloj con frecuencia inferior a 4MHz (especificaciones de la pantalla Nokia5110).
+
+**Diagrama de caja negra:**
 <div>
 <p style = 'text-align:center;'>
 <img src="./media/DivFreccajanegra.jpg" alt="imagen" width="600px">
 </p>
 </div>
+
+Notas:
+1. 33554431, cuya representación binaria consiste de 25 unos.
+2. dclk corresponde unicamente al 5° bit menos significativo de la salida del comparador.
+
+**Explicación de diseño:**
+
+- El comparador se aplica para asegurar que solo durante un ciclo de clk la salida sclk este en alto, conservandose en 0 por el resto del conteo. Para duplicar o ralentizar a la mitad la frecuencia de sclk, solo es necesario disminuir o aumentar el valor de comparación para tener un uno extra (pudiendo ser necesario también ajustar el tamaño del registro de conteo).
+- Para conservar la forma de una señal de reloj convencional, dclk consiste unicamente de un bit del contador. Para duplicar o ralentizar a la mitad la frecuencia de sclk, solo es necesario conectar esta salida al bit anterior o posterior del que se usa del registro contador.
 
 ### 3.1.4 Módulo de toma de mediciones (measure)
 
@@ -207,15 +225,6 @@ Cada ciclo estos registros pueden subir, bajar, forzarse en un valor de reset es
 <img src="./media/temporizador.jpeg" alt="imagen" width="300px">
 </p>
 </div>
-
-### Divisor de Frecuencia
-- **Input:** Clk.
-- **Output:** Sclk, Dclk.
-
-**Especificaciones:**
-
-- Sclk debe ser una señal periodica de frecuencia ajustable que tenga una duración corta en alto y larga en bajo, para controlar y coordinar la toma de mediciones de los sensores.
-- Dclk debe ser una señal de reloj con frecuencia inferior a 4MHz (especificaciones de la pantalla Nokia5110).
 
 ## Ultrasonido(HC-SR04)
 
@@ -346,9 +355,55 @@ Para trabajar la pantalla se utiliza un registro de 4064 bits llamado "write" do
 
 Adicionalmente, se pueden ver parametros con los valores escritos en hexadecimal que representan las secuencias para el pintado de algunos símbolos importantes como numeros, testigos para los sensores y pulsadores del sistema, los nombres de los estados posibles del tamagotchi o el propio cuerpo de la mascota y sus posibles variaciones para expresar las necesidades que sienta.
 
-En el estado de RESET se realiza la inicialización de la pantalla y se asignan unos valores iniciales a write para la configuración general de la pantalla. Gracias a la propiedad de que tanto write como writedc empizan con todos sus valores en 0 y el hecho de que el comando "h00" se define en el datasheet de la pantalla como un comando que no tiene efecto sobre esta, solo hay necesidad de asignar unos pocos bytes a write para efectuar correctamente la configuración de la pantalla.
+```verilog
+// Cadenas de bits importantes
+parameter setup = 24'h21c020;
+parameter null =  48'h0000000000000;
+
+parameter dot = 40'h1c7e7e7e1c;
+parameter num0 = 32'h3C42423C;
+parameter num1 = 32'h00427E40;
+parameter num2 = 32'h7252525E;
+parameter num3 = 32'h4252527E;
+parameter num4 = 32'h1E10107E;
+parameter num5 = 32'h4E4A4A7A;
+parameter hparam = 32'h7E10107E;
+parameter eparam = 32'h7E525242;
+parameter dparam = 32'h7E42423C;
+parameter luzparam = 8'h0d;
+parameter calorparam = 48'h707472002412;
+parameter frioparam  = 48'h446E44103810;
+parameter cercaparam = 48'h18187E7E1818;
+parameter jugarparam = 48'h302420202430;
+parameter alimparam  = 48'h307878380604;
+parameter testparam  = 48'h0020140C1C00;
+parameter resetparam = 48'h7232524A4C4E;
+```
+
+En el estado de RST se realiza la inicialización de la pantalla y se asignan unos valores iniciales a write para la configuración general de la pantalla. Gracias a la propiedad de que tanto write como writedc empizan con todos sus valores en 0 y el hecho de que el comando "h00" se define en el datasheet de la pantalla como un comando que no tiene efecto sobre esta, solo hay necesidad de asignar unos pocos bytes a write para efectuar correctamente la configuración de la pantalla.
+
+```verilog
+RST: begin
+    cont <= cont + 1; conb <= 0;
+    rst <= 0; ce <= 0;
+    write[4063:4040] <= setup;			// Aqui va la cadena de seteo e impresion de constantes para din
+    writedc [((bitNum-7)/8):0] <= dctest1;			// Aqui va la cadena de seteo e impresion de constantes para dc	//descomentar solo si hay problemas
+    if(cont==7) status = SEND;
+  end
+```
 
 El estado SEND envia bit por bit, iniciando por el MSB, los valores en write y en writedc, utilizando contadores para coordinar el envio, realizando corrimientos a write cada ciclo de reloj, a writedc cada ocho ciclos y asignando los MSB de ambos registros a su respectivo puerto de salida.
+
+```verilog
+SEND: begin
+    cont <= 0; conb <= conb + 1; con_aux <= con_aux + 1;
+    rst <= 1; ce <= 0; 
+    din <= write[bitNum];	write <= write << 1; 			// Envio del bit y actualizacion para din
+    dc <= writedc[(bitNum-7)/8]; 									// Envio del bit para dc
+    if(con_aux == 7) writedc <= writedc << 1; 
+    if(conb == bitNum) status = WAIT;
+  end
+```
 
 Se agrega ademas un estado WAIT que se encarga de esperar unos pocos ciclos entre los estados de SEND y IDLE. Este estado es un vestigio de una primera versión del módulo que trataba el envio de cada byte dentro de su propio submodulo, en esta versión era necesario un estado de espera entre el envio de bytes puesto que tocaba actulizar el byte a enviar y deshabilitar el envio de datos para conservar la coordinación del sistema. Es necesario reconocer que este es potencialmente un estado redundante en el diseño implementado finalmente, sin embargo nunca realizamos pruebas omitiendolo y optamos por dejarlo.
 
@@ -356,18 +411,39 @@ Finalmente, en el estado de IDLE se asignan los valores de write y writedc mient
 
 Cabe destacar que existen bits en write que llamamos "estaticos", es decir, bits de comando o pintura que se conservan en todos los estados del tamagotchi. Un ejemplo de bits estaticos serían los asociados a la pintura de la palabra "tamagotchi", puesto que este mensaje siempre se muestra en la pantalla. writedc es en sí mismo un estatico, ya que la secuencia de comandos y pintura no cambia.
 
+```verilog
+// Bytes estaticos (Siempre se escriben a la pantalla independientemente de las entradas)
+    writedc[504:1]<=504'hffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff; //Bytes de "pintado"
+    
+    write[4063:4040] <= 24'h0c4080;	//Modo normal, poner cursor en el byte (0,0)
+    write[527:168] <= tamagotchi;		//Pintar "tamagotchi" en la pantalla
+    write[3223:3216] <= 8'h24; write[2551:2544] <= 8'h24; write[1879:1872] <= 8'h24;		//Pintar ":"
+    write[3263:3232] <= hparam; write[2591:2560] <= eparam; write[1919:1888] <= dparam;	//Pintar letras "h", "e", "d"
+```
+
 Los bits dinamicos de write son espacios que dependen de las entradas del driver. Un ejemplo de bits dinamicos serían los que corresponden a los pixeles de la pantalla que imprimen el valor númerico de h, ya que este puede tener 5 posibles valores. Se puede ver entonces que se reescriben los mismos bits del registro write entre los diferentes parametros asociados a cada número según la entrada h, la dirección de estos bits reescritos corresponden a cuales bits de la totalidad del envío corresponden al valor numerico de h.
+
+```verilog
+// Bytes dinamicos (Se pintan o no segun el estado y las entradas del tamagotchi)
+    case(h)	//Nivel de hambre
+      0: write [3207:3176] <= num0;
+      1: write [3207:3176] <= num1;
+      2: write [3207:3176] <= num2;
+      3: write [3207:3176] <= num3;
+      4: write [3207:3176] <= num4;
+      5: write [3207:3176] <= num5;
+    endcase
+```
 
 Dada la forma en la que se implementó el driver de la pantalla se puede intuir el siguiente problema: asignar las direcciones en la memoria de write según el orden en que cada comando/simbolo tiene lugar en la totalidad del envío. Para esto, se consideró que la pantalla naturalmente va pintando bytes verticales de izquierda a derecha y de arriba a abajo y se asignaron a mano las direcciones en base al documento Orden que se puede encontrar en la carpeta tamagotchi del repositorio. Este orden nace a su vez del diseño realizado en pixilart.com que se puede visualizar abriendo el documento tamagotchiDiseño.pixil en dicha pagina web.
 
 Por último, cabe aclarar que el ultimo byte del envio es un dinamico que depende de si el sistema percibe oscuridad y consiste de un comando que niega todos los pixeles de la pantalla. Asimismo, los primeros tres bytes del envio corresponden a los comandos: poner la pantalla en modo normal (por si estaba negada) y asignar el cursor de pintura en el byte (0,0) de la pantalla. Los demas bytes son de pintura; dado que la pantalla no tiene un comando para limpiar su memoria interna, es necesario limpiarla pintando activamente espacios en blanco.
 
-
 # 4. Implementacion final
 
 El codigo verilog implementado para el desarrollo del prototipo final de la mascota se encuentra en la carpeta **tamagotchi**.
 
-# Funcionamiento fisico
+# 5. Funcionamiento fisico
 
 [![Alt text](https://img.youtube.com/vi/biFUtQbGLT0/0.jpg)](https://www.youtube.com/watch?v=biFUtQbGLT0)
 
