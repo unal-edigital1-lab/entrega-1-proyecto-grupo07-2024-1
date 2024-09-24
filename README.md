@@ -94,7 +94,7 @@ Notese que existe una jerarquia de necesidades, siendo posible pasar a "hambrien
 
 <div>
 <p style = 'text-align:center;'>
-<img src="./media/Diagramacajanegraa.png" alt="imagen" width="800px">
+<img src="./media/Cajanegrageneral.jpg" alt="imagen" width="800px">
 </p>
 </div>
 
@@ -120,21 +120,23 @@ Se aclara además que los botones Test y Reset controlan indirectamente los esta
 
 La máquina de estados trabaja 
 
-### 3.1.3 Módulo de toma de mediciones (measure)
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/maqestadoscajanegra.jpg" alt="imagen" width="400px">
+</p>
+</div>
+
+### 3.1.3 Módulo divisor de frecuencia (DivFrec)
+
+<div>
+<p style = 'text-align:center;'>
+<img src="./media/DivFreccajanegra.jpg" alt="imagen" width="600px">
+</p>
+</div>
+
+### 3.1.4 Módulo de toma de mediciones (measure)
 
 Este módulo esta controlado por sclk. Inicializa los sensores y registra sus valores para ser trabajados posteriormente. En el caso de test y reset, solo saca señales de control de tamagotchi cuando los respectivos pulsadores se mantienen presionados por aproximadamente 5 segundos.
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/measureReset.png" alt="imagen" width="400px">
-</p>
-</div>
-
-<div>
-<p style = 'text-align:center;'>
-<img src="./media/measureTest.png" alt="imagen" width="400px">
-</p>
-</div>
 
 ### 3.1.3 Procesamiento de mediciones (procesmeas)
 
