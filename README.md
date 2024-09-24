@@ -366,3 +366,15 @@ Por último, cabe aclarar que el ultimo byte del envio es un dinamico que depend
 # 4. Implementacion final
 
 El codigo verilog implementado para el desarrollo del prototipo final de la mascota se encuentra en la carpeta **tamagotchi**.
+
+# Funcionamiento fisico
+
+[![Alt text](https://img.youtube.com/vi/configuroweb/0.jpg)](https://www.youtube.com/watch?v=biFUtQbGLT0)
+
+[![Alt text](https://img.youtube.com/vi/configuroweb/0.jpg)](https://www.youtube.com/watch?v=bF8Sdmfmh7Y)
+
+[![Alt text](https://img.youtube.com/vi/configuroweb/0.jpg)](https://www.youtube.com/watch?v=9FcqDuONuYg)
+
+[![Alt text](https://img.youtube.com/vi/configuroweb/0.jpg)](https://www.youtube.com/watch?v=z3MY4BITmAo)
+
+
