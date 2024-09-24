@@ -25,7 +25,7 @@ Planteamos el uso de los siguientes botones para interactuar con el sistema:
 
 Para la interacción de Tamagutchi con su entorno, se propone incorporar 3 sensores como lo son:
 
-- **Sensor de Luz o Fotoresistencia(GL5516):** Este sensor nos permite determinar los tiempos en que la mascota estara descansando, si es sometido a luz el Tamagutchi estara despierto, en caso contrario, si esta oscuro o bajo sombra estará dormido. 
+- **Sensor de Luz o Fotoresistencia:** Este sensor nos permite determinar los tiempos en que la mascota estara descansando, si es sometido a luz el Tamagutchi estara despierto, en caso contrario, si esta oscuro o bajo sombra estará dormido. 
 
 - **Sensor Ultrasonido(HC-SR04):** Con este sensor queremos interactuar con el Tamagutchi para cambiar su nivel de "Diversión", si nos ubicamos cerca a la mascota el valor de este item debe conservarse, de lo contrario disminuirá progresivamente.
 
@@ -33,7 +33,7 @@ Para la interacción de Tamagutchi con su entorno, se propone incorporar 3 senso
 
 ## 1.3 Sistema de Visualizacion
 
-Para la visualización del Tamagutchi, la representacion de sus emociones y los valores numéricos representativos de los estados se empleará el display "Nokia 5110", esto permite al usuario entender las necesidades de la mascota virtual y actuar para su bienestar.
+Para la visualización del Tamagutchi, la representacion de sus emociones, de sus interacciones y los valores numéricos representativos de los estados se empleará el display "Nokia 5110", esto permite al usuario entender las necesidades de la mascota virtual y actuar para su bienestar. Ademas se implementa el display 7 segmentos dispuesto en la FPGA para visualizar el estado y el nivel de sus emociones.
 
 # 2. Especificaciones de Diseño
 
@@ -62,6 +62,8 @@ Para controlar los cambios de estado definimos las siguientes variables:
 Para las 3 variables ya mencionadas, un nivel de 5, 4 o 3 se consideran optimos y mantienen a la mascota en estado "feliz"; un nivel de 2 o 1 implican una necesidad y fuerzan un cambio de estado según el caso; 0 representa un estado crítico y fuerza a la mascota a pasar a estado "enfermo".
 
 - **Oscuridad(o):** Solo pudiendo tomar valores entre 0 y 1 según el nivel de luz del ambiente. En un estado de "cansado", la oscuridad permite al tamagotchi pasar a estado "descansar". Si la mascota aun tiene energia, aumenta la velocidad de disminución de "energía" para permitirle al tamagotchi descansar.
+
+- **enMue:** Solo toma valores entre 0 y 1 segun el tiempo que haya pasado la mascota en enfermo. Esta variable se tiene en cuenta unicamente en el estado de "enfermo" y permite el paso a "muerto" si la mascota no es curada.
 
 ## 2.3 Acciones/Interacciones:
 
