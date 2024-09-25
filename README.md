@@ -1,4 +1,4 @@
-# Entrega 1 del proyecto WP01
+# Entrega final Tamagotchi
 
 ### Integrantes:
 - Jose Gabriel Peña Solorzano
