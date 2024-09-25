@@ -192,14 +192,14 @@ En cada ciclo estos registros pueden subir, bajar, forzarse en un valor de reset
 
 **Explicación de diseño**
 
-'''verilog
+```verilog
 if (hreal[bitsValReal] == 1 && hreal[bitsValReal-1] == 1) 				hreal <= 0;
 else if (hreal[bitsValReal] == 1 && hreal[bitsValReal-1] == 0) 		hreal <= maxValue;
 if (dreal[bitsValReal] == 1 && dreal[bitsValReal-1] == 1)				dreal <= 0;
 else if (dreal[bitsValReal] == 1 && dreal[bitsValReal-1] == 0)		dreal <= maxValue;
 if (ereal[bitsValReal] == 1 && ereal[bitsValReal-1] == 1)				ereal <= 0;
 else if (ereal[bitsValReal] == 1 && ereal[bitsValReal-1] == 0)		ereal <= maxValue;
-'''
+```
 
 **Caso enfermo**
 <div>
