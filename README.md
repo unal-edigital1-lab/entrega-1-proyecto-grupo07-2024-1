@@ -192,16 +192,29 @@ En cada ciclo estos registros pueden subir, bajar, forzarse en un valor de reset
 
 **Explicación de diseño**
 
+- Este fragmento del codigo destinado para este modulo tiene como objetivo evitar la saturación de los registros en valores mínimos o máximos. Se analizan los dos bits más significativos de los registros correspondientes a las variables de transicion (h,d,e), y dependiendo de su valor, se ajustan dichos registros para evitar que se desborden por debajo del mínimo (0) o por encima del valor máximo (5). Tenemos entonces dos casos:
+- Por un lado, si los dos bits más significativos de la variable son ambos 1, entonces se fuerza a que el valor de esta sea 0, evitando así una saturación por debajo de su valor mínimo. Esto se explica a partir de la representación en complemento a 2, donde si los dos bits más significativos son 11, significa que el número es negativo. Esto es debido a que el bit más significativo actúa como el bit de signo. En complemento a 2, el bit de signo 1 indica un número negativo, y la secuencia 11 sugiere que estamos tratando con un número cercano al valor más negativo posible para esa cantidad de bits.
+- El otro caso, si los dos bits mas significativos son 0 y 1, se define el valor de la variable como maxValue, en este caso 5, evitando la saturacion por exceso.  Se justifica debido a que en esta combinación, el bit más significativo (0) indica que el número es positivo, mientras que el siguiente bit (1) sugiere que el valor es relativamente alto dentro del rango de números positivos que contiene determinado numero de bits.
+  
 ```verilog
-if (hreal[bitsValReal] == 1 && hreal[bitsValReal-1] == 1) 				hreal <= 0;
-else if (hreal[bitsValReal] == 1 && hreal[bitsValReal-1] == 0) 		hreal <= maxValue;
-if (dreal[bitsValReal] == 1 && dreal[bitsValReal-1] == 1)				dreal <= 0;
-else if (dreal[bitsValReal] == 1 && dreal[bitsValReal-1] == 0)		dreal <= maxValue;
-if (ereal[bitsValReal] == 1 && ereal[bitsValReal-1] == 1)				ereal <= 0;
-else if (ereal[bitsValReal] == 1 && ereal[bitsValReal-1] == 0)		ereal <= maxValue;
+if (hreal[bitsValReal] == 1 && hreal[bitsValReal-1] == 1)
+  hreal <= 0;
+else if (hreal[bitsValReal] == 1 && hreal[bitsValReal-1] == 0)
+  hreal <= maxValue;
+if (dreal[bitsValReal] == 1 && dreal[bitsValReal-1] == 1)
+  dreal <= 0;
+else if (dreal[bitsValReal] == 1 && dreal[bitsValReal-1] == 0)
+  dreal <= maxValue;
+if (ereal[bitsValReal] == 1 && ereal[bitsValReal-1] == 1)
+  ereal <= 0;
+else if (ereal[bitsValReal] == 1 && ereal[bitsValReal-1] == 0)
+  ereal <= maxValue;
 ```
 
-**Caso enfermo**
+**Caso particular (enfermo):**
+
+Con el objetivo de observar el diagrama de flujo en funcionamiento para un estado particular, se eligio trabajar el de "enfermo", de esta manera tambien se pueden ver los cambios de las 3 variables en solo este estado. Cabe resaltar que cada estado tendra un comportamiento diferente de las variables segun la logica establecida.
+
 <div>
 <p style = 'text-align:center;'>
 <img src="./media/enfermobloque.png" alt="imagen" width="600px">
