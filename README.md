@@ -184,18 +184,49 @@ Es necesario hacer una distinción entre h, e y d como registros de 6 posibles v
 
 En cada ciclo estos registros pueden subir, bajar, forzarse en un valor de reset específico o conservarse en sus valores máximos o mínimos para evitar saturaciones en los registros, que pueden desembocar en que la mascota muera de hambre tras alimentarse demasiado.
 
+**Explicación de diseño**
+
+Se tomará como ejemplo el caso del nivel de hambre h en un estado cualquiera n (aunque el diagrama aplica para los demás niveles e y d):
+
 <div>
 <p style = 'text-align:center;'>
 <img src="./media/Bloques_procesmeas.png" alt="imagen" width="700px">
 </p>
 </div>
 
-**Explicación de diseño**
+En primer lugar, se puede ver como en cada ciclo de sclk se hace la conversión entre el valor hreal de 8 bits con h de solo 3. Esto se realiza con la siguiente función:
 
-- Este fragmento del codigo destinado para este modulo tiene como objetivo evitar la saturación de los registros en valores mínimos o máximos. Se analizan los dos bits más significativos de los registros correspondientes a las variables de transicion (h,d,e), y dependiendo de su valor, se ajustan dichos registros para evitar que se desborden por debajo del mínimo (0) o por encima del valor máximo (5). Tenemos entonces dos casos:
-- Por un lado, si los dos bits más significativos de la variable son ambos 1, entonces se fuerza a que el valor de esta sea 0, evitando así una saturación por debajo de su valor mínimo. Esto se explica a partir de la representación en complemento a 2, donde si los dos bits más significativos son 11, significa que el número es negativo, debido a que el bit más significativo, en este caso 1, actúa como el bit de signo. Por tanto, la secuencia 11 sugiere que estamos tratando con un número cercano al valor más negativo posible para esa cantidad de bits.
-- El otro caso, si los dos bits mas significativos son 0 y 1, se define el valor de la variable como maxValue, en este caso 5, evitando la saturacion por exceso.  Se justifica debido a que en el complemento a 2, el bit más significativo (0) indica que el número es positivo, mientras que el siguiente bit (1) sugiere que el valor es relativamente alto dentro del rango de números positivos que contiene determinado numero de bits.
-  
+h = (hreal+nivelSize-1)/nivelSize
+
+Donde nivelSize es el tamaño, o número de valores de hreal, asociados a un mismo nivel de h. Esto se puede entender mejor en la siguiente tabla:
+
+|**hreal**|    **h**  |
+|:-------:|:---------:|
+|    0    |     0     |
+|   1-51  |     1     |
+|  52-102 |     2     |
+| 103-153 |     3     |
+| 154-204 |     4     |
+| 205-255 |     5     |
+
+A excepción del valor 0, hay 51 valores de hreal por cada nivel de h. Dado que la salida de un divisor en la fpga es por defecto un valor entero, la función mostrada previamente cumple con la relación mostrada en la tabla. Una forma de aumentar o reducir el tiempo que naturalmente le toma al tamagotchi en pasar de un estado a otro se puede hacer aumentando o reduciendo el tamaño de h, y en consecuencia ajustando el valor de nivelSize para conservar los 5 niveles qie se muestran al usuario de h.
+
+La ventaja de trabajar internamente con registros de 255 niveles en lugar de solo 5 está en que permite complejizar el efecto que tiene cada entrada en el tamagotchi, esto se realiza en el bloque "hreal=ec.". En caso de que en dicho ciclo no se de una señal de test o reset que fuerze hreal a un valor especifico, este se actualizará en base a una ecuación que varía segun el estado del tamagotchi y las entradas que sienta en dicho ciclo. Un ejemplo de esto es la actualización de ereal en los estados aburrido y cansado:
+
+En aburrido:
+ereal = ereal - 1 - (fact2 * jugar) - (fact1 * calor) - (fact4 * regluz);
+
+En cansado:
+ereal = ereal - 1 - (fact1 * calor);
+
+Se observa como, en aburrido, el valor de ereal depende de si el usuario juega con el tamagotchi o si este siente frio o falta de luz. Cada una de estas posibles entradas tiene un peso diferente, teniendo un mayor efecto en la ecuación el efecto de la oscuridad en el sistema. Si el tamagotchi no siente ninguna entrada, hreal simplemente disminuira en 1 valor.
+
+En contraste, en estado cansado el peso del calor en la ecuación se conserva, pero el tamagotchi deja de considerar el efecto del calor y de la luz. Las entradas que se toman en cuenta para cada variable en cada estado estan definidas en base a las especificaciones de la sección "descripción de estados" y en base a lo que se viera conveniente en las pruebas. Por ejemplo, el hecho de que la oscuridad aumente la velocidad de disminución de ereal en estado aburrido pero no tenga efecto en cansado se justifica en que se habia especificado que la oscuridad aumente el cansancio de la mascota, pero que sea el factor que realice el cambio de estado de cansado a descansando.
+
+En algunos estados ciertos niveles no cambiaran para conservar la jerarquia de necesidades de la mascota. En hambriento, ereal no puede variar mas allá de test o reset porque el hambre tiene mayor jerarquia que cansancio. Con esta jerarquia se busca evitar, por ejemplo, que la mascota muera de cansancio mientras esta en estado hambriento, puesto que la mascota sería incapaz de mostrar ambas necesidades a la vez y el usuario no tendria forma de saber que debe atender a ambas. Con el sistema de jerarquia, si la mascota esta hambrienta y cansada a la vez, pasar a estado hambriento, el nivel de energia se pausara y solo seguira bajando, o aumentando, cuando se atienda primero el hambre de la mascota.
+
+Finalmente, para evitar que el registro de hreal se sature, se agrego como MSB a hreal un bit que indique dicha saturación, pero que no hace parte del valor numerico del registro. De esta manera, si los 8 bits númericos de hreal pasan de su valor máximo de 255 a su valor mínimo de 0 por una suma que sature el registro, el MSB mostara la saturación como un carry de 1 que activara una corrección al registro. Lo mismo sucede en caso de desender por debajo de 0 y pasar a un valor máximo. Esto se explica en detalle a continuación.
+
 ```verilog
 if (hreal[bitsValReal] == 1 && hreal[bitsValReal-1] == 1)
   hreal <= 0;
@@ -211,6 +242,11 @@ else if (ereal[bitsValReal] == 1 && ereal[bitsValReal-1] == 0)
   ereal <= maxValue;
 ```
 
+- Este fragmento del codigo destinado para este modulo tiene como objetivo evitar la saturación de los registros en valores mínimos o máximos. Se analizan los dos bits más significativos de los registros correspondientes a las variables de transicion (h,d,e), y dependiendo de su valor, se ajustan dichos registros para evitar que se desborden por debajo del mínimo (0) o por encima del valor máximo (5). Tenemos entonces dos casos:
+- Por un lado, si los dos bits más significativos de la variable son ambos 1, entonces se fuerza a que el valor de esta sea 0, evitando así una saturación por debajo de su valor mínimo. Esto se explica a partir de la representación en complemento a 2, donde si los dos bits más significativos son 11, significa que el número es negativo, debido a que el bit más significativo, en este caso 1, actúa como el bit de signo. Por tanto, la secuencia 11 sugiere que estamos tratando con un número cercano al valor más negativo posible para esa cantidad de bits.
+- El otro caso, si los dos bits mas significativos son 0 y 1, se define el valor de la variable como maxValue, en este caso 5, evitando la saturacion por exceso.  Se justifica debido a que en el complemento a 2, el bit más significativo (0) indica que el número es positivo, mientras que el siguiente bit (1) sugiere que el valor es relativamente alto dentro del rango de números positivos que contiene determinado numero de bits.
+  
+
 **Caso particular (enfermo):**
 
 Con el objetivo de observar el diagrama de flujo en funcionamiento para un estado particular, se eligio trabajar el de "enfermo", de esta manera tambien se pueden ver los cambios de las 3 variables en solo este estado. Cabe resaltar que cada estado tendra un comportamiento diferente de las variables segun la logica establecida.
@@ -220,6 +256,10 @@ Con el objetivo de observar el diagrama de flujo en funcionamiento para un estad
 <img src="./media/enfermobloque.png" alt="imagen" width="600px">
 </p>
 </div>
+
+Como se puede ver, en enfermo los valores de hreal, ereal y dreal que se fuerzan en caso de activarse el test son los necesarios para pasar estado enfermo. Además, se fuerza el cambio de enMue a 1 para permiteir el cambio de estado de enfermo a muerto sin considerar el contador.
+
+En caso de no recibir una señal de reset o test, los valores de ereal, hreal o dreal no cambian. Tampoco se consideran entradas diferentes a curar. Solo se actualiza un contador que mide el tiempo que dura la mascota enferma antes de morir por falta de atención.
 
 ## 3.2 Descripcion de componentes
 
